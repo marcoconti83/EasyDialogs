@@ -12,9 +12,12 @@ public class ClosureButton: NSButton {
     
     public var closure: ((Any)->())? = nil
     
-    public init(closure: ((Any)->())?) {
+    public init(label: String? = nil, closure: ((Any)->())?) {
         super.init(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
         self.closure = closure
+        if let label = label {
+            self.title = label
+        }
         self.linkActionToButton()
     }
     
