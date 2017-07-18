@@ -22,7 +22,10 @@ public protocol StringInputConvertible {
 
 public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
 
-    public init(label: String = "", value: VALUE? = nil)
+    public init(label: String = "",
+                value: VALUE? = nil,
+                validation: @escaping (VALUE?)->(Bool) = { _ in true }
+                )
     {
         let textField = NSTextField()
         super.init(
@@ -34,7 +37,8 @@ public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NS
             setValue: { control, value in
                 let string = value?.toStringInput()
                 control.stringValue = string ?? ""
-            }
+            },
+            validation: validation
         )
         self.label = label
         self.value = value

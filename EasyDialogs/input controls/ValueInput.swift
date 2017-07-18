@@ -17,6 +17,9 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     /// Extracts the value from the control
     fileprivate let valueExtraction: (CONTROL)->VALUE?
     
+    /// Validate the parsed input
+    var validation: (VALUE?)->(Bool)
+    
     /// Control that holds the value
     public let controlView: CONTROL!
     
@@ -25,13 +28,15 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     
     public init(controlView: CONTROL,
          valueExtraction: @escaping (CONTROL)->VALUE?,
-         setValue: @escaping (CONTROL, VALUE?)->() = { _ in }
+         setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
+         validation: @escaping (VALUE?)->(Bool) = { _ in true }
          )
     {
         self.controlView = controlView
         self.labelView = NSTextField.createLabel()
         self.valueExtraction = valueExtraction
         self.setValue = setValue
+        self.validation = validation
         super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 50))
         
         self.addSubview(self.labelView)
@@ -56,6 +61,7 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
 
 extension ValueInput {
     
+    /// The label for the input control
     public var label: String {
         get {
             return self.labelView.stringValue
@@ -65,6 +71,7 @@ extension ValueInput {
         }
     }
     
+    /// The value represented by the current input
     public var value: VALUE? {
         get {
             return self.valueExtraction(self.controlView)
@@ -72,6 +79,15 @@ extension ValueInput {
         set {
             self.setValue(self.controlView, newValue)
         }
+    }
+    
+    /// Whether the input contains a valid value
+    public var hasValue: Bool {
+        return self.value != nil
+    }
+    
+    public var hasValidValue: Bool {
+        return self.validation(self.value)
     }
 }
 

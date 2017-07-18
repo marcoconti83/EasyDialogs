@@ -17,11 +17,14 @@ class ViewController: NSViewController {
         super.viewDidLoad()
          
         let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
-        let repetitionsInput = TextFieldInput<Int>(label: "Repetitions", value: 2)
+        let repetitionsInput = TextFieldInput<Int>(label: "Repetitions", value: 2, validation: {
+            guard let value = $0 else { return false }
+            return value >= 0 && value < 100
+        })
         let stringOutput = TextFieldInput<String>(label: "Output string")
         
         let button = ClosureButton() { _ in
-            guard let repetitions = repetitionsInput.value, repetitions > 0, repetitions < 1000 else {
+            guard repetitionsInput.hasValidValue, let repetitions = repetitionsInput.value else {
                 stringOutput.value = "ERROR: Repetitions is not a valid number"
                 return
             }
