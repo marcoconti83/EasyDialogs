@@ -27,10 +27,10 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     fileprivate let setValue: (CONTROL, VALUE?)->()
     
     public init(controlView: CONTROL,
-         valueExtraction: @escaping (CONTROL)->VALUE?,
-         setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
-         validation: @escaping (VALUE?)->(Bool) = { _ in true }
-         )
+                centerControlWithLabel: Bool = true,
+                valueExtraction: @escaping (CONTROL)->VALUE?,
+                setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
+                validation: @escaping (VALUE?)->(Bool) = { _ in true })
     {
         self.controlView = controlView
         self.labelView = NSTextField.createLabel()
@@ -48,7 +48,11 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
         constrain(self, self.labelView, self.controlView) { view, label, control in
 
             control.trailing == view.trailing - padding
-            control.top == label.top
+            if centerControlWithLabel {
+                control.centerY == label.centerY
+            } else {
+                control.top == label.top
+            }
             control.leading == label.trailing + padding
             control.top == view.top  + padding
             control.bottom == view.bottom - padding
