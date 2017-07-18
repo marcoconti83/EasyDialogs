@@ -16,16 +16,20 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          
-        let stringInput = TextFieldInput<String>(label: "Input string", value: "foo bar")
+        let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
+        let repetitionsInput = TextFieldInput<Int>(label: "Repetitions", value: 2)
         let stringOutput = TextFieldInput<String>(label: "Output string")
         
         let button = ClosureButton() { _ in
-            stringOutput.value = stringInput.value
-            stringInput.value = nil
+            guard let repetitions = repetitionsInput.value, repetitions > 0, repetitions < 1000 else {
+                stringOutput.value = "ERROR: Repetitions is not a valid number"
+                return
+            }
+            stringOutput.value = String.init(repeating: stringInput.value ?? "", count: repetitions)
         }
         button.title = "Copy value"
         
-        [stringInput, stringOutput, button].forEach {
+        [stringInput, stringOutput, repetitionsInput, button].forEach {
             self.stackView.addArrangedSubview($0)
         }
         
@@ -34,13 +38,5 @@ class ViewController: NSViewController {
             button.trailing == view.trailing
         }
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
-
 }
 

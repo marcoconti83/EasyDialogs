@@ -17,7 +17,7 @@ public protocol StringInputConvertible {
     
     /// Initializes self from a string input from
     /// an input field
-    init(fromStringInput: String)
+    init?(fromStringInput: String)
 }
 
 public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
@@ -53,8 +53,19 @@ extension String: StringInputConvertible {
         return self
     }
     
-    public init(fromStringInput input: String) {
+    public init?(fromStringInput input: String) {
         self.init(input)!
     }
     
+}
+
+extension Int: StringInputConvertible {
+    
+    public func toStringInput() -> String? {
+        return String(describing: self)
+    }
+    
+    public init?(fromStringInput input: String) {
+        self.init(input)
+    }
 }
