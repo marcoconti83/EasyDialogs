@@ -665,7 +665,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Input fields test" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -688,14 +688,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vb6-46-Mlf">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="5" y="5" width="470" height="260"/>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Vb6-46-Mlf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="0HM-eS-qsD"/>
-                            <constraint firstAttribute="bottom" secondItem="Vb6-46-Mlf" secondAttribute="bottom" id="V6e-os-aG2"/>
-                            <constraint firstItem="Vb6-46-Mlf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="gqD-kZ-BoW"/>
-                            <constraint firstAttribute="trailing" secondItem="Vb6-46-Mlf" secondAttribute="trailing" id="rTS-hQ-O9H"/>
+                            <constraint firstItem="Vb6-46-Mlf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="0HM-eS-qsD"/>
+                            <constraint firstAttribute="bottom" secondItem="Vb6-46-Mlf" secondAttribute="bottom" constant="5" id="V6e-os-aG2"/>
+                            <constraint firstItem="Vb6-46-Mlf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="gqD-kZ-BoW"/>
+                            <constraint firstAttribute="trailing" secondItem="Vb6-46-Mlf" secondAttribute="trailing" constant="5" id="rTS-hQ-O9H"/>
                         </constraints>
                     </view>
                     <connections>
