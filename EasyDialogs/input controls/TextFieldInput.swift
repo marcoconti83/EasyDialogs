@@ -73,3 +73,14 @@ extension Int: StringInputConvertible {
         self.init(input)
     }
 }
+
+extension URL: StringInputConvertible {
+    
+    public func toStringInput() -> String? {
+        return self.absoluteString
+    }
+    
+    public init?(fromStringInput input: String) {
+        self.init(string: input)
+    }
+}
