@@ -20,6 +20,7 @@
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
 		546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75F71F1DE14500E1426A /* TextFieldInput.swift */; };
 		546F75FE1F1DE93B00E1426A /* ClosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75FD1F1DE93B00E1426A /* ClosureButton.swift */; };
+		54D4907C1F1E959900FA3A1C /* SelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SelectionInput.swift */; };
 		54DBCDEF1F0F771C008DB8E3 /* EasyDialogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */; };
 		54DBCDF41F0F771C008DB8E3 /* EasyDialogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,6 +70,7 @@
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
 		546F75F71F1DE14500E1426A /* TextFieldInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldInput.swift; sourceTree = "<group>"; };
 		546F75FD1F1DE93B00E1426A /* ClosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureButton.swift; sourceTree = "<group>"; };
+		54D4907B1F1E959900FA3A1C /* SelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionInput.swift; sourceTree = "<group>"; };
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDialogs.h; sourceTree = "<group>"; };
 		54DBCDE91F0F771B008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				541C6F131F17CB4700C29CC4 /* ValueInput.swift */,
 				542985121F1E7FCC003EFDFB /* TextViewInput.swift */,
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
+				54D4907B1F1E959900FA3A1C /* SelectionInput.swift */,
 			);
 			path = "input controls";
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D4907C1F1E959900FA3A1C /* SelectionInput.swift in Sources */,
 				546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,

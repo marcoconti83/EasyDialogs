@@ -24,7 +24,7 @@ class ViewController: NSViewController {
         self.createURLSection()
         self.createStringSection()
         self.createTextSection()
-        self.stackView.addArrangedSubviews([self.outputField])
+        self.stackView.addArrangedSubviewsAndExpand([self.outputField])
     }
     
     fileprivate func log(_ string: String) {
@@ -48,11 +48,10 @@ extension ViewController {
             }
             self.log(String.init(repeating: stringInput.value ?? "", count: repetitions))
         }
-        self.stackView.addArrangedSubviews([stringInput,
+        self.stackView.addArrangedSubviewsAndExpand([stringInput,
                                             repetitionsInput,
                                             copyStringButton,
             ])
-        self.stackView.expand(copyStringButton)
     }
     
     fileprivate func createURLSection() {
@@ -70,43 +69,44 @@ extension ViewController {
                 }
             }).resume()
         }
-        self.stackView.addArrangedSubviews([urlInput, fetchURLButton])
-        self.stackView.expand(fetchURLButton)
-
+        self.stackView.addArrangedSubviewsAndExpand([urlInput, fetchURLButton])
     }
     
     fileprivate func createTextSection() {
         let textInput = TextViewInput(label: "Text", value: "All human beings are born free and equal in dignity and rights.")
+        let analysisTypeInput = SelectionInput(label: "What to count",
+                                               values: LengthAnalysis.all,
+                                               selectedValue: .numberOfCharacters)
+        
         let analyzeButton = ClosureButton(label: "Analyze text") { _ in
             guard let string = textInput.value else { return }
-            self.log("Text is \(string.characters.count) character(s) long")
+            guard let analysis = analysisTypeInput.value else { return }
+            let count = analysis.perform(on: string)
+            self.log("Text is \(count) \(analysis.rawValue)(s) long")
         }
-        self.stackView.addArrangedSubviews([textInput,
-                                            analyzeButton,
-                                            ])
-        self.stackView.expand(analyzeButton)
+        self.stackView.addArrangedSubviewsAndExpand([
+            textInput,
+            analysisTypeInput,
+            analyzeButton,
+        ])
     }
 }
 
 extension NSStackView {
     
-    /// Adds all views as arranged subviews
-    func addArrangedSubviews(_ views: [NSView]) {
+    /// Adds all views as arranged subviews. 
+    /// Expands the given view to match the stackview width (if vertical stack)
+    /// or height (if horizontal stack).
+    func addArrangedSubviewsAndExpand(_ views: [NSView]) {
         views.forEach {
             self.addArrangedSubview($0)
+            self.expand($0)
         }
     }
     
     /// Expands the given view to match the stackview width (if vertical stack) 
-    /// or height (if horizontal stack). If the view is not already part of the stack, 
-    /// adds it to the stack.
-    /// - parameter doNotAdd: do not add the subview if not already part of the stack. 
-    ///   This will cause autolayout issue if the subview is not already part of the stack, 
-    ///   but will speed up the method if the stack contains a lot of views already
-    func expand(_ view: NSView, padding: CGFloat = 0.0, doNotAdd: Bool = false) {
-        if !self.arrangedSubviews.contains(view) {
-            self.addArrangedSubview(view)
-        }
+    /// or height (if horizontal stack).
+    private func expand(_ view: NSView, padding: CGFloat = 0.0) {
         
         constrain(self, view) { stack, view in
             switch self.orientation {
@@ -119,4 +119,28 @@ extension NSStackView {
             }
         }
     }
+}
+
+
+enum LengthAnalysis: String, CustomStringConvertible {
+    case numberOfCharacters = "characters"
+    case numberOfWords = "words"
+    case numberOfLines = "lines"
+    
+    func perform(on text: String) -> Int {
+        switch self {
+        case .numberOfLines:
+            return text.components(separatedBy: "\n").count
+        case .numberOfWords:
+            return text.components(separatedBy: CharacterSet.whitespacesAndNewlines).count
+        case .numberOfCharacters:
+            return text.characters.count
+        }
+    }
+ 
+    var description: String {
+        return self.rawValue
+    }
+    
+    static let all: [LengthAnalysis] = [.numberOfCharacters, .numberOfWords, .numberOfLines]
 }

@@ -34,6 +34,7 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     {
         self.controlView = controlView
         self.labelView = NSTextField.createLabel()
+        self.labelView.setContentHuggingPriority(501, for: .horizontal)
         self.valueExtraction = valueExtraction
         self.setValue = setValue
         self.validation = validation
