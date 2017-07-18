@@ -74,7 +74,12 @@ extension ValueInput {
     /// The value represented by the current input
     public var value: VALUE? {
         get {
-            return self.valueExtraction(self.controlView)
+            let value = self.valueExtraction(self.controlView)
+            if self.validation(value) {
+                return value
+            } else {
+                return nil
+            }
         }
         set {
             self.setValue(self.controlView, newValue)
@@ -84,10 +89,6 @@ extension ValueInput {
     /// Whether the input contains a valid value
     public var hasValue: Bool {
         return self.value != nil
-    }
-    
-    public var hasValidValue: Bool {
-        return self.validation(self.value)
     }
 }
 
