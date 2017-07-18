@@ -37,7 +37,7 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
         self.valueExtraction = valueExtraction
         self.setValue = setValue
         self.validation = validation
-        super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 50))
+        super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 90))
         
         self.addSubview(self.labelView)
         self.addSubview(self.controlView)
@@ -45,12 +45,13 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
         let padding: CGFloat = 5
         
         constrain(self, self.labelView, self.controlView) { view, label, control in
-            label.leading == view.leading + padding
-            label.top == view.top  + padding
-            label.bottom == view.bottom - padding
+
             control.trailing == view.trailing - padding
-            control.centerY == label.centerY
+            control.top == label.top
             control.leading == label.trailing + padding
+            control.top == view.top  + padding
+            control.bottom == view.bottom - padding
+            label.leading == view.leading + padding
         }
     }
     

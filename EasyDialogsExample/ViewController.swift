@@ -21,6 +21,22 @@ class ViewController: NSViewController {
         
         self.outputField = TextFieldInput<String>(label: "Output")
          
+        self.createURLSection()
+        self.createStringSection()
+        self.createTextSection()
+        self.stackView.addArrangedSubviews([self.outputField])
+    }
+    
+    fileprivate func log(_ string: String) {
+        self.outputField.value = string
+    }
+    
+}
+
+extension ViewController {
+    
+    fileprivate func createStringSection() {
+        
         let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
         let repetitionsInput = TextFieldInput<Int>(label: "Repetitions", value: 2, validation: {
             $0 != nil && $0! >= 0 && $0! < 100
@@ -30,10 +46,17 @@ class ViewController: NSViewController {
                 self.log("ERROR: Repetitions is not a valid number")
                 return
             }
-            self.outputField.value = String.init(repeating: stringInput.value ?? "", count: repetitions)
+            self.log(String.init(repeating: stringInput.value ?? "", count: repetitions))
         }
+        self.stackView.addArrangedSubviews([stringInput,
+                                            repetitionsInput,
+                                            copyStringButton,
+            ])
+        self.stackView.expand(copyStringButton)
+    }
+    
+    fileprivate func createURLSection() {
         
-
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
@@ -47,21 +70,21 @@ class ViewController: NSViewController {
                 }
             }).resume()
         }
-        
-        
-        self.stackView.addArrangedSubviews([stringInput,
-                                            repetitionsInput,
-                                            copyStringButton,
-                                            urlInput,
-                                            fetchURLButton,
-                                            self.outputField
-                                            ])
-        self.stackView.expand(copyStringButton)
+        self.stackView.addArrangedSubviews([urlInput, fetchURLButton])
         self.stackView.expand(fetchURLButton)
+
     }
     
-    private func log(_ string: String) {
-        self.outputField.value = string
+    fileprivate func createTextSection() {
+        let textInput = TextViewInput(label: "Text", value: "All human beings are born free and equal in dignity and rights.")
+        let analyzeButton = ClosureButton(label: "Analyze text") { _ in
+            guard let string = textInput.value else { return }
+            self.log("Text is \(string.characters.count) character(s) long")
+        }
+        self.stackView.addArrangedSubviews([textInput,
+                                            analyzeButton,
+                                            ])
+        self.stackView.expand(analyzeButton)
     }
 }
 
