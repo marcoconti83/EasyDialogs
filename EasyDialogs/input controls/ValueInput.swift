@@ -26,11 +26,14 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     /// Sets the value on the control
     fileprivate let setValue: (CONTROL, VALUE?)->()
     
-    public init(controlView: CONTROL,
-                centerControlWithLabel: Bool = true,
-                valueExtraction: @escaping (CONTROL)->VALUE?,
-                setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
-                validation: @escaping (VALUE?)->(Bool) = { _ in true })
+    public init(
+        label: String? = nil,
+        value: VALUE? = nil,
+        controlView: CONTROL,
+        centerControlWithLabel: Bool = true,
+        valueExtraction: @escaping (CONTROL)->VALUE?,
+        setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
+        validation: @escaping (VALUE?)->(Bool) = { _ in true })
     {
         self.controlView = controlView
         self.labelView = NSTextField.createLabel()
@@ -57,6 +60,13 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
             control.top == view.top  + padding
             control.bottom == view.bottom - padding
             label.leading == view.leading + padding
+        }
+        
+        if let label = label {
+            self.label = label
+        }
+        if let value = value {
+            self.value = value
         }
     }
     

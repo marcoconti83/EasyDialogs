@@ -18,12 +18,16 @@
 		541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 541C6F0D1F17C78A00C29CC4 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6F131F17CB4700C29CC4 /* ValueInput.swift */; };
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
+		545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; };
+		545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; };
 		546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75F71F1DE14500E1426A /* TextFieldInput.swift */; };
-		546F75FE1F1DE93B00E1426A /* ClosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75FD1F1DE93B00E1426A /* ClosureButton.swift */; };
-		54D4907C1F1E959900FA3A1C /* SelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SelectionInput.swift */; };
+		54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */; };
+		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
 		54DBCDEF1F0F771C008DB8E3 /* EasyDialogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */; };
 		54DBCDF41F0F771C008DB8E3 /* EasyDialogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,8 @@
 			files = (
 				541C6F051F17BE6A00C29CC4 /* EasyDialogs.framework in Embed Frameworks */,
 				541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */,
+				54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */,
+				54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,15 +74,19 @@
 		541C6F0D1F17C78A00C29CC4 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/Mac/Cartography.framework; sourceTree = "<group>"; };
 		541C6F131F17CB4700C29CC4 /* ValueInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueInput.swift; sourceTree = "<group>"; };
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
+		545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClosureControls.framework; path = Carthage/Build/Mac/ClosureControls.framework; sourceTree = "<group>"; };
+		545C8F121F3F52BD00ED1F1B /* EasyTables.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTables.framework; path = Carthage/Build/Mac/EasyTables.framework; sourceTree = "<group>"; };
 		546F75F71F1DE14500E1426A /* TextFieldInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldInput.swift; sourceTree = "<group>"; };
-		546F75FD1F1DE93B00E1426A /* ClosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureButton.swift; sourceTree = "<group>"; };
-		54D4907B1F1E959900FA3A1C /* SelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionInput.swift; sourceTree = "<group>"; };
+		54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectionInput.swift; sourceTree = "<group>"; };
+		54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionInput.swift; sourceTree = "<group>"; };
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDialogs.h; sourceTree = "<group>"; };
 		54DBCDE91F0F771B008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54DBCDEE1F0F771C008DB8E3 /* EasyDialogsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyDialogsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyDialogsTests.swift; sourceTree = "<group>"; };
 		54DBCDF51F0F771C008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */,
+				545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */,
 				541C6F0E1F17C78A00C29CC4 /* Cartography.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +135,8 @@
 		541C6F0F1F17C78E00C29CC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */,
+				545C8F121F3F52BD00ED1F1B /* EasyTables.framework */,
 				541C6F0D1F17C78A00C29CC4 /* Cartography.framework */,
 			);
 			name = Frameworks;
@@ -134,22 +148,24 @@
 				541C6F131F17CB4700C29CC4 /* ValueInput.swift */,
 				542985121F1E7FCC003EFDFB /* TextViewInput.swift */,
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
-				54D4907B1F1E959900FA3A1C /* SelectionInput.swift */,
+				54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */,
+				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
 			);
 			path = "input controls";
 			sourceTree = "<group>";
 		};
-		546F75FC1F1DE93000E1426A /* action controls */ = {
+		541EA8D01F21535800B200B2 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				546F75FD1F1DE93B00E1426A /* ClosureButton.swift */,
 			);
-			path = "action controls";
+			path = util;
 			sourceTree = "<group>";
 		};
 		54DBCDDB1F0F771B008DB8E3 = {
 			isa = PBXGroup;
 			children = (
+				54F1BEE61F5DCEED0093F96C /* Cartfile */,
+				54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */,
 				54DBCDE71F0F771B008DB8E3 /* EasyDialogs */,
 				54DBCDF21F0F771C008DB8E3 /* EasyDialogsTests */,
 				541C6EF51F17BE4700C29CC4 /* EasyDialogsExample */,
@@ -171,8 +187,8 @@
 		54DBCDE71F0F771B008DB8E3 /* EasyDialogs */ = {
 			isa = PBXGroup;
 			children = (
+				541EA8D01F21535800B200B2 /* util */,
 				541C6F121F17CB4700C29CC4 /* input controls */,
-				546F75FC1F1DE93000E1426A /* action controls */,
 				54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */,
 				54DBCDE91F0F771B008DB8E3 /* Info.plist */,
 			);
@@ -342,11 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54D4907C1F1E959900FA3A1C /* SelectionInput.swift in Sources */,
+				54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */,
 				546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
-				546F75FE1F1DE93B00E1426A /* ClosureButton.swift in Sources */,
+				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

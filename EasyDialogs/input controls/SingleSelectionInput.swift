@@ -9,11 +9,11 @@
 import Cocoa
 import Cartography
 
-public class SelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
+public class SingleSelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
 
     public init(label: String? = nil,
                 values: [VALUE],
-                selectedValue: VALUE? = nil,
+                value: VALUE? = nil,
                 validation: @escaping (VALUE?)->(Bool) = { $0 != nil }
         )
     {
@@ -22,22 +22,20 @@ public class SelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
         values.forEach {
             combo.addItem(withObjectValue: $0)
         }
-        if let selectedValue = selectedValue {
-            combo.selectItem(withObjectValue: selectedValue)
-        }
+
         
         super.init(
+            label: label,
+            value: value,
             controlView: combo,
             valueExtraction: { control in
                 return control.objectValueOfSelectedItem as? VALUE
             },
-           setValue: { control, value in
+            setValue: { control, value in
                 control.selectItem(withObjectValue: value)
             }
         )
-        if let label = label {
-            self.label = label
-        }
+
     }
     
     public required init?(coder: NSCoder) {

@@ -22,13 +22,15 @@ public protocol StringInputConvertible {
 
 public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
 
-    public init(label: String = "",
+    public init(label: String? = nil,
                 value: VALUE? = nil,
                 validation: @escaping (VALUE?)->(Bool) = { _ in true }
                 )
     {
         let textField = NSTextField()
         super.init(
+            label: label,
+            value: value,
             controlView: textField,
             valueExtraction: { control in
                 let string = control.stringValue
@@ -40,8 +42,6 @@ public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NS
             },
             validation: validation
         )
-        self.label = label
-        self.value = value
     }
     
     required public init?(coder: NSCoder) {

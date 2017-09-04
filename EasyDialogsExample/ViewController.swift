@@ -9,6 +9,7 @@
 import Cocoa
 import EasyDialogs
 import Cartography
+import ClosureControls
 
 class ViewController: NSViewController {
 
@@ -74,9 +75,9 @@ extension ViewController {
     
     fileprivate func createTextSection() {
         let textInput = TextViewInput(label: "Text", value: "All human beings are born free and equal in dignity and rights.")
-        let analysisTypeInput = SelectionInput(label: "What to count",
+        let analysisTypeInput = SingleSelectionInput(label: "What to count",
                                                values: LengthAnalysis.all,
-                                               selectedValue: .numberOfCharacters)
+                                               value: .numberOfCharacters)
         
         let analyzeButton = ClosureButton(label: "Analyze text") { _ in
             guard let string = textInput.value else { return }

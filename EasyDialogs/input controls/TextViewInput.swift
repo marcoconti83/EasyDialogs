@@ -18,19 +18,21 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
     /// The inner text view wrapped by a scroll view
     public let textView: NSTextView
     
-    public init(label: String = "",
+    public init(label: String? = nil,
                 value: String? = nil,
                 minimumHeight: CGFloat = 100,
                 validation: @escaping (String?)->(Bool) = { _ in true }
         )
     {
         self.textView = NSTextView.textViewForInput()
-        self.scrollView = NSScrollView.scrollViewForInput(textView: self.textView)
+        self.scrollView = NSScrollView.verticalScrollView(for: self.textView)
         constrain(scrollView) { view in
             view.height >= minimumHeight
         }
         
         super.init(
+            label: label,
+            value: value,
             controlView: self.scrollView,
             centerControlWithLabel: false,
             valueExtraction: { container in
@@ -38,16 +40,13 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
                     else { return nil }
                 return control.string
 
-        },
+            },
             setValue: { container, value in
                 guard let control = container.documentView as? NSTextView else { return }
                 control.string = value
-        },
+            },
             validation: validation
         )
-        
-        self.label = label
-        self.value = value
     }
     
     required public init?(coder: NSCoder) {
@@ -69,12 +68,12 @@ extension NSTextView {
 
 extension NSScrollView {
     
-    fileprivate static func scrollViewForInput(textView: NSTextView) -> NSScrollView {
+    static func verticalScrollView(for view: NSView) -> NSScrollView {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.borderType = .lineBorder
-        scrollView.documentView = textView
+        scrollView.documentView = view
         return scrollView
     }
 }
