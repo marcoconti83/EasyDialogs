@@ -154,13 +154,6 @@
 			path = "input controls";
 			sourceTree = "<group>";
 		};
-		541EA8D01F21535800B200B2 /* util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
 		54DBCDDB1F0F771B008DB8E3 = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +180,6 @@
 		54DBCDE71F0F771B008DB8E3 /* EasyDialogs */ = {
 			isa = PBXGroup;
 			children = (
-				541EA8D01F21535800B200B2 /* util */,
 				541C6F121F17CB4700C29CC4 /* input controls */,
 				54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */,
 				54DBCDE91F0F771B008DB8E3 /* Info.plist */,
