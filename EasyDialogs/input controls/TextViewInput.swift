@@ -36,7 +36,7 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
     public init(label: String? = nil,
                 value: String? = nil,
                 minimumHeight: CGFloat = 100,
-                validation: @escaping (String?)->(Bool) = { _ in true }
+                validationRules: [AnyInputValidation<String>] = []
         )
     {
         self.textView = NSTextView.textViewForInput()
@@ -60,7 +60,7 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
                 guard let control = container.documentView as? NSTextView else { return }
                 control.string = value
             },
-            validation: validation
+            validationRules: validationRules
         )
     }
     

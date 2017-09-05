@@ -39,7 +39,7 @@ public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NS
 
     public init(label: String? = nil,
                 value: VALUE? = nil,
-                validation: @escaping (VALUE?)->(Bool) = { _ in true }
+                validationRules: [AnyInputValidation<VALUE>] = []
                 )
     {
         let textField = NSTextField()
@@ -55,7 +55,7 @@ public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NS
                 let string = value?.toStringInput()
                 control.stringValue = string ?? ""
             },
-            validation: validation
+            validationRules: validationRules
         )
     }
     

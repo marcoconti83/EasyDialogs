@@ -39,7 +39,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     public init(label: String? = nil,
                 possibleValues: [VALUE],
                 selectedValues: [VALUE] = [],
-                validation: @escaping ([VALUE]?)->(Bool) = { $0 != nil && !$0!.isEmpty }
+                validationRules: [AnyInputValidation<[VALUE]>] = []
         )
     {
         let (scroll, table) = NSTableView.inScrollView()
@@ -67,7 +67,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             setValue: { _, value in
                 tableConfiguration.dataSource.select(items: value ?? [])
             },
-            validation: validation
+            validationRules: validationRules
         )
     }
     

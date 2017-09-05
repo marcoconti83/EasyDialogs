@@ -20,43 +20,27 @@
 // SOFTWARE.
 //
 
+import Foundation
 
-import Cocoa
-import Cartography
-
-public class SingleSelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
-
-    public init(label: String? = nil,
-                values: [VALUE],
-                value: VALUE? = nil,
-                validationRules: [AnyInputValidation<VALUE>] = []
-        )
-    {
-        let combo = NSComboBox()
-        combo.isEditable = false
-        values.forEach {
-            combo.addItem(withObjectValue: $0)
-        }
-
-        
-        super.init(
-            label: label,
-            value: value,
-            controlView: combo,
-            valueExtraction: { control in
-                return control.objectValueOfSelectedItem as? VALUE
-            },
-            setValue: { control, value in
-                control.selectItem(withObjectValue: value)
-            },
-            validationRules: validationRules
-        )
-
+extension NSTextField {
+    
+    public static func createMultilineLabel(_ text: String) -> NSTextField {
+        let label = self.createLabel(text)
+        label.usesSingleLineMode = false
+        label.cell?.wraps = true
+        label.cell?.isScrollable = false
+        return label
     }
     
-    public required init?(coder: NSCoder) {
-        fatalError()
+    public static func createLabel(_ text: String? = nil) -> NSTextField {
+        let view = NSTextField()
+        view.isBezeled = false
+        view.drawsBackground = false
+        view.isEditable = false
+        view.isSelectable = false
+        if let text = text {
+            view.stringValue = text
+        }
+        return view
     }
 }
-
-

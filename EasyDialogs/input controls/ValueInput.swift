@@ -24,7 +24,29 @@
 import Foundation
 import Cartography
 
-public class ValueInput<VALUE, CONTROL: NSView>: NSView {
+public class InputView: NSView {
+    
+    /// Whether the input has a valid value
+    var hasValidValue: Bool {
+        return false
+    }
+    
+    /// Name of the field
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+        super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 90))
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError()
+    }
+}
+
+/// A view with a label and an input control to enter a value.
+/// It parses and validates the input
+public class ValueInput<VALUE, CONTROL: NSView>: InputView {
     
     /// Control label
     public let labelView: NSTextField
@@ -32,8 +54,8 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     /// Extracts the value from the control
     fileprivate let valueExtraction: (CONTROL)->VALUE?
     
-    /// Validate the parsed input
-    var validation: (VALUE?)->(Bool)
+    /// Validation rules for the parsed input
+    var validationRules: [AnyInputValidation<VALUE>]
     
     /// Control that holds the value
     public let controlView: CONTROL!
@@ -48,15 +70,15 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
         centerControlWithLabel: Bool = true,
         valueExtraction: @escaping (CONTROL)->VALUE?,
         setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
-        validation: @escaping (VALUE?)->(Bool) = { _ in true })
+        validationRules: [AnyInputValidation<VALUE>] = [])
     {
         self.controlView = controlView
         self.labelView = NSTextField.createLabel()
         self.labelView.setContentHuggingPriority(501, for: .horizontal)
         self.valueExtraction = valueExtraction
         self.setValue = setValue
-        self.validation = validation
-        super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 90))
+        self.validationRules = validationRules
+        super.init(name: label ?? "")
         
         self.addSubview(self.labelView)
         self.addSubview(self.controlView)
@@ -86,7 +108,17 @@ public class ValueInput<VALUE, CONTROL: NSView>: NSView {
     }
     
     required public init?(coder: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public var hasValidValue: Bool {
+        let value = self.valueExtraction(self.controlView)
+        for validation in self.validationRules {
+            if !validation.validate(value) {
+                return false
+            }
+        }
+        return true
     }
 }
 
@@ -106,31 +138,10 @@ extension ValueInput {
     public var value: VALUE? {
         get {
             let value = self.valueExtraction(self.controlView)
-            if self.validation(value) {
-                return value
-            } else {
-                return nil
-            }
+            return self.hasValidValue ? value : nil
         }
         set {
             self.setValue(self.controlView, newValue)
         }
-    }
-    
-    /// Whether the input contains a valid value
-    public var hasValue: Bool {
-        return self.value != nil
-    }
-}
-
-extension NSTextField {
-    
-    fileprivate static func createLabel() -> NSTextField {
-        let view = NSTextField()
-        view.isBezeled = false
-        view.drawsBackground = false
-        view.isEditable = false
-        view.isSelectable = false
-        return view
     }
 }

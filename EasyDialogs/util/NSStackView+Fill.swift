@@ -20,43 +20,34 @@
 // SOFTWARE.
 //
 
-
-import Cocoa
+import Foundation
 import Cartography
 
-public class SingleSelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
-
-    public init(label: String? = nil,
-                values: [VALUE],
-                value: VALUE? = nil,
-                validationRules: [AnyInputValidation<VALUE>] = []
-        )
-    {
-        let combo = NSComboBox()
-        combo.isEditable = false
-        values.forEach {
-            combo.addItem(withObjectValue: $0)
+extension NSStackView {
+    
+    /// Adds all views as arranged subviews.
+    /// Expands the given view to match the stackview width (if vertical stack)
+    /// or height (if horizontal stack).
+    public func addArrangedSubviewsAndExpand(_ views: [NSView]) {
+        views.forEach {
+            self.addArrangedSubview($0)
+            self.expand($0)
         }
-
-        
-        super.init(
-            label: label,
-            value: value,
-            controlView: combo,
-            valueExtraction: { control in
-                return control.objectValueOfSelectedItem as? VALUE
-            },
-            setValue: { control, value in
-                control.selectItem(withObjectValue: value)
-            },
-            validationRules: validationRules
-        )
-
     }
     
-    public required init?(coder: NSCoder) {
-        fatalError()
+    /// Expands the given view to match the stackview width (if vertical stack)
+    /// or height (if horizontal stack).
+    private func expand(_ view: NSView, padding: CGFloat = 0.0) {
+        
+        constrain(self, view) { stack, view in
+            switch self.orientation {
+            case .vertical:
+                view.leading == stack.leading + padding
+                view.trailing == stack.trailing - padding
+            case .horizontal:
+                view.top == stack.top - padding
+                view.bottom == stack.bottom + padding
+            }
+        }
     }
 }
-
-

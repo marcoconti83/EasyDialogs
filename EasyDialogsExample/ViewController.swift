@@ -28,23 +28,27 @@ import ClosureControls
 
 class ViewController: NSViewController {
 
-    private var outputField: TextFieldInput<String>!
+    private var outputField: NSTextField!
 
     
     @IBOutlet weak var stackView: NSStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.outputField = TextFieldInput<String>(label: "Output")
+        self.outputField = NSTextField.createLabel()
          
         self.createURLSection()
         self.createStringSection()
         self.createTextSection()
-        self.stackView.addArrangedSubviewsAndExpand([self.outputField])
+        let externalButton = ClosureButton(label: "External dialog") { _ in
+            self.openInputWindow()
+        }
+        
+        self.stackView.addArrangedSubviewsAndExpand([externalButton, self.outputField])
     }
     
     fileprivate func log(_ string: String) {
-        self.outputField.value = string
+        self.outputField.stringValue = string
     }
     
 }
@@ -54,9 +58,13 @@ extension ViewController {
     fileprivate func createStringSection() {
         
         let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
-        let repetitionsInput = TextFieldInput<Int>(label: "Repetitions", value: 2, validation: {
-            $0 != nil && $0! >= 0 && $0! < 100
-        })
+        let repetitionsInput = TextFieldInput<Int>(
+            label: "Repetitions",
+            value: 2,
+            validationRules: [
+                Validation.Custom({$0 != nil && $0! >= 0 && $0! < 100}).any
+            ]
+        )
         let copyStringButton = ClosureButton(label: "Copy value") { _ in
             guard let repetitions = repetitionsInput.value else {
                 self.log("ERROR: Repetitions is not a valid number")
@@ -75,6 +83,7 @@ extension ViewController {
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
+            self.log("Fetching \(value)...")
             URLSession.shared.dataTask(with: value, completionHandler: { (_, response, _) in
                 DispatchQueue.main.async {
                     guard let response = response as? HTTPURLResponse else {
@@ -89,10 +98,13 @@ extension ViewController {
     }
     
     fileprivate func createTextSection() {
-        let textInput = TextViewInput(label: "Text", value: "All human beings are born free and equal in dignity and rights.")
-        let analysisTypeInput = SingleSelectionInput(label: "What to count",
-                                               values: LengthAnalysis.all,
-                                               value: .numberOfCharacters)
+        let textInput = TextViewInput(
+            label: "Text",
+            value: "All human beings are born free and equal in dignity and rights.")
+        let analysisTypeInput = SingleSelectionInput(
+            label: "What to count",
+            values: LengthAnalysis.all,
+            value: .numberOfCharacters)
         
         let analyzeButton = ClosureButton(label: "Analyze text") { _ in
             guard let string = textInput.value else { return }
@@ -106,37 +118,26 @@ extension ViewController {
             analyzeButton,
         ])
     }
-}
-
-extension NSStackView {
     
-    /// Adds all views as arranged subviews. 
-    /// Expands the given view to match the stackview width (if vertical stack)
-    /// or height (if horizontal stack).
-    func addArrangedSubviewsAndExpand(_ views: [NSView]) {
-        views.forEach {
-            self.addArrangedSubview($0)
-            self.expand($0)
-        }
-    }
-    
-    /// Expands the given view to match the stackview width (if vertical stack) 
-    /// or height (if horizontal stack).
-    private func expand(_ view: NSView, padding: CGFloat = 0.0) {
+    fileprivate func openInputWindow() {
         
-        constrain(self, view) { stack, view in
-            switch self.orientation {
-            case .vertical:
-                view.leading == stack.leading + padding
-                view.trailing == stack.trailing - padding
-            case .horizontal:
-                view.top == stack.top - padding
-                view.bottom == stack.bottom + padding
-            }
-        }
+        let nameInput = TextFieldInput<String>(label: "Name", validationRules: [Validation.NotEmptyString().any])
+        let ageInput = TextFieldInput<Int>(label: "Age", value: 18)
+        let colorInput = SingleSelectionInput(label: "Favorite color",
+                                              values: ["red", "blue", "yellow"])
+        FormWindow.displayForm(
+            inputs: [
+                nameInput,
+                ageInput,
+                colorInput
+            ],
+            headerText: "Please tell me about yourself",
+            onConfirm: { _ in
+                self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colorInput.value ?? "no color")")
+                return true
+        })
     }
 }
-
 
 enum LengthAnalysis: String, CustomStringConvertible {
     case numberOfCharacters = "characters"
@@ -160,3 +161,4 @@ enum LengthAnalysis: String, CustomStringConvertible {
     
     static let all: [LengthAnalysis] = [.numberOfCharacters, .numberOfWords, .numberOfLines]
 }
+

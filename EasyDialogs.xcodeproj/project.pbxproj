@@ -21,6 +21,9 @@
 		545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; };
 		545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; };
 		546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75F71F1DE14500E1426A /* TextFieldInput.swift */; };
+		54BF829A1F5F481B00B12618 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF82991F5F481B00B12618 /* Validation.swift */; };
+		54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */; };
+		54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */; };
 		54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */; };
 		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
 		54DBCDEF1F0F771C008DB8E3 /* EasyDialogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */; };
@@ -28,6 +31,7 @@
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,9 @@
 		545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClosureControls.framework; path = Carthage/Build/Mac/ClosureControls.framework; sourceTree = "<group>"; };
 		545C8F121F3F52BD00ED1F1B /* EasyTables.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTables.framework; path = Carthage/Build/Mac/EasyTables.framework; sourceTree = "<group>"; };
 		546F75F71F1DE14500E1426A /* TextFieldInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldInput.swift; sourceTree = "<group>"; };
+		54BF82991F5F481B00B12618 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Labels.swift"; sourceTree = "<group>"; };
+		54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStackView+Fill.swift"; sourceTree = "<group>"; };
 		54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectionInput.swift; sourceTree = "<group>"; };
 		54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionInput.swift; sourceTree = "<group>"; };
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +94,7 @@
 		54DBCDF51F0F771C008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
+		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +158,18 @@
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
 				54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */,
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
+				54BF82991F5F481B00B12618 /* Validation.swift */,
 			);
 			path = "input controls";
+			sourceTree = "<group>";
+		};
+		54BF829B1F5F609C00B12618 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */,
+				54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		54DBCDDB1F0F771B008DB8E3 = {
@@ -180,6 +198,8 @@
 		54DBCDE71F0F771B008DB8E3 /* EasyDialogs */ = {
 			isa = PBXGroup;
 			children = (
+				54BF829B1F5F609C00B12618 /* util */,
+				54F1BEEC1F5DF1120093F96C /* window */,
 				541C6F121F17CB4700C29CC4 /* input controls */,
 				54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */,
 				54DBCDE91F0F771B008DB8E3 /* Info.plist */,
@@ -194,6 +214,14 @@
 				54DBCDF51F0F771C008DB8E3 /* Info.plist */,
 			);
 			path = EasyDialogsTests;
+			sourceTree = "<group>";
+		};
+		54F1BEEC1F5DF1120093F96C /* window */ = {
+			isa = PBXGroup;
+			children = (
+				54F1BEED1F5DF17D0093F96C /* FormWindow.swift */,
+			);
+			path = window;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,8 +381,12 @@
 				54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */,
 				546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
+				54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */,
+				54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
+				54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */,
+				54BF829A1F5F481B00B12618 /* Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
