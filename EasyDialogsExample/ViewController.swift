@@ -121,10 +121,19 @@ extension ViewController {
     
     fileprivate func openInputWindow() {
         
-        let nameInput = TextFieldInput<String>(label: "Name", validationRules: [Validation.NotEmptyString().any])
-        let ageInput = TextFieldInput<Int>(label: "Age", value: 18)
-        let colorInput = SingleSelectionInput(label: "Favorite color",
-                                              values: ["red", "blue", "yellow"])
+        let nameInput = TextFieldInput<String>(
+            label: "Name",
+            validationRules: [Validation.NotEmptyString().any]
+        )
+        let ageInput = TextFieldInput<Int>(
+            label: "Age",
+            value: 18,
+            validationRules: [Validation.Custom({$0 != nil && $0! >= 0 && $0! < 200}).any]
+        )
+        let colorInput = SingleSelectionInput(
+            label: "Favorite color",
+            values: ["red", "blue", "yellow"]
+        )
         FormWindow.displayForm(
             inputs: [
                 nameInput,
