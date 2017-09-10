@@ -127,7 +127,6 @@ extension FormWindow {
     /// Creates the window
     fileprivate static func createWindow() -> NSWindow {
         let window = NSWindow()
-        window.setContentSize(NSSize(width: 500, height: 500))
         window.center()
         window.styleMask = [
             .titled,
@@ -140,9 +139,16 @@ extension FormWindow {
     fileprivate func setupWindow(headerText: String?, confirmButtonText: String) {
         
         let contentView = self.window!.contentView!
-        let stack = self.createStackView(in: contentView)
-        self.createHeaderIfNeeded(headerText: headerText, stack: stack, in: contentView)
-        self.createButtons(confirmButtonText: confirmButtonText, stack: stack, in: contentView)
+        let wrapperView = NSView()
+        contentView.addSubview(wrapperView)
+        constrain(contentView, wrapperView) { content, wrapper in
+            wrapper.edges == content.edges
+            wrapper.width >= 500
+        }
+        
+        let stack = self.createStackView(in: wrapperView)
+        self.createHeaderIfNeeded(headerText: headerText, stack: stack, in: wrapperView)
+        self.createButtons(confirmButtonText: confirmButtonText, stack: stack, in: wrapperView)
     }
     
     private func createStackView(in container: NSView) -> NSStackView {
