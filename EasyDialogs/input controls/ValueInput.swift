@@ -65,16 +65,19 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
     
     public init(
         label: String? = nil,
+        inlineLabel: Bool = true,
         value: VALUE? = nil,
         controlView: CONTROL,
-        centerControlWithLabel: Bool = true,
         valueExtraction: @escaping (CONTROL)->VALUE?,
         setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
         validationRules: [AnyInputValidation<VALUE>] = [])
     {
         self.controlView = controlView
+
         self.labelView = NSTextField.createLabel()
-        self.labelView.setContentHuggingPriority(501, for: .horizontal)
+        if inlineLabel {
+            self.labelView.setContentHuggingPriority(501, for: .horizontal)
+        }
         self.valueExtraction = valueExtraction
         self.setValue = setValue
         self.validationRules = validationRules
@@ -86,17 +89,24 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
         let padding: CGFloat = 5
         
         constrain(self, self.labelView, self.controlView) { view, label, control in
-
             control.trailing == view.trailing - padding
-            if centerControlWithLabel {
-                control.centerY == label.centerY
-            } else {
-                control.top == label.top
-            }
-            control.leading == label.trailing + padding
-            control.top == view.top  + padding
             control.bottom == view.bottom - padding
-            label.leading == view.leading + padding
+        }
+        
+        if inlineLabel {
+            constrain(self, self.labelView, self.controlView) { view, label, control in
+                control.top == label.top
+                control.top == view.top + padding
+                label.leading == view.leading + padding
+                control.leading == label.trailing + padding
+            }
+        } else {
+            constrain(self, self.labelView, self.controlView) { view, label, control in
+                control.top == label.bottom + padding
+                label.top == view.top + padding
+                label.leading == view.leading + padding
+                control.leading == view.leading + padding
+            }
         }
         
         if let label = label {

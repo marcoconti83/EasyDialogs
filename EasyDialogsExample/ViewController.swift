@@ -40,11 +40,14 @@ class ViewController: NSViewController {
         self.createURLSection()
         self.createStringSection()
         self.createTextSection()
-        let externalButton = ClosureButton(label: "External dialog") { _ in
-            self.openInputWindow()
+        let externalButton = ClosureButton(label: "External dialog") { [weak self] _ in
+            self?.openInputWindow()
+        }
+        let simpleInput = ClosureButton(label: "Simple value input") { [weak self] _ in
+            self?.simpleInput()
         }
         
-        self.stackView.addArrangedSubviewsAndExpand([externalButton, self.outputField])
+        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, self.outputField])
     }
     
     fileprivate func log(_ string: String) {
@@ -145,6 +148,16 @@ extension ViewController {
                 self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colorInput.value ?? "no color")")
                 return true
         })
+        
+    }
+    
+    fileprivate func simpleInput() {
+        
+        ["Tomato","Ceddar","Onion"].ask("Choose topping") {
+            guard case .ok(let answer) = $0 else { return }
+            self.log("Topping: \(answer)")
+        }
+        
     }
 }
 

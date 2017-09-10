@@ -25,12 +25,11 @@ import Cocoa
 import Cartography
 import ClosureControls
 
-
-private let contentViewInternalPadding: CGFloat = 15
-
 /// A window that contains input fields
 public class FormWindow: NSWindowController {
     
+    static let contentViewInternalPadding: CGFloat = 15
+
     /// Inputs to be displayed in the form
     let inputs: [InputView]
     
@@ -125,7 +124,7 @@ public class FormWindow: NSWindowController {
 extension FormWindow {
  
     /// Creates the window
-    fileprivate static func createWindow() -> NSWindow {
+    static func createWindow() -> NSWindow {
         let window = NSWindow()
         window.center()
         window.styleMask = [
@@ -158,8 +157,8 @@ extension FormWindow {
         container.addSubview(stack)
         
         constrain(stack, container) { stack, container in
-            stack.trailing == container.trailing - contentViewInternalPadding
-            stack.leading == container.leading + contentViewInternalPadding
+            stack.trailing == container.trailing - FormWindow.contentViewInternalPadding
+            stack.leading == container.leading + FormWindow.contentViewInternalPadding
         }
         stack.addArrangedSubviewsAndExpand(self.inputs)
         return stack
@@ -172,14 +171,14 @@ extension FormWindow {
             
             container.addSubview(label)
             constrain(label, stack, container) { label, stack, container in
-                label.top == container.top + contentViewInternalPadding
-                label.bottom == stack.top - contentViewInternalPadding
+                label.top == container.top + FormWindow.contentViewInternalPadding
+                label.bottom == stack.top - FormWindow.contentViewInternalPadding
                 label.trailing == stack.trailing
                 label.leading == stack.leading
             }
         } else {
             constrain(stack, container) { stack, container in
-                stack.top == container.top + contentViewInternalPadding
+                stack.top == container.top + FormWindow.contentViewInternalPadding
             }
         }
     }
@@ -206,16 +205,16 @@ extension FormWindow {
         container.addSubview(errorLabel)
         
         constrain(OKButton, stack, container, errorLabel) { button, stack, container, error in
-            button.bottom == container.bottom - contentViewInternalPadding
-            button.trailing == container.trailing - contentViewInternalPadding
-            error.trailing == container.trailing - contentViewInternalPadding
-            error.leading == container.leading + contentViewInternalPadding
-            stack.bottom == error.top - contentViewInternalPadding
-            error.bottom == button.top - contentViewInternalPadding
+            button.bottom == container.bottom - FormWindow.contentViewInternalPadding
+            button.trailing == container.trailing - FormWindow.contentViewInternalPadding
+            error.trailing == container.trailing - FormWindow.contentViewInternalPadding
+            error.leading == container.leading + FormWindow.contentViewInternalPadding
+            stack.bottom == error.top - FormWindow.contentViewInternalPadding
+            error.bottom == button.top - FormWindow.contentViewInternalPadding
         }
         
         constrain(OKButton, cancelButton, container) { OKButton, cancelButton, container in
-            cancelButton.leading == container.leading + contentViewInternalPadding
+            cancelButton.leading == container.leading + FormWindow.contentViewInternalPadding
             cancelButton.top == OKButton.top
             cancelButton.bottom == OKButton.bottom
             OKButton.width >= 100
@@ -224,4 +223,3 @@ extension FormWindow {
         }
     }
 }
-

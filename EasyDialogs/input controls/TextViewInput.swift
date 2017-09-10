@@ -47,9 +47,9 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
         
         super.init(
             label: label,
+            inlineLabel: false,
             value: value,
             controlView: self.scrollView,
-            centerControlWithLabel: false,
             valueExtraction: { container in
                 guard let control = container.documentView as? NSTextView
                     else { return nil }

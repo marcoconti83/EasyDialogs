@@ -44,6 +44,10 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     {
         let (scroll, table) = NSTableView.inScrollView()
         self.scrollView = scroll
+        constrain(scroll) { scroll in
+            scroll.height >= 300
+            
+        }
         self.tableView = table
         let tableConfiguration = TableConfiguration(
             initialObjects: possibleValues,
@@ -58,9 +62,9 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
         
         super.init(
             label: label,
+            inlineLabel: false,
             value: selectedValues,
             controlView: self.scrollView,
-            centerControlWithLabel: false,
             valueExtraction: { (Any) -> [VALUE]? in
                 return tableConfiguration.dataSource.selectedItems
             },

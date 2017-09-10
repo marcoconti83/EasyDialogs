@@ -22,26 +22,36 @@
 
 import Foundation
 
-extension String {
+/// A response to a request for input
+public enum InputResponse<T> {
+    case cancel
+    case ok(T)
     
-    /// Asks the user for a single-line input
-    static public func ask(_ message: String,
-                                initialValue: String? = nil,
-                                handler: @escaping (InputResponse<String>)->())
-    {
-        TextFieldInput(label: nil, value: initialValue)
-            .askInForm(message: message, handler: handler)
+    public var value: T? {
+        switch self {
+        case .cancel:
+            return nil
+        case .ok(let answer):
+            return answer
+        }
     }
+}
+
+extension ValueInput {
     
-    /// Asks the user for a multi-line input
-    static public func askLongAnswer(_ message: String,
-                                    initialValue: String? = nil,
-                                    handler: @escaping (InputResponse<String>)->())
+    /// Display a modal form with this value input
+    public func askInForm(message: String,
+                          handler: @escaping (InputResponse<VALUE>)->())
     {
-        TextViewInput(label: nil,
-                      value: initialValue,
-                      minimumHeight: 300)
-            .askInForm(message: message, handler: handler)
-        
+        FormWindow.displayForm(
+            inputs: [self],
+            headerText: message,
+            onConfirm: {
+                guard let v = self.value else { return false }
+                handler(.ok(v))
+                return true
+        },
+            onCancel: { handler(.cancel) }
+        )
     }
 }

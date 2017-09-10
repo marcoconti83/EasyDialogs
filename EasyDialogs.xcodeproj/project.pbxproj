@@ -18,6 +18,10 @@
 		541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 541C6F0D1F17C78A00C29CC4 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6F131F17CB4700C29CC4 /* ValueInput.swift */; };
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
+		545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC51F653EFE007EB769 /* String+Ask.swift */; };
+		545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC71F65458E007EB769 /* Collection+Ask.swift */; };
+		545ACDCA1F654819007EB769 /* Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC91F654819007EB769 /* Ask.swift */; };
+		545ACDCC1F654C78007EB769 /* Bool+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDCB1F654C78007EB769 /* Bool+Ask.swift */; };
 		545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; };
 		545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; };
 		546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75F71F1DE14500E1426A /* TextFieldInput.swift */; };
@@ -78,6 +82,10 @@
 		541C6F0D1F17C78A00C29CC4 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/Mac/Cartography.framework; sourceTree = "<group>"; };
 		541C6F131F17CB4700C29CC4 /* ValueInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueInput.swift; sourceTree = "<group>"; };
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
+		545ACDC51F653EFE007EB769 /* String+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ask.swift"; sourceTree = "<group>"; };
+		545ACDC71F65458E007EB769 /* Collection+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Ask.swift"; sourceTree = "<group>"; };
+		545ACDC91F654819007EB769 /* Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ask.swift; sourceTree = "<group>"; };
+		545ACDCB1F654C78007EB769 /* Bool+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Ask.swift"; sourceTree = "<group>"; };
 		545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClosureControls.framework; path = Carthage/Build/Mac/ClosureControls.framework; sourceTree = "<group>"; };
 		545C8F121F3F52BD00ED1F1B /* EasyTables.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTables.framework; path = Carthage/Build/Mac/EasyTables.framework; sourceTree = "<group>"; };
 		546F75F71F1DE14500E1426A /* TextFieldInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldInput.swift; sourceTree = "<group>"; };
@@ -220,6 +228,10 @@
 			isa = PBXGroup;
 			children = (
 				54F1BEED1F5DF17D0093F96C /* FormWindow.swift */,
+				545ACDC91F654819007EB769 /* Ask.swift */,
+				545ACDC51F653EFE007EB769 /* String+Ask.swift */,
+				545ACDC71F65458E007EB769 /* Collection+Ask.swift */,
+				545ACDCB1F654C78007EB769 /* Bool+Ask.swift */,
 			);
 			path = window;
 			sourceTree = "<group>";
@@ -380,11 +392,15 @@
 			files = (
 				54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */,
 				546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */,
+				545ACDCC1F654C78007EB769 /* Bool+Ask.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
 				54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */,
+				545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */,
 				54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
+				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
+				545ACDCA1F654819007EB769 /* Ask.swift in Sources */,
 				54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */,
 				54BF829A1F5F481B00B12618 /* Validation.swift in Sources */,
 			);

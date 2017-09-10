@@ -22,26 +22,28 @@
 
 import Foundation
 
-extension String {
+extension Sequence where Self.Iterator.Element: Equatable {
     
-    /// Asks the user for a single-line input
-    static public func ask(_ message: String,
-                                initialValue: String? = nil,
-                                handler: @escaping (InputResponse<String>)->())
+    /// Asks to choose one or more values from the collection
+    public func ask(_ message: String,
+                       initialValue: Self.Iterator.Element? = nil,
+                       handler: @escaping (InputResponse<Self.Iterator.Element>)->())
     {
-        TextFieldInput(label: nil, value: initialValue)
+        let array = Array(self)
+        SingleSelectionInput(label: nil,
+                             values: array,
+                             value: initialValue ?? array.first)
             .askInForm(message: message, handler: handler)
     }
-    
-    /// Asks the user for a multi-line input
-    static public func askLongAnswer(_ message: String,
-                                    initialValue: String? = nil,
-                                    handler: @escaping (InputResponse<String>)->())
+
+    /// Asks to choose one or more values from the collection
+    public func askMultipleAnswers(_ message: String,
+                    initialValue: [Self.Iterator.Element] = [],
+                    handler: @escaping (InputResponse<[Self.Iterator.Element]>)->())
     {
-        TextViewInput(label: nil,
-                      value: initialValue,
-                      minimumHeight: 300)
+        MultipleSelectionInput(label: nil,
+                               possibleValues: Array(self),
+                               selectedValues: initialValue)
             .askInForm(message: message, handler: handler)
-        
     }
 }
