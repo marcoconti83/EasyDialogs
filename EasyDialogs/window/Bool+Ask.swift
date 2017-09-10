@@ -63,18 +63,13 @@ extension Bool {
 }
 
 /// A window to ask a yes/no question
-private class ButtonsFormWindow: NSWindowController {
+private class ButtonsFormWindow: ModalWindow {
 
-    /// Holding self reference to make window peristent until dismissed
-    private var selfReference: ButtonsFormWindow? = nil
-    
     private init (headerText: String,
                   buttons: [ClosureButton])
     {
-        let window = FormWindow.createWindow()
-        super.init(window: window)
+        super.init()
         self.setupWindow(headerText: headerText, buttons: buttons)
-        self.selfReference = self
     }
     
     private func setupWindow(headerText: String,
@@ -105,12 +100,6 @@ private class ButtonsFormWindow: NSWindowController {
             buttons.bottom == wrapper.bottom - FormWindow.contentViewInternalPadding
         }
         self.setupButtons(buttons, wrapperView: buttonsView)
-    }
-    
-    private func dismiss() {
-        NSApp.stopModal()
-        self.window!.orderOut(self)
-        self.selfReference = nil // this will release the last reference
     }
     
     private func setupButtons(_ buttons: [ClosureButton], wrapperView: NSView) {
@@ -159,12 +148,10 @@ private class ButtonsFormWindow: NSWindowController {
         headerText: String,
         buttons: [ClosureButton])
     {
-        let formWindow = ButtonsFormWindow(
+        ButtonsFormWindow(
             headerText: headerText,
             buttons: buttons
-        )
-        formWindow.showWindow(nil)
-        NSApp.runModal(for: formWindow.window!)
+        ).present()
     }
     
 

@@ -26,7 +26,7 @@ import Cartography
 import ClosureControls
 
 /// A window that contains input fields
-public class FormWindow: NSWindowController {
+public class FormWindow: ModalWindow {
     
     static let contentViewInternalPadding: CGFloat = 15
 
@@ -35,9 +35,6 @@ public class FormWindow: NSWindowController {
     
     /// Error display
     fileprivate var errorLabel: NSTextField! = nil
-    
-    /// Holding self reference to make window peristent until dismissed
-    private var selfReference: FormWindow? = nil
     
     /// Closure to invoke when the user press the confirm button
     private let onConfirm: ()->(Bool)
@@ -58,12 +55,9 @@ public class FormWindow: NSWindowController {
         self.onConfirm = onConfirm
         self.inputs = inputs
         self.onCancel = onCancel
-        let window = FormWindow.createWindow()
-        
-        super.init(window: window)
+        super.init()
         
         self.setupWindow(headerText: headerText, confirmButtonText: confirmButtonText)
-        self.selfReference = self
     }
     
     /// Display the window, it won't be dismissed until the
@@ -77,15 +71,13 @@ public class FormWindow: NSWindowController {
         onCancel: (()->())? = nil
         )
     {
-        let formWindow = FormWindow(
+        FormWindow(
             inputs: inputs,
             headerText: headerText,
             confirmButtonText: confirmButtonText,
             onConfirm: onConfirm,
             onCancel: onCancel
-        )
-        formWindow.showWindow(nil)
-        NSApp.runModal(for: formWindow.window!)
+        ).present()
     }
     
     public required init?(coder: NSCoder) {
@@ -108,12 +100,6 @@ public class FormWindow: NSWindowController {
         self.dismiss()
     }
     
-    private func dismiss() {
-        NSApp.stopModal()
-        self.window!.orderOut(self)
-        self.selfReference = nil // this will release the last reference
-    }
-    
     private func showError(_ message: String) {
         self.errorLabel.isHidden = false
         self.errorLabel.stringValue = message
@@ -122,17 +108,6 @@ public class FormWindow: NSWindowController {
 
 // MARK: - Form setup
 extension FormWindow {
- 
-    /// Creates the window
-    static func createWindow() -> NSWindow {
-        let window = NSWindow()
-        window.center()
-        window.styleMask = [
-            .titled,
-            .resizable
-        ]
-        return window
-    }
     
     /// Creates controls and layout
     fileprivate func setupWindow(headerText: String?, confirmButtonText: String) {
