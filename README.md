@@ -9,32 +9,29 @@ It provides input dialogs for text, numbers, dropdown and multiple selection.
 
 To create a modal form window like the one seen in the screenshot, all you need is this code:
 
-```
-   func openInputWindow() {
-        
-        let nameInput = TextFieldInput<String>(
-            label: "Name",
-            validationRules: [Validation.NotEmptyString().any]
-        )
-        let ageInput = TextFieldInput<Int>(
-            label: "Age",
-            value: 18,
-            validationRules: [Validation.Custom({$0 != nil && $0! >= 0 && $0! < 200}).any]
-        )
-        let colorInput = SingleSelectionInput(
-            label: "Favorite color",
-            values: ["red", "blue", "yellow"]
-        )
-        FormWindow.displayForm(
-            inputs: [
-                nameInput,
-                ageInput,
-                colorInput
-            ],
-            headerText: "Please tell me about yourself",
-            onConfirm: { _ in
-                print("\(nameInput.value!), age \(ageInput.value!), likes \(colorInput.value ?? "no color")")
-                return true
-        })
-    }
+```        
+let nameInput = TextFieldInput<String>(
+   label: "Name",
+   validationRules: [Validation.NotEmptyString().any]
+)
+let ageInput = TextFieldInput<Int>(
+   label: "Age",
+   value: 18,
+   validationRules: [Validation.Custom({$0 != nil && $0! >= 0 && $0! < 200}).any]
+)
+let colorInput = SingleSelectionInput(
+   label: "Favorite color",
+   values: ["red", "blue", "yellow"]
+)
+FormWindow.displayForm(
+   inputs: [
+       nameInput,
+       ageInput,
+       colorInput
+   ],
+   headerText: "Please tell me about yourself",
+   onConfirm: { _ in
+       print("\(nameInput.value!), age \(ageInput.value!), likes \(colorInput.value ?? "no color")")
+       return true
+})
 ```
