@@ -5,7 +5,7 @@ It provides input dialogs for text, numbers, dropdown and multiple selection.
 
 # Example
 
-![Example](https://user-images.githubusercontent.com/620000/30096810-c515d080-92da-11e7-8bee-fd0bfffd83f3.png)
+![Example](https://user-images.githubusercontent.com/620000/30260589-914d88f0-96c8-11e7-9be3-b23df188d638.png)
 
 To create a modal form window like the one seen in the screenshot, all you need is this code:
 
