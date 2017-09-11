@@ -34,7 +34,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     public let tableView: NSTableView
     
     /// Table selection
-    private let tableConfiguration: TableConfiguration<VALUE>
+    private let tableSource: EasyTableSource<VALUE>
     
     public init(label: String? = nil,
                 possibleValues: [VALUE],
@@ -48,8 +48,9 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             scroll.height >= 300
             
         }
+        table.headerView = nil
         self.tableView = table
-        let tableConfiguration = TableConfiguration(
+        let tableSource = EasyTableSource(
             initialObjects: possibleValues,
             columns: [
                 ColumnDefinition.init("Value", { "\($0)" })
@@ -58,7 +59,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             table: table,
             allowMultipleSelection: true,
             selectionCallback: { _ in })
-        self.tableConfiguration = tableConfiguration
+        self.tableSource = tableSource
         
         super.init(
             label: label,
@@ -66,10 +67,10 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             value: selectedValues,
             controlView: self.scrollView,
             valueExtraction: { (Any) -> [VALUE]? in
-                return tableConfiguration.dataSource.selectedItems
+                return tableSource.dataSource.selectedItems
             },
             setValue: { _, value in
-                tableConfiguration.dataSource.select(items: value ?? [])
+                tableSource.dataSource.select(items: value ?? [])
             },
             validationRules: validationRules
         )

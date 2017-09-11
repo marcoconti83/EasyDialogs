@@ -153,7 +153,7 @@ extension ViewController {
     
     fileprivate func simpleInput() {
         
-        ["Tomato","Ceddar","Onion"].ask("Choose topping") {
+        ["Tomato","Ceddar","Onion"].askMultipleAnswers("Choose topping") {
             guard case .ok(let answer) = $0 else { return }
             self.log("Topping: \(answer)")
         }
