@@ -53,7 +53,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
         let tableSource = EasyTableSource(
             initialObjects: possibleValues,
             columns: [
-                ColumnDefinition.init("Value", { "\($0)" })
+                ColumnDefinition(name: "Value", value: { "\($0)" })
             ],
             contextMenuOperations: [],
             table: table,
