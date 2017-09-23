@@ -47,6 +47,7 @@ public class FormWindow: ModalWindow {
     private init(
         inputs: [InputView],
         headerText: String?,
+        minFormHeight: CGFloat,
         confirmButtonText: String,
         onConfirm: @escaping ()->(Bool),
         onCancel: (()->())?
@@ -57,7 +58,9 @@ public class FormWindow: ModalWindow {
         self.onCancel = onCancel
         super.init()
         
-        self.setupWindow(headerText: headerText, confirmButtonText: confirmButtonText)
+        self.setupWindow(minFormHeight: minFormHeight,
+                         headerText: headerText,
+                         confirmButtonText: confirmButtonText)
     }
     
     /// Display the window, it won't be dismissed until the
@@ -66,6 +69,7 @@ public class FormWindow: ModalWindow {
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
+        minFormHeight: CGFloat = 200,
         confirmButtonText: String = "OK",
         onConfirm: @escaping ()->(Bool),
         onCancel: (()->())? = nil
@@ -74,6 +78,7 @@ public class FormWindow: ModalWindow {
         FormWindow(
             inputs: inputs,
             headerText: headerText,
+            minFormHeight: minFormHeight,
             confirmButtonText: confirmButtonText,
             onConfirm: onConfirm,
             onCancel: onCancel
@@ -110,7 +115,11 @@ public class FormWindow: ModalWindow {
 extension FormWindow {
     
     /// Creates controls and layout
-    fileprivate func setupWindow(headerText: String?, confirmButtonText: String) {
+    fileprivate func setupWindow(
+        minFormHeight: CGFloat,
+        headerText: String?,
+        confirmButtonText: String
+        ) {
         
         let contentView = self.window!.contentView!
         let wrapperView = NSView()
@@ -120,23 +129,36 @@ extension FormWindow {
             wrapper.width >= 500
         }
         
-        let stack = self.createStackView(in: wrapperView)
+        let stack = self.createStackView(minFormHeight: minFormHeight, in: wrapperView)
         self.createHeaderIfNeeded(headerText: headerText, stack: stack, in: wrapperView)
         self.createButtons(confirmButtonText: confirmButtonText, stack: stack, in: wrapperView)
     }
     
-    private func createStackView(in container: NSView) -> NSStackView {
+    private func createStackView(minFormHeight: CGFloat, in container: NSView) -> NSView {
         
         let stack = NSStackView()
         stack.orientation = .vertical
-        container.addSubview(stack)
+        stack.spacing = 1
+        let scroll = NSScrollView.verticalScrollView(for: stack)
+        scroll.drawsBackground = false
+        scroll.borderType = .noBorder
         
-        constrain(stack, container) { stack, container in
-            stack.trailing == container.trailing - FormWindow.contentViewInternalPadding
-            stack.leading == container.leading + FormWindow.contentViewInternalPadding
+        container.addSubview(scroll)
+        constrain(scroll, container) { scroll, container in
+            scroll.trailing == container.trailing - FormWindow.contentViewInternalPadding
+            scroll.leading == container.leading + FormWindow.contentViewInternalPadding
+        }
+        
+        constrain(scroll, stack) { scroll, stack in
+            stack.top == scroll.top
+            stack.left == scroll.left
+            stack.right == scroll.right
+            stack.width == scroll.width
+            scroll.height == stack.height
         }
         stack.addArrangedSubviewsAndExpand(self.inputs)
-        return stack
+
+        return scroll
     }
     
     private func createHeaderIfNeeded(headerText: String?, stack: NSView, in container: NSView) {

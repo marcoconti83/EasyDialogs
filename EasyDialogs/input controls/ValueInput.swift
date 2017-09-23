@@ -27,12 +27,12 @@ import Cartography
 public class InputView: NSView {
     
     /// Whether the input has a valid value
-    var hasValidValue: Bool {
+    public var hasValidValue: Bool {
         return false
     }
     
     /// Name of the field
-    var name: String
+    public var name: String
     
     init(name: String) {
         self.name = name
@@ -86,7 +86,9 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
         self.addSubview(self.labelView)
         self.addSubview(self.controlView)
         
-        let padding: CGFloat = 5
+        
+        let padding: CGFloat = 2
+        let labelPadding: CGFloat = 5
         
         constrain(self, self.labelView, self.controlView) { view, label, control in
             control.trailing == view.trailing - padding
@@ -98,7 +100,7 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
                 control.top == label.top
                 control.top == view.top + padding
                 label.leading == view.leading + padding
-                control.leading == label.trailing + padding
+                control.leading == label.trailing + labelPadding
             }
         } else {
             constrain(self, self.labelView, self.controlView) { view, label, control in
