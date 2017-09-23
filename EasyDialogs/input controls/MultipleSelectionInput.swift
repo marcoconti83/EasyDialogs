@@ -38,6 +38,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     
     public init(label: String? = nil,
                 possibleValues: [VALUE],
+                valueToDisplay: ((VALUE)->Any)? = nil,
                 selectedValues: [VALUE] = [],
                 validationRules: [AnyInputValidation<[VALUE]>] = []
         )
@@ -48,12 +49,13 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             scroll.height >= 300
             
         }
+        let valueToDisplay = valueToDisplay ?? { "\($0)" }
         table.headerView = nil
         self.tableView = table
         let tableSource = EasyTableSource(
             initialObjects: possibleValues,
             columns: [
-                ColumnDefinition(name: "Value", value: { "\($0)" })
+                ColumnDefinition(name: "Value", value: valueToDisplay)
             ],
             contextMenuOperations: [],
             table: table,

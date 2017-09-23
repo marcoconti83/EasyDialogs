@@ -24,34 +24,41 @@
 import Cocoa
 import Cartography
 
-public class SingleSelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
-
-    public init(label: String? = nil,
-                values: [VALUE],
-                value: VALUE? = nil,
-                validationRules: [AnyInputValidation<VALUE>] = []
-        )
+public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBox> {
+    
+    public init(label: String?,
+                     values: [VALUE],
+                     valueToDisplay: ((VALUE)->Any)? = nil,
+                     value: VALUE? = nil,
+                     validationRules: [AnyInputValidation<VALUE>] = [])
     {
         let combo = NSComboBox()
         combo.isEditable = false
         values.forEach {
-            combo.addItem(withObjectValue: $0)
+            let itemToDisplay: Any
+            if let valueToDisplay = valueToDisplay {
+                itemToDisplay = valueToDisplay($0)
+            } else {
+                itemToDisplay = $0
+            }
+            combo.addItem(withObjectValue: itemToDisplay)
         }
-
         
         super.init(
             label: label,
             value: value,
             controlView: combo,
             valueExtraction: { control in
-                return control.objectValueOfSelectedItem as? VALUE
+                let index = control.indexOfSelectedItem
+                guard index >= 0 else { return nil }
+                return values[index]
             },
             setValue: { control, value in
-                control.selectItem(withObjectValue: value)
+                guard let value = value, let index = values.index(of: value) else { return }
+                control.selectItem(at: index)
             },
             validationRules: validationRules
         )
-
     }
     
     public required init?(coder: NSCoder) {
@@ -59,4 +66,10 @@ public class SingleSelectionInput<VALUE>: ValueInput<VALUE, NSComboBox> {
     }
 }
 
+protocol IdentityEquatable: class, Equatable { }
 
+extension IdentityEquatable {
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        return lhs === rhs
+    }
+}
