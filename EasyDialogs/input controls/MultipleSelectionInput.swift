@@ -61,8 +61,9 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             selectionCallback: { _ in })
         self.tableSource = tableSource
         let maxRows = min(maxRowsToDisplay ?? possibleValues.count, possibleValues.count)
+        let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
         constrain(scroll) { scroll in
-            scroll.height >= (CGFloat(maxRows) * tableSource.table.rowHeight) + CGFloat(5) // magic number to account for internal padding of scroll view?
+            scroll.height >= CGFloat(maxRows) * rowHeight
         }
         
         super.init(
