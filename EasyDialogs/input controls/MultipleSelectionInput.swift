@@ -63,7 +63,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
         let maxRows = min(maxRowsToDisplay ?? possibleValues.count, possibleValues.count)
         let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
         constrain(scroll) { scroll in
-            scroll.height >= CGFloat(maxRows) * rowHeight
+            scroll.height == CGFloat(maxRows) * rowHeight
         }
         
         super.init(
