@@ -40,15 +40,13 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                 possibleValues: [VALUE],
                 valueToDisplay: ((VALUE)->Any)? = nil,
                 selectedValues: [VALUE] = [],
-                validationRules: [AnyInputValidation<[VALUE]>] = []
+                validationRules: [AnyInputValidation<[VALUE]>] = [],
+                maxRowsToDisplay: Int? = nil
         )
     {
         let (scroll, table) = NSTableView.inScrollView()
         self.scrollView = scroll
-        constrain(scroll) { scroll in
-            scroll.height >= 300
-            
-        }
+
         let valueToDisplay = valueToDisplay ?? { "\($0)" }
         table.headerView = nil
         self.tableView = table
@@ -62,6 +60,10 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             allowMultipleSelection: true,
             selectionCallback: { _ in })
         self.tableSource = tableSource
+        let maxRows = min(maxRowsToDisplay ?? possibleValues.count, possibleValues.count)
+        constrain(scroll) { scroll in
+            scroll.height >= (CGFloat(maxRows) * tableSource.table.rowHeight) + CGFloat(5) // magic number to account for internal padding of scroll view?
+        }
         
         super.init(
             label: label,

@@ -133,9 +133,9 @@ extension ViewController {
             value: 18,
             validationRules: [Validation.Custom({$0 != nil && $0! >= 0 && $0! < 200}).any]
         )
-        let colorInput = SingleSelectionInput(
+        let colorInput = MultipleSelectionInput(
             label: "Favorite color",
-            values: ["red", "blue", "yellow"]
+            possibleValues: ["red", "blue", "yellow"]
         )
         FormWindow.displayForm(
             inputs: [
@@ -145,7 +145,8 @@ extension ViewController {
             ],
             headerText: "Please tell me about yourself",
             onConfirm: { _ in
-                self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colorInput.value ?? "no color")")
+                let colors = colorInput.value!.isEmpty ? "no color" : colorInput.value!.joined(separator: ", ")
+                self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colors)")
                 return true
         })
         
