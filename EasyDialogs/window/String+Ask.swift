@@ -45,3 +45,30 @@ extension String {
         
     }
 }
+
+extension Int {
+    
+    /// Asks the user for a numeric input
+    static public func ask(_ message: String,
+                           initialValue: Int? = nil,
+                           handler: @escaping (InputResponse<Int>)->())
+    {
+        TextFieldInput(label: nil,
+                       value: initialValue)
+            .askInForm(message: message, handler: handler)
+    }
+}
+
+extension URL {
+    
+    /// Asks the user for a URL
+    static public func ask(_ message: String,
+                           initialValue: URL? = nil,
+                           handler: @escaping (InputResponse<URL>)->())
+    {
+        TextFieldInput(label: nil,
+                      value: initialValue)
+            .askInForm(message: message, handler: handler)
+    }
+    
+}
