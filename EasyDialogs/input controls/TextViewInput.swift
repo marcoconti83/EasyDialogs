@@ -58,7 +58,7 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
             },
             setValue: { container, value in
                 guard let control = container.documentView as? NSTextView else { return }
-                control.string = value
+                control.string = value!
             },
             validationRules: validationRules
         )
@@ -73,7 +73,7 @@ extension NSTextView {
     
     fileprivate static func textViewForInput() -> NSTextView {
         let textView = NSTextView()
-        textView.autoresizingMask = .viewWidthSizable
+        textView.autoresizingMask = NSView.AutoresizingMask.width
         textView.isVerticallyResizable = true
         textView.textContainer?.widthTracksTextView = true
         textView.isRichText = false

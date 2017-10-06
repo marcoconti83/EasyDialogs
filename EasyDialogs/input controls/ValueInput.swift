@@ -69,14 +69,14 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
         value: VALUE? = nil,
         controlView: CONTROL,
         valueExtraction: @escaping (CONTROL)->VALUE?,
-        setValue: @escaping (CONTROL, VALUE?)->() = { _ in },
+        setValue: @escaping (CONTROL, VALUE?)->() = { _,_  in },
         validationRules: [AnyInputValidation<VALUE>] = [])
     {
         self.controlView = controlView
 
         self.labelView = NSTextField.createLabel()
         if inlineLabel {
-            self.labelView.setContentHuggingPriority(501, for: .horizontal)
+            self.labelView.setContentHuggingPriority(NSLayoutConstraint.Priority(rawValue: 501), for: .horizontal)
         }
         self.valueExtraction = valueExtraction
         self.setValue = setValue

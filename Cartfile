@@ -1,5 +1,5 @@
 github "robb/Cartography" "1.1.0"
-github "marcoconti83/EasyTables" "v0.4"
+github "marcoconti83/EasyTables"
 github "marcoconti83/ClosureControls"
 
 

@@ -144,7 +144,7 @@ extension ViewController {
                 colorInput
             ],
             headerText: "Please tell me about yourself",
-            onConfirm: { _ in
+            onConfirm: { 
                 let colors = colorInput.value!.isEmpty ? "no color" : colorInput.value!.joined(separator: ", ")
                 self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colors)")
                 return true

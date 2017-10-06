@@ -73,7 +73,7 @@ extension String: StringInputConvertible {
     }
     
     public init?(fromStringInput input: String) {
-        self.init(input)!
+        self.init(input)
     }
     
 }

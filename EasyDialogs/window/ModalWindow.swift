@@ -58,8 +58,8 @@ extension ModalWindow {
         let window = NSWindow()
         window.center()
         window.styleMask = [
-            .titled,
-            .resizable
+            NSWindow.StyleMask.titled,
+            NSWindow.StyleMask.resizable
         ]
         return window
     }
