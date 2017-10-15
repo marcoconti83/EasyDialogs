@@ -89,6 +89,17 @@ extension Int: StringInputConvertible {
     }
 }
 
+extension UInt: StringInputConvertible {
+    
+    public func toStringInput() -> String? {
+        return String(describing: self)
+    }
+    
+    public init?(fromStringInput input: String) {
+        self.init(input)
+    }
+}
+
 extension URL: StringInputConvertible {
     
     public func toStringInput() -> String? {

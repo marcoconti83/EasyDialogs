@@ -20,32 +20,27 @@
 // SOFTWARE.
 //
 
+import Foundation
 
-import XCTest
-@testable import EasyDialogs
+/// A wrapper around an object that allows for pointer-comparability
+class Unique<Object>: CustomStringConvertible, Equatable {
+    
+    let object: Object
+    
+    init(_ object: Object) {
+        self.object = object
+    }
+    
+    var description: String {
+        return String(describing: self.object)
+    }
+    
+    static func ==(lhs: Unique<Object>, rhs: Unique<Object>) -> Bool {
+        return lhs === rhs
+    }
+}
 
-class EasyDialogsTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+/// A wrapper on a weak mutable reference
+class WeakMutableRef<Object: AnyObject> {
+    weak var object: Object? = nil
 }
