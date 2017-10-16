@@ -20,17 +20,15 @@
 // SOFTWARE.
 //
 
-
 import Cocoa
 import EasyDialogs
 import Cartography
 import ClosureControls
+import EasyTables
 
 class ViewController: NSViewController {
 
     private var outputField: NSTextField!
-
-    
     @IBOutlet weak var stackView: NSStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +38,7 @@ class ViewController: NSViewController {
         self.createURLSection()
         self.createStringSection()
         self.createTextSection()
+        self.createIngredientsSection()
         let externalButton = ClosureButton(label: "External dialog") { [weak self] _ in
             self?.openInputWindow()
         }
@@ -53,13 +52,11 @@ class ViewController: NSViewController {
     fileprivate func log(_ string: String) {
         self.outputField.stringValue = string
     }
-    
 }
 
 extension ViewController {
     
     fileprivate func createStringSection() {
-        
         let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
         let repetitionsInput = TextFieldInput<Int>(
             label: "Repetitions",
@@ -82,7 +79,6 @@ extension ViewController {
     }
     
     fileprivate func createURLSection() {
-        
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
@@ -122,8 +118,22 @@ extension ViewController {
         ])
     }
     
-    fileprivate func openInputWindow() {
+    fileprivate func createIngredientsSection() {
         
+        let inventoryInput = ObjectListInput<Ingredient>(
+            label: "Ingredients",
+            initialValues: [Ingredient(name: "Pasta", amount: 300, unit: .grams)],
+            objectCreation: Ingredient.bindings.formWindowForCreationClosure(),
+            objectEdit: Ingredient.bindings.formWindowForEditClosure(),
+            columns: [
+                ColumnDefinition(name: "Name", value: { $0.name }),
+                ColumnDefinition(name: "Amount", value: { "\($0.amount) \($0.unit)" })
+            ]
+        )
+        self.stackView.addArrangedSubviewsAndExpand([inventoryInput])
+    }
+    
+    fileprivate func openInputWindow() {
         let nameInput = TextFieldInput<String>(
             label: "Name",
             validationRules: [Validation.NotEmptyString().any]
@@ -153,15 +163,58 @@ extension ViewController {
     }
     
     fileprivate func simpleInput() {
-        
         ["Tomato","Ceddar","Onion"].askMultipleAnswers("Choose topping") {
             guard case .ok(let answer) = $0 else { return }
             self.log("Topping: \(answer)")
         }
-        
     }
 }
 
+/// A recipe ingredient
+struct Ingredient: EmptyInit, Equatable {
+    
+    var name: String = ""
+    var amount: UInt = 0
+    var unit: UnitOfMeasure = .grams
+    
+    init() {}
+    
+    init(name: String, amount: UInt, unit: UnitOfMeasure) {
+        self.name = name
+        self.amount = amount
+        self.unit = unit
+    }
+    
+    enum UnitOfMeasure: String {
+        case pieces
+        case cups
+        case teaspoons
+        case grams
+        
+        static var all: [UnitOfMeasure] {
+            return [.pieces, .cups, .teaspoons, .grams]
+        }
+    }
+    
+    static func ==(lhs: Ingredient, rhs: Ingredient) -> Bool {
+        return lhs.name == rhs.name && lhs.amount == rhs.amount && lhs.unit == rhs.unit
+    }
+    
+    static var bindings: BindingsFactory<Ingredient> {
+       return BindingsFactory<Ingredient>(
+        { PropertyInputBinding(\Ingredient.name,
+                               TextFieldInput<String>(label: "Name")).any },
+        { PropertyInputBinding(\Ingredient.amount,
+                               TextFieldInput<UInt>(label: "Amount")).any },
+        { PropertyInputBinding(\Ingredient.unit,
+                                 SingleSelectionInput(label: "Unit of measure",
+                                                      values: Ingredient.UnitOfMeasure.all,
+                                                      valueToDisplay: { $0.rawValue })).any }
+        )
+    }
+}
+
+/// Analysis of a text
 enum LengthAnalysis: String, CustomStringConvertible {
     case numberOfCharacters = "characters"
     case numberOfWords = "words"
@@ -185,3 +238,4 @@ enum LengthAnalysis: String, CustomStringConvertible {
     static let all: [LengthAnalysis] = [.numberOfCharacters, .numberOfWords, .numberOfLines]
 }
 
+extension String: EmptyInit {}

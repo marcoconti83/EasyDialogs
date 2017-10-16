@@ -37,20 +37,20 @@ public class FormWindow: ModalWindow {
     fileprivate var errorLabel: NSTextField! = nil
     
     /// Closure to invoke when the user press the confirm button
-    private let onConfirm: ()->(Bool)
+    internal(set) var onConfirm: ()->(Bool)
     
     /// Closure invoked when the user cancels the form
     private let onCancel: (()->())?
     
     /// Creates a window with input controls
     /// - parameter onConfirm: invoked when the confirm button is pressed. If it returns true, the window is dismissed
-    private init(
+    init(
         inputs: [InputView],
-        headerText: String?,
-        minFormHeight: CGFloat,
-        confirmButtonText: String,
+        headerText: String? = nil,
+        minFormHeight: CGFloat = 200,
+        confirmButtonText: String = "OK",
         onConfirm: @escaping ()->(Bool),
-        onCancel: (()->())?
+        onCancel: (()->())? = nil
     )
     {
         self.onConfirm = onConfirm

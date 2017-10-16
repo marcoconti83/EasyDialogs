@@ -44,9 +44,19 @@ public class InputView: NSView {
     }
 }
 
+public protocol InputViewForValue: class {
+   
+    associatedtype InputValue
+    
+    /// The value represented by the current input
+    var value: InputValue? { get set }
+}
+
 /// A view with a label and an input control to enter a value.
 /// It parses and validates the input
-public class ValueInput<VALUE, CONTROL: NSView>: InputView {
+public class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
+    
+    public typealias InputValue = VALUE
     
     /// Control label
     public let labelView: NSTextField
@@ -132,6 +142,7 @@ public class ValueInput<VALUE, CONTROL: NSView>: InputView {
         }
         return true
     }
+    
 }
 
 extension ValueInput {

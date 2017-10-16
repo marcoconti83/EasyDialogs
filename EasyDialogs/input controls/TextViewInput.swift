@@ -25,7 +25,7 @@ import Foundation
 import Cartography
 
 
-public class TextViewInput: ValueInput<String, NSScrollView> {
+public class TextViewInput: ValueInput<String, NSView> {
     
     /// The scroll view wrapping an inner text view
     public let scrollView: NSScrollView
@@ -39,26 +39,34 @@ public class TextViewInput: ValueInput<String, NSScrollView> {
                 validationRules: [AnyInputValidation<String>] = []
         )
     {
-        self.textView = NSTextView.textViewForInput()
+        let textView = NSTextView.textViewForInput()
+        self.textView = textView
         self.scrollView = NSScrollView.verticalScrollView(for: self.textView)
         constrain(scrollView) { view in
             view.height >= minimumHeight
+        }
+        
+        let contentView = NSBox()
+        contentView.contentViewMargins = NSSize(width: 0, height: 0)
+        contentView.borderColor = .controlShadowColor
+        contentView.borderType = .lineBorder
+        contentView.boxType = .custom
+        contentView.addSubview(scrollView)
+        constrain(self.scrollView, contentView) { scroll, content in
+            scroll.edges == content.edges
         }
         
         super.init(
             label: label,
             inlineLabel: false,
             value: value,
-            controlView: self.scrollView,
-            valueExtraction: { container in
-                guard let control = container.documentView as? NSTextView
-                    else { return nil }
-                return control.string
+            controlView: contentView,
+            valueExtraction: { _ in
+                return textView.string
 
             },
-            setValue: { container, value in
-                guard let control = container.documentView as? NSTextView else { return }
-                control.string = value!
+            setValue: { _, value in
+                textView.string = value ?? ""
             },
             validationRules: validationRules
         )
@@ -87,7 +95,6 @@ extension NSScrollView {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
-        scrollView.borderType = .lineBorder
         scrollView.documentView = view
         return scrollView
     }

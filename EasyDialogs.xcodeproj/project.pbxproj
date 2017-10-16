@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540FB7951F9094600020E7AE /* ObjectListInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540FB7941F9094600020E7AE /* ObjectListInput.swift */; };
 		541C6EF71F17BE4700C29CC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */; };
 		541C6EF91F17BE4700C29CC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6EF81F17BE4700C29CC4 /* ViewController.swift */; };
 		541C6EFB1F17BE4700C29CC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 541C6EFA1F17BE4700C29CC4 /* Assets.xcassets */; };
@@ -17,6 +18,12 @@
 		541C6F101F17C7C500C29CC4 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 541C6F0D1F17C78A00C29CC4 /* Cartography.framework */; };
 		541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 541C6F0D1F17C78A00C29CC4 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6F131F17CB4700C29CC4 /* ValueInput.swift */; };
+		5427D32D1F95278300B585AD /* Wrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427D32C1F95278300B585AD /* Wrappers.swift */; };
+		5427D32F1F95288800B585AD /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427D32E1F95288800B585AD /* Images.swift */; };
+		5427D3341F952B3400B585AD /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3301F952B3400B585AD /* delete.png */; };
+		5427D3351F952B3400B585AD /* zoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3311F952B3400B585AD /* zoom.png */; };
+		5427D3361F952B3400B585AD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3321F952B3400B585AD /* add.png */; };
+		5427D3371F952B3400B585AD /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3331F952B3400B585AD /* pencil.png */; };
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
 		5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5444EF801F65BDBF00385A57 /* ModalWindow.swift */; };
 		545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC51F653EFE007EB769 /* String+Ask.swift */; };
@@ -26,13 +33,13 @@
 		545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; };
 		545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; };
 		546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F75F71F1DE14500E1426A /* TextFieldInput.swift */; };
+		54835CB91F93B83800DC7EE4 /* InputBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54835CB81F93B83800DC7EE4 /* InputBinding.swift */; };
+		54835CBB1F93B88B00DC7EE4 /* ObjectFormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54835CBA1F93B88B00DC7EE4 /* ObjectFormWindow.swift */; };
 		54BF829A1F5F481B00B12618 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF82991F5F481B00B12618 /* Validation.swift */; };
 		54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */; };
 		54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */; };
 		54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */; };
 		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
-		54DBCDEF1F0F771C008DB8E3 /* EasyDialogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */; };
-		54DBCDF41F0F771C008DB8E3 /* EasyDialogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -41,13 +48,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		541C6F061F17BE6A00C29CC4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 54DBCDDC1F0F771B008DB8E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 54DBCDE41F0F771B008DB8E3;
-			remoteInfo = EasyDialogs;
-		};
-		54DBCDF01F0F771C008DB8E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 54DBCDDC1F0F771B008DB8E3 /* Project object */;
 			proxyType = 1;
@@ -74,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		540FB7941F9094600020E7AE /* ObjectListInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListInput.swift; sourceTree = "<group>"; };
 		541C6EF41F17BE4700C29CC4 /* EasyDialogsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDialogsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		541C6EF81F17BE4700C29CC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +83,14 @@
 		541C6EFF1F17BE4700C29CC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		541C6F0D1F17C78A00C29CC4 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cartography.framework; path = Carthage/Build/Mac/Cartography.framework; sourceTree = "<group>"; };
 		541C6F131F17CB4700C29CC4 /* ValueInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueInput.swift; sourceTree = "<group>"; };
+		5427CB541F9525BC00B585AD /* THIRD_PARTY_LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = THIRD_PARTY_LICENSE; sourceTree = "<group>"; };
+		5427CB561F9525CC00B585AD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5427D32C1F95278300B585AD /* Wrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrappers.swift; sourceTree = "<group>"; };
+		5427D32E1F95288800B585AD /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		5427D3301F952B3400B585AD /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		5427D3311F952B3400B585AD /* zoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoom.png; sourceTree = "<group>"; };
+		5427D3321F952B3400B585AD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		5427D3331F952B3400B585AD /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
 		5444EF801F65BDBF00385A57 /* ModalWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalWindow.swift; sourceTree = "<group>"; };
 		545ACDC51F653EFE007EB769 /* String+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ask.swift"; sourceTree = "<group>"; };
@@ -91,6 +100,8 @@
 		545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClosureControls.framework; path = Carthage/Build/Mac/ClosureControls.framework; sourceTree = "<group>"; };
 		545C8F121F3F52BD00ED1F1B /* EasyTables.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTables.framework; path = Carthage/Build/Mac/EasyTables.framework; sourceTree = "<group>"; };
 		546F75F71F1DE14500E1426A /* TextFieldInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldInput.swift; sourceTree = "<group>"; };
+		54835CB81F93B83800DC7EE4 /* InputBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBinding.swift; sourceTree = "<group>"; };
+		54835CBA1F93B88B00DC7EE4 /* ObjectFormWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFormWindow.swift; sourceTree = "<group>"; };
 		54BF82991F5F481B00B12618 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Labels.swift"; sourceTree = "<group>"; };
 		54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStackView+Fill.swift"; sourceTree = "<group>"; };
@@ -99,9 +110,6 @@
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDialogs.h; sourceTree = "<group>"; };
 		54DBCDE91F0F771B008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54DBCDEE1F0F771C008DB8E3 /* EasyDialogsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyDialogsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyDialogsTests.swift; sourceTree = "<group>"; };
-		54DBCDF51F0F771C008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
@@ -124,14 +132,6 @@
 				545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */,
 				545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */,
 				541C6F0E1F17C78A00C29CC4 /* Cartography.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		54DBCDEB1F0F771C008DB8E3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				54DBCDEF1F0F771C008DB8E3 /* EasyDialogs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,14 +163,44 @@
 		541C6F121F17CB4700C29CC4 /* input controls */ = {
 			isa = PBXGroup;
 			children = (
+				54835CB71F93B82E00DC7EE4 /* object creation */,
 				541C6F131F17CB4700C29CC4 /* ValueInput.swift */,
 				542985121F1E7FCC003EFDFB /* TextViewInput.swift */,
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
 				54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */,
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
+				540FB7941F9094600020E7AE /* ObjectListInput.swift */,
 				54BF82991F5F481B00B12618 /* Validation.swift */,
 			);
 			path = "input controls";
+			sourceTree = "<group>";
+		};
+		5427CB581F9526CA00B585AD /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				5427CB591F9526CA00B585AD /* icons */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		5427CB591F9526CA00B585AD /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				5427D3321F952B3400B585AD /* add.png */,
+				5427D3301F952B3400B585AD /* delete.png */,
+				5427D3331F952B3400B585AD /* pencil.png */,
+				5427D3311F952B3400B585AD /* zoom.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		54835CB71F93B82E00DC7EE4 /* object creation */ = {
+			isa = PBXGroup;
+			children = (
+				54835CB81F93B83800DC7EE4 /* InputBinding.swift */,
+				54835CBA1F93B88B00DC7EE4 /* ObjectFormWindow.swift */,
+			);
+			path = "object creation";
 			sourceTree = "<group>";
 		};
 		54BF829B1F5F609C00B12618 /* util */ = {
@@ -178,6 +208,8 @@
 			children = (
 				54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */,
 				54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */,
+				5427D32C1F95278300B585AD /* Wrappers.swift */,
+				5427D32E1F95288800B585AD /* Images.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -185,10 +217,11 @@
 		54DBCDDB1F0F771B008DB8E3 = {
 			isa = PBXGroup;
 			children = (
+				5427CB561F9525CC00B585AD /* LICENSE */,
+				5427CB541F9525BC00B585AD /* THIRD_PARTY_LICENSE */,
 				54F1BEE61F5DCEED0093F96C /* Cartfile */,
 				54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */,
 				54DBCDE71F0F771B008DB8E3 /* EasyDialogs */,
-				54DBCDF21F0F771C008DB8E3 /* EasyDialogsTests */,
 				541C6EF51F17BE4700C29CC4 /* EasyDialogsExample */,
 				54DBCDE61F0F771B008DB8E3 /* Products */,
 				541C6F0F1F17C78E00C29CC4 /* Frameworks */,
@@ -199,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */,
-				54DBCDEE1F0F771C008DB8E3 /* EasyDialogsTests.xctest */,
 				541C6EF41F17BE4700C29CC4 /* EasyDialogsExample.app */,
 			);
 			name = Products;
@@ -208,6 +240,7 @@
 		54DBCDE71F0F771B008DB8E3 /* EasyDialogs */ = {
 			isa = PBXGroup;
 			children = (
+				5427CB581F9526CA00B585AD /* resources */,
 				54BF829B1F5F609C00B12618 /* util */,
 				54F1BEEC1F5DF1120093F96C /* window */,
 				541C6F121F17CB4700C29CC4 /* input controls */,
@@ -215,15 +248,6 @@
 				54DBCDE91F0F771B008DB8E3 /* Info.plist */,
 			);
 			path = EasyDialogs;
-			sourceTree = "<group>";
-		};
-		54DBCDF21F0F771C008DB8E3 /* EasyDialogsTests */ = {
-			isa = PBXGroup;
-			children = (
-				54DBCDF31F0F771C008DB8E3 /* EasyDialogsTests.swift */,
-				54DBCDF51F0F771C008DB8E3 /* Info.plist */,
-			);
-			path = EasyDialogsTests;
 			sourceTree = "<group>";
 		};
 		54F1BEEC1F5DF1120093F96C /* window */ = {
@@ -290,24 +314,6 @@
 			productReference = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		54DBCDED1F0F771C008DB8E3 /* EasyDialogsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 54DBCDFC1F0F771C008DB8E3 /* Build configuration list for PBXNativeTarget "EasyDialogsTests" */;
-			buildPhases = (
-				54DBCDEA1F0F771C008DB8E3 /* Sources */,
-				54DBCDEB1F0F771C008DB8E3 /* Frameworks */,
-				54DBCDEC1F0F771C008DB8E3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				54DBCDF11F0F771C008DB8E3 /* PBXTargetDependency */,
-			);
-			name = EasyDialogsTests;
-			productName = EasyDialogsTests;
-			productReference = 54DBCDEE1F0F771C008DB8E3 /* EasyDialogsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -328,10 +334,6 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
-					54DBCDED1F0F771C008DB8E3 = {
-						CreatedOnToolsVersion = 8.3.1;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 54DBCDDF1F0F771B008DB8E3 /* Build configuration list for PBXProject "EasyDialogs" */;
@@ -348,7 +350,6 @@
 			projectRoot = "";
 			targets = (
 				54DBCDE41F0F771B008DB8E3 /* EasyDialogs */,
-				54DBCDED1F0F771C008DB8E3 /* EasyDialogsTests */,
 				541C6EF31F17BE4700C29CC4 /* EasyDialogsExample */,
 			);
 		};
@@ -368,13 +369,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		54DBCDEC1F0F771C008DB8E3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				5427D3371F952B3400B585AD /* pencil.png in Resources */,
+				5427D3351F952B3400B585AD /* zoom.png in Resources */,
+				5427D3341F952B3400B585AD /* delete.png in Resources */,
+				5427D3361F952B3400B585AD /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,25 +395,22 @@
 				54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */,
 				546F75F81F1DE14500E1426A /* TextFieldInput.swift in Sources */,
 				545ACDCC1F654C78007EB769 /* Bool+Ask.swift in Sources */,
+				540FB7951F9094600020E7AE /* ObjectListInput.swift in Sources */,
+				54835CBB1F93B88B00DC7EE4 /* ObjectFormWindow.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
 				54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */,
 				545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */,
+				5427D32D1F95278300B585AD /* Wrappers.swift in Sources */,
+				54835CB91F93B83800DC7EE4 /* InputBinding.swift in Sources */,
 				54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */,
 				5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
 				545ACDCA1F654819007EB769 /* Ask.swift in Sources */,
+				5427D32F1F95288800B585AD /* Images.swift in Sources */,
 				54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */,
 				54BF829A1F5F481B00B12618 /* Validation.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		54DBCDEA1F0F771C008DB8E3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				54DBCDF41F0F771C008DB8E3 /* EasyDialogsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +421,6 @@
 			isa = PBXTargetDependency;
 			target = 54DBCDE41F0F771B008DB8E3 /* EasyDialogs */;
 			targetProxy = 541C6F061F17BE6A00C29CC4 /* PBXContainerItemProxy */;
-		};
-		54DBCDF11F0F771C008DB8E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 54DBCDE41F0F771B008DB8E3 /* EasyDialogs */;
-			targetProxy = 54DBCDF01F0F771C008DB8E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -645,32 +635,6 @@
 			};
 			name = Release;
 		};
-		54DBCDFD1F0F771C008DB8E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = EasyDialogsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.marco83.EasyDialogsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		54DBCDFE1F0F771C008DB8E3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = EasyDialogsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.marco83.EasyDialogsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -697,15 +661,6 @@
 			buildConfigurations = (
 				54DBCDFA1F0F771C008DB8E3 /* Debug */,
 				54DBCDFB1F0F771C008DB8E3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		54DBCDFC1F0F771C008DB8E3 /* Build configuration list for PBXNativeTarget "EasyDialogsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				54DBCDFD1F0F771C008DB8E3 /* Debug */,
-				54DBCDFE1F0F771C008DB8E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
