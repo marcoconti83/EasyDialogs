@@ -9,7 +9,7 @@ It provides input dialogs for text, numbers, dropdown and multiple selection.
 
 To create a modal form window like the one seen in the screenshot, all you need is this code:
 
-```        
+```swift        
 let nameInput = TextFieldInput<String>(
    label: "Name",
    validationRules: [Validation.NotEmptyString().any]
