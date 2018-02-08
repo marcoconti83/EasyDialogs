@@ -30,16 +30,22 @@ public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBo
                      values: [VALUE],
                      valueToDisplay: ((VALUE)->Any)? = nil,
                      value: VALUE? = nil,
-                     validationRules: [AnyInputValidation<VALUE>] = [])
+                     validationRules: [AnyInputValidation<VALUE>] = [],
+                     allowEmpty: Bool = false)
     {
         let combo = NSComboBox()
         combo.isEditable = false
-        values.forEach {
+        let possibleValues = (allowEmpty ? values.optionals : values)
+        possibleValues.forEach {
+            guard let value = $0 else {
+                combo.addItem(withObjectValue: "")
+                return
+            }
             let itemToDisplay: Any
             if let valueToDisplay = valueToDisplay {
-                itemToDisplay = valueToDisplay($0)
+                itemToDisplay = valueToDisplay(value)
             } else {
-                itemToDisplay = $0
+                itemToDisplay = value
             }
             combo.addItem(withObjectValue: itemToDisplay)
         }
@@ -51,11 +57,14 @@ public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBo
             valueExtraction: { control in
                 let index = control.indexOfSelectedItem
                 guard index >= 0 else { return nil }
-                return values[index]
+                return possibleValues[index]
             },
             setValue: { control, value in
-                guard let value = value, let index = values.index(of: value) else { return }
-                control.selectItem(at: index)
+                if let value = value, let index = values.index(of: value) {
+                    control.selectItem(at: index + (allowEmpty ? 1 : 0))
+                } else {
+                    control.selectItem(at: 0)
+                }
             },
             validationRules: validationRules
         )
@@ -71,5 +80,12 @@ protocol IdentityEquatable: class, Equatable { }
 extension IdentityEquatable {
     static func ==(lhs: Self, rhs: Self) -> Bool {
         return lhs === rhs
+    }
+}
+
+extension Array {
+    
+    fileprivate var optionals: [Element?] {
+        return [Optional<Element>.none] + self
     }
 }
