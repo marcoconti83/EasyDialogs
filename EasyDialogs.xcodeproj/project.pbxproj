@@ -77,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		540FB7941F9094600020E7AE /* ObjectListInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListInput.swift; sourceTree = "<group>"; };
+		54111D14202E3C4800CB1799 /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
+		54111D15202E3C7200CB1799 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
 		541C6EF41F17BE4700C29CC4 /* EasyDialogsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDialogsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		541C6EF81F17BE4700C29CC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,8 @@
 		5451A568202D80A20093173D /* docs */ = {
 			isa = PBXGroup;
 			children = (
+				54111D15202E3C7200CB1799 /* progress.png */,
+				54111D14202E3C4800CB1799 /* form.png */,
 				542829BD202E37FB00564E6C /* automatic form.png */,
 				542829BC202E345900564E6C /* multiple input.png */,
 				542829BB202E332E00564E6C /* object input.png */,

@@ -177,6 +177,29 @@ public enum LogStyle {
 
 public struct ProgressDialog {
     
+    /**
+     Shows a progress dialog as a sheet in the given window. This method immediately
+     returns a `ProgressMonitor`, which can be used to update the progress dialog.
+     
+     Updates to the progress dialog can be invoked from any thread; in fact, it only
+     makes sense to use this dialog if the work that generates progress update is run
+     on a background thread. Performing that work on the main thread will cause the UI
+     not to update until the work is completed.
+     
+     - parameter message: the message to display in the window
+     - parameter window: the window where the sheet should be presented
+     - parameter autoDismissWhenDone: if `true`, the sheet will be dismissed as soon
+     as the `done` method is invoked on the returned `ProgressMonitor`. If `false`,
+     the user needs to click on the "Done" button to dismiss the sheet once the
+     work is completed.
+     - parameter cancelCallback: if not `nil`, the progress dialog will present an "Abort" button
+     that, when clicked, will invoke this callback and dismiss the sheet.
+     If this value is `nil`, the button won't be enabled.
+     - returns: a `ProgressMonitor` that should be used to update the progress dialog.
+     Once the work is completed and the progress dialog dismissed, any reference to
+     this should be released.
+     
+     */
     public static func showProgress(
         message: String = "Operation in progress...",
         window: NSWindow,
