@@ -45,8 +45,9 @@ class ViewController: NSViewController {
         let simpleInput = ClosureButton(label: "Simple value input") { [weak self] _ in
             self?.simpleInput()
         }
+        let progressTest = ClosureButton(label: "Progress dialog") { _ in testProgressDialog(self.view.window!) }
         
-        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, self.outputField])
+        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, progressTest, self.outputField])
     }
     
     fileprivate func log(_ string: String) {
@@ -239,3 +240,28 @@ enum LengthAnalysis: String, CustomStringConvertible {
 }
 
 extension String: EmptyInit {}
+
+func testProgressDialog(_ window: NSWindow) {
+    
+    func later(_ block: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: block)
+    }
+    
+    let progress = ProgressDialog.showProgress(window: window)
+    later {
+        progress.appendLog("Progress update...", style: .progressUpdate)
+        progress.updateProgress(current: 1, total: 10)
+        later {
+            progress.appendLog("This is a warning", style: .error)
+            progress.updateProgress(current: 4, total: 10)
+            later {
+                progress.appendLog("Minor details, yadda yadda", style: .info)
+                progress.updateProgress(current: 6, total: 10)
+                later {
+                    progress.done()
+                }
+            }
+        }
+    }
+}
+

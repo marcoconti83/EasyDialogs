@@ -26,6 +26,8 @@
 		5427D3371F952B3400B585AD /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3331F952B3400B585AD /* pencil.png */; };
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
 		5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5444EF801F65BDBF00385A57 /* ModalWindow.swift */; };
+		5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5451A562202D7D3A0093173D /* ProgressViewController.swift */; };
+		5451A565202D7D3A0093173D /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5451A563202D7D3A0093173D /* ProgressViewController.xib */; };
 		545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC51F653EFE007EB769 /* String+Ask.swift */; };
 		545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC71F65458E007EB769 /* Collection+Ask.swift */; };
 		545ACDCA1F654819007EB769 /* Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545ACDC91F654819007EB769 /* Ask.swift */; };
@@ -93,6 +95,8 @@
 		5427D3331F952B3400B585AD /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
 		5444EF801F65BDBF00385A57 /* ModalWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalWindow.swift; sourceTree = "<group>"; };
+		5451A562202D7D3A0093173D /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		5451A563202D7D3A0093173D /* ProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressViewController.xib; sourceTree = "<group>"; };
 		545ACDC51F653EFE007EB769 /* String+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ask.swift"; sourceTree = "<group>"; };
 		545ACDC71F65458E007EB769 /* Collection+Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Ask.swift"; sourceTree = "<group>"; };
 		545ACDC91F654819007EB769 /* Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ask.swift; sourceTree = "<group>"; };
@@ -194,6 +198,15 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		5451A561202CF9710093173D /* dialogues */ = {
+			isa = PBXGroup;
+			children = (
+				5451A562202D7D3A0093173D /* ProgressViewController.swift */,
+				5451A563202D7D3A0093173D /* ProgressViewController.xib */,
+			);
+			path = dialogues;
+			sourceTree = "<group>";
+		};
 		54835CB71F93B82E00DC7EE4 /* object creation */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +253,7 @@
 		54DBCDE71F0F771B008DB8E3 /* EasyDialogs */ = {
 			isa = PBXGroup;
 			children = (
+				5451A561202CF9710093173D /* dialogues */,
 				5427CB581F9526CA00B585AD /* resources */,
 				54BF829B1F5F609C00B12618 /* util */,
 				54F1BEEC1F5DF1120093F96C /* window */,
@@ -372,6 +386,7 @@
 				5427D3371F952B3400B585AD /* pencil.png in Resources */,
 				5427D3351F952B3400B585AD /* zoom.png in Resources */,
 				5427D3341F952B3400B585AD /* delete.png in Resources */,
+				5451A565202D7D3A0093173D /* ProgressViewController.xib in Resources */,
 				5427D3361F952B3400B585AD /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +422,7 @@
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
+				5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */,
 				545ACDCA1F654819007EB769 /* Ask.swift in Sources */,
 				5427D32F1F95288800B585AD /* Images.swift in Sources */,
 				54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */,

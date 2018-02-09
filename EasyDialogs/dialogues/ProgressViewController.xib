@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ProgressViewController" customModule="EasyDialogs" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonAbort" destination="Wnu-Xg-LiD" id="Dc3-bY-NCc"/>
+                <outlet property="buttonDismiss" destination="7XY-h9-c2m" id="9KP-16-hwY"/>
+                <outlet property="indicator" destination="8eE-j0-4q9" id="CmK-oM-yg0"/>
+                <outlet property="textView" destination="0pu-Kb-pxx" id="amp-ak-Xni"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-Xg-LiD">
+                    <rect key="frame" x="4" y="3" width="97" height="32"/>
+                    <buttonCell key="cell" type="push" title="❌ Abort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="diH-ki-lW4">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didAbort:" target="-2" id="304-ip-sHs"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-4u-nZK">
+                    <rect key="frame" x="8" y="245" width="464" height="17"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Operation in progress..." id="yrY-ww-ZSp">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq1-P2-Gnf">
+                    <rect key="frame" x="10" y="41" width="460" height="194"/>
+                    <clipView key="contentView" id="VAa-g5-V1C">
+                        <rect key="frame" x="1" y="1" width="458" height="192"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0pu-Kb-pxx">
+                                <rect key="frame" x="0.0" y="0.0" width="456" height="192"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="458" height="192"/>
+                                <size key="maxSize" width="463" height="10000000"/>
+                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="rGy-EZ-S8w">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Gud-8s-s2g">
+                        <rect key="frame" x="443" y="1" width="16" height="192"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="8eE-j0-4q9">
+                    <rect key="frame" x="413" y="13" width="16" height="16"/>
+                </progressIndicator>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7XY-h9-c2m">
+                    <rect key="frame" x="366" y="3" width="110" height="32"/>
+                    <buttonCell key="cell" type="push" title="✅ Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FFc-7k-ZVQ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didDismiss:" target="-2" id="qBR-wY-o8J"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Wnu-Xg-LiD" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="EgR-3w-AM6"/>
+                <constraint firstItem="8eE-j0-4q9" firstAttribute="centerX" secondItem="7XY-h9-c2m" secondAttribute="centerX" id="Hn6-WM-Eze"/>
+                <constraint firstAttribute="trailing" secondItem="7XY-h9-c2m" secondAttribute="trailing" constant="10" id="O4N-vz-i8h"/>
+                <constraint firstItem="Zgu-4u-nZK" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="RMq-cY-uf9"/>
+                <constraint firstItem="8eE-j0-4q9" firstAttribute="centerY" secondItem="7XY-h9-c2m" secondAttribute="centerY" id="ReJ-vv-OZg"/>
+                <constraint firstItem="Mq1-P2-Gnf" firstAttribute="top" secondItem="Zgu-4u-nZK" secondAttribute="bottom" constant="10" id="Syk-ba-Wsw"/>
+                <constraint firstAttribute="bottom" secondItem="7XY-h9-c2m" secondAttribute="bottom" constant="10" id="dds-q5-OOB"/>
+                <constraint firstAttribute="bottom" secondItem="Wnu-Xg-LiD" secondAttribute="bottom" constant="10" id="gYM-pN-cI7"/>
+                <constraint firstAttribute="trailing" secondItem="Mq1-P2-Gnf" secondAttribute="trailing" constant="10" id="gvX-eh-FGx"/>
+                <constraint firstAttribute="trailing" secondItem="Zgu-4u-nZK" secondAttribute="trailing" constant="10" id="h3c-ys-AqE"/>
+                <constraint firstItem="Mq1-P2-Gnf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="ooP-LR-QhZ"/>
+                <constraint firstItem="Wnu-Xg-LiD" firstAttribute="top" secondItem="Mq1-P2-Gnf" secondAttribute="bottom" constant="10" id="wNX-sb-hhR"/>
+                <constraint firstItem="Zgu-4u-nZK" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="xQF-EB-Hwl"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>
