@@ -1,9 +1,13 @@
 # EasyDialogs
 
-EasyDialogs makes creating forms and input dialogs on macOS simple and concise. 
-It provides input dialogs for text, numbers, dropdown and multiple selection.
+_EasyDialogs_ simplifies the task of programmatically creating forms and input dialogs on _macOS_.
 
-# Example
+The focus is on ease of use for the developer rather than customization or beautiful controls. As such, the intended use is for the quick creation of internal tools rather than consumer applications. But don't let me stop you if that's your goal :-)
+
+This library provides input dialogs for text, numbers, dropdown, multiple selection and more. All controls are intended to be created programmatically, i.e. without using interface builder.
+
+
+## Example
 
 ![Example](https://user-images.githubusercontent.com/620000/30260589-914d88f0-96c8-11e7-9be3-b23df188d638.png)
 
@@ -35,3 +39,7 @@ FormWindow.displayForm(
        return true
 })
 ```
+
+## Documentation
+Documentation can be found in the [docs](docs) folder.
+
