@@ -10,7 +10,9 @@
             <connections>
                 <outlet property="buttonAbort" destination="Wnu-Xg-LiD" id="Dc3-bY-NCc"/>
                 <outlet property="buttonDismiss" destination="7XY-h9-c2m" id="9KP-16-hwY"/>
-                <outlet property="indicator" destination="8eE-j0-4q9" id="CmK-oM-yg0"/>
+                <outlet property="dummyIndicator" destination="WeF-zG-J3w" id="RqS-RB-i5y"/>
+                <outlet property="indicator" destination="NaM-8F-fx0" id="0M1-Vg-2yX"/>
+                <outlet property="textScrollViewHeightConstraint" destination="9lC-Cj-Fn7" id="aXs-Ar-mcg"/>
                 <outlet property="textView" destination="0pu-Kb-pxx" id="amp-ak-Xni"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -18,7 +20,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="91"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-Xg-LiD">
@@ -32,7 +34,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-4u-nZK">
-                    <rect key="frame" x="8" y="245" width="464" height="17"/>
+                    <rect key="frame" x="29" y="64" width="443" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Operation in progress..." id="yrY-ww-ZSp">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -40,34 +42,34 @@
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq1-P2-Gnf">
-                    <rect key="frame" x="10" y="41" width="460" height="194"/>
+                    <rect key="frame" x="10" y="41" width="460" height="0.0"/>
                     <clipView key="contentView" id="VAa-g5-V1C">
-                        <rect key="frame" x="1" y="1" width="458" height="192"/>
+                        <rect key="frame" x="1" y="1" width="458" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0pu-Kb-pxx">
-                                <rect key="frame" x="0.0" y="0.0" width="456" height="192"/>
+                                <rect key="frame" x="0.0" y="0.0" width="456" height="14"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="458" height="192"/>
+                                <size key="minSize" width="456" height="1"/>
                                 <size key="maxSize" width="463" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </clipView>
+                    <constraints>
+                        <constraint firstAttribute="height" id="9lC-Cj-Fn7"/>
+                    </constraints>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="rGy-EZ-S8w">
                         <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Gud-8s-s2g">
-                        <rect key="frame" x="443" y="1" width="16" height="192"/>
+                        <rect key="frame" x="443" y="1" width="16" height="-1"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="8eE-j0-4q9">
-                    <rect key="frame" x="413" y="13" width="16" height="16"/>
-                </progressIndicator>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7XY-h9-c2m">
                     <rect key="frame" x="366" y="3" width="110" height="32"/>
                     <buttonCell key="cell" type="push" title="✅ Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FFc-7k-ZVQ">
@@ -78,22 +80,35 @@
                         <action selector="didDismiss:" target="-2" id="qBR-wY-o8J"/>
                     </connections>
                 </button>
+                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="WeF-zG-J3w">
+                    <rect key="frame" x="10" y="62" width="16" height="16"/>
+                </progressIndicator>
+                <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="NaM-8F-fx0">
+                    <rect key="frame" x="20" y="45" width="440" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="fDd-Sy-DFl"/>
+                    </constraints>
+                </progressIndicator>
             </subviews>
             <constraints>
                 <constraint firstItem="Wnu-Xg-LiD" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="EgR-3w-AM6"/>
-                <constraint firstItem="8eE-j0-4q9" firstAttribute="centerX" secondItem="7XY-h9-c2m" secondAttribute="centerX" id="Hn6-WM-Eze"/>
+                <constraint firstItem="NaM-8F-fx0" firstAttribute="top" secondItem="WeF-zG-J3w" secondAttribute="bottom" constant="6" id="JQe-oX-eHu"/>
+                <constraint firstItem="NaM-8F-fx0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Lqa-xD-dLv"/>
                 <constraint firstAttribute="trailing" secondItem="7XY-h9-c2m" secondAttribute="trailing" constant="10" id="O4N-vz-i8h"/>
-                <constraint firstItem="Zgu-4u-nZK" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="RMq-cY-uf9"/>
-                <constraint firstItem="8eE-j0-4q9" firstAttribute="centerY" secondItem="7XY-h9-c2m" secondAttribute="centerY" id="ReJ-vv-OZg"/>
-                <constraint firstItem="Mq1-P2-Gnf" firstAttribute="top" secondItem="Zgu-4u-nZK" secondAttribute="bottom" constant="10" id="Syk-ba-Wsw"/>
+                <constraint firstItem="Zgu-4u-nZK" firstAttribute="leading" secondItem="WeF-zG-J3w" secondAttribute="trailing" constant="5" id="OWs-qJ-he2"/>
                 <constraint firstAttribute="bottom" secondItem="7XY-h9-c2m" secondAttribute="bottom" constant="10" id="dds-q5-OOB"/>
+                <constraint firstItem="Mq1-P2-Gnf" firstAttribute="top" secondItem="NaM-8F-fx0" secondAttribute="bottom" constant="5" id="etJ-Ry-7R8"/>
                 <constraint firstAttribute="bottom" secondItem="Wnu-Xg-LiD" secondAttribute="bottom" constant="10" id="gYM-pN-cI7"/>
                 <constraint firstAttribute="trailing" secondItem="Mq1-P2-Gnf" secondAttribute="trailing" constant="10" id="gvX-eh-FGx"/>
                 <constraint firstAttribute="trailing" secondItem="Zgu-4u-nZK" secondAttribute="trailing" constant="10" id="h3c-ys-AqE"/>
+                <constraint firstAttribute="trailing" secondItem="NaM-8F-fx0" secondAttribute="trailing" constant="20" id="hL1-CN-ghx"/>
+                <constraint firstItem="WeF-zG-J3w" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="13" id="hSk-7o-haN"/>
                 <constraint firstItem="Mq1-P2-Gnf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="ooP-LR-QhZ"/>
+                <constraint firstItem="WeF-zG-J3w" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="t3s-qp-g09"/>
                 <constraint firstItem="Wnu-Xg-LiD" firstAttribute="top" secondItem="Mq1-P2-Gnf" secondAttribute="bottom" constant="10" id="wNX-sb-hhR"/>
                 <constraint firstItem="Zgu-4u-nZK" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="xQF-EB-Hwl"/>
             </constraints>
+            <point key="canvasLocation" x="139" y="221.5"/>
         </customView>
     </objects>
 </document>

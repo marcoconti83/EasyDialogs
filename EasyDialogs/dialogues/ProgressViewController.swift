@@ -26,9 +26,11 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     @IBOutlet weak var buttonAbort: NSButton!
     @IBOutlet weak var buttonDismiss: NSButton!
-    @IBOutlet weak var indicator: NSProgressIndicator!
+    @IBOutlet weak var dummyIndicator: NSProgressIndicator!
     @IBOutlet var textView: NSTextView!
+    @IBOutlet weak var indicator: NSProgressIndicator!
     
+    @IBOutlet weak var textScrollViewHeightConstraint: NSLayoutConstraint!
     private var cancelCallback: (()->())?
     private var message: String
     private var autoDismissWhenDone: Bool
@@ -52,9 +54,9 @@ class ProgressViewController: NSViewController, ProgressMonitor {
         self.buttonAbort.isEnabled = self.cancelCallback != nil
         self.buttonDismiss.isEnabled = false
         self.buttonDismiss.isHidden = true
-        self.indicator.isHidden = false
         self.indicator.isIndeterminate = true
         self.indicator.startAnimation(nil)
+        self.dummyIndicator.startAnimation(nil)
     }
     
     @IBAction func didAbort(_ sender: Any) {
@@ -72,6 +74,8 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     func updateProgress(current: Double, total: Double) {
         DispatchQueue.main.async {
+            self.indicator.isHidden = false
+            self.indicator.startAnimation(nil)
             self.indicator.isIndeterminate = false
             self.indicator.maxValue = total
             self.indicator.doubleValue = current
@@ -86,14 +90,20 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     func appendLog(_ log: NSAttributedString) {
         DispatchQueue.main.async {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.25
+                self.textScrollViewHeightConstraint.animator().constant = 200
+            }, completionHandler: nil)
             self.textView.textStorage?.append(log)
         }
     }
     
     func done() {
         DispatchQueue.main.async {
-            self.indicator.isHidden = true
+            self.indicator.maxValue = 1
+            self.indicator.doubleValue = 1
             self.buttonAbort.isHidden = true
+            self.dummyIndicator.isHidden = true
             if self.autoDismissWhenDone {
                 self.dismiss()
             } else {
