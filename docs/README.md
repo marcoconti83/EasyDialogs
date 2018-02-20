@@ -65,10 +65,9 @@ A generic class that allows to select a single object from a list of objects. Th
 
 #### `MultipleSelectionInput`
 
-![Multiple selection input](mutiple%20input.png)
+![Multiple selection input](multiple%20input.png)
 
-A generic class that allows to select zero, one or more objects from a list (internally rendered as a scrollable table). User can select multiple objects using the `Shift` or `Command` key on their keyboard when clicking on them, as in the usual _macOS_ selection paradigm (e.g. when selecting files in _Finder_).
-
+A generic class that allows to select zero, one or more objects from a list (internally rendered as a scrollable table). User can select multiple objects using checkboxes.
 
 #### `ObjectListInput`
 
