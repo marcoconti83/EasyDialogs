@@ -57,7 +57,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             ],
             contextMenuOperations: [],
             table: table,
-            allowMultipleSelection: true,
+            selectionModel: .multipleCheckbox,
             selectionCallback: { _ in })
         self.tableSource = tableSource
         let maxRows = min(maxRowsToDisplay ?? possibleValues.count, possibleValues.count)

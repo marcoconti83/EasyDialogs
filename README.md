@@ -9,7 +9,7 @@ This library provides input dialogs for text, numbers, dropdown, multiple select
 
 ## Example
 
-![Example](https://user-images.githubusercontent.com/620000/30260589-914d88f0-96c8-11e7-9be3-b23df188d638.png)
+![Example](docs/example1.png)
 
 To create a modal form window like the one seen in the screenshot, all you need is this code:
 

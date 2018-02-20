@@ -140,7 +140,7 @@ extension ObjectListInput {
             columns: columns.map { Unique<VALUE>.wrapColumnDefinition($0) },
             contextMenuOperations: [],
             table: table,
-            allowMultipleSelection: true,
+            selectionModel: .multipleNative,
             selectionCallback: { _ in reference.object?.updateSelection() })
         let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
         constrain(scroll) { scroll in
