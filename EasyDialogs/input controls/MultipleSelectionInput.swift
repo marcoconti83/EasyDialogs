@@ -63,13 +63,16 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                 columns: [ColumnDefinition<VALUE>],
                 validationRules: [AnyInputValidation<[VALUE]>] = [],
                 maxRowsToDisplay: Int? = nil,
-                minRowsToDisplay: Int = 3
+                minRowsToDisplay: Int = 3,
+                showHeader: Bool = false
         )
     {
         let (scroll, table) = NSTableView.inScrollView()
         self.scrollView = scroll
 
-        table.headerView = nil
+        if !showHeader {
+            table.headerView = nil
+        }
         self.tableView = table
         let tableSource = EasyTableSource(
             initialObjects: possibleValues,
