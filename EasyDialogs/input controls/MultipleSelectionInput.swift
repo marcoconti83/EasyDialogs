@@ -36,7 +36,7 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     /// Table selection
     private let tableSource: EasyTableSource<VALUE>
     
-    public init(label: String? = nil,
+    convenience public init(label: String? = nil,
                 possibleValues: [VALUE],
                 valueToDisplay: ((VALUE)->Any)? = nil,
                 selectedValues: [VALUE] = [],
@@ -45,17 +45,35 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                 minRowsToDisplay: Int = 3
         )
     {
+        let valueToDisplay = valueToDisplay ?? { "\($0)" }
+        let columns = [ColumnDefinition(name: "Value", value: valueToDisplay)]
+        self.init(label: label,
+                  possibleValues: possibleValues,
+                  selectedValues: selectedValues,
+                  columns: columns,
+                  validationRules: validationRules,
+                  maxRowsToDisplay: maxRowsToDisplay,
+                  minRowsToDisplay: minRowsToDisplay
+        )
+    }
+    
+    public init(label: String? = nil,
+                possibleValues: [VALUE],
+                selectedValues: [VALUE] = [],
+                columns: [ColumnDefinition<VALUE>],
+                validationRules: [AnyInputValidation<[VALUE]>] = [],
+                maxRowsToDisplay: Int? = nil,
+                minRowsToDisplay: Int = 3
+        )
+    {
         let (scroll, table) = NSTableView.inScrollView()
         self.scrollView = scroll
 
-        let valueToDisplay = valueToDisplay ?? { "\($0)" }
         table.headerView = nil
         self.tableView = table
         let tableSource = EasyTableSource(
             initialObjects: possibleValues,
-            columns: [
-                ColumnDefinition(name: "Value", value: valueToDisplay)
-            ],
+            columns: columns,
             contextMenuOperations: [],
             table: table,
             selectionModel: .multipleCheckbox,
