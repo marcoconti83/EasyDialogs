@@ -41,7 +41,8 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                 valueToDisplay: ((VALUE)->Any)? = nil,
                 selectedValues: [VALUE] = [],
                 validationRules: [AnyInputValidation<[VALUE]>] = [],
-                maxRowsToDisplay: Int? = nil
+                maxRowsToDisplay: Int? = nil,
+                minRowsToDisplay: Int = 3
         )
     {
         let (scroll, table) = NSTableView.inScrollView()
@@ -60,12 +61,14 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             selectionModel: .multipleCheckbox,
             selectionCallback: { _ in })
         self.tableSource = tableSource
-        let maxRows = min(maxRowsToDisplay ?? possibleValues.count, possibleValues.count)
-        let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
-        constrain(scroll) { scroll in
-            scroll.height == CGFloat(maxRows) * rowHeight
-        }
         
+        let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
+        MultipleSelectionInput.setScrollSize(scroll: scroll,
+                                             rowHeight: rowHeight,
+                                             minRows: minRowsToDisplay,
+                                             maxRows: maxRowsToDisplay,
+                                             totalRows: possibleValues.count)
+        scroll.hasVerticalScroller = true
         super.init(
             label: label,
             inlineLabel: false,
@@ -83,6 +86,31 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     
     public required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    private static func setScrollSize(scroll: NSScrollView,
+                                      rowHeight: CGFloat,
+                                      minRows: Int,
+                                      maxRows: Int?,
+                                      totalRows: Int)
+    {
+        func height(rows: Int, halfRow: Bool) -> CGFloat {
+            return (CGFloat(rows) + (halfRow ? 0.5 : 0.0)) * rowHeight
+        }
+        var minRows = minRows
+        if let maxRows = maxRows {
+            let needsHalfRow = totalRows > maxRows
+            constrain(scroll) { scroll in
+                scroll.height <= height(rows: maxRows, halfRow: needsHalfRow)
+            }
+            if minRows > maxRows {
+                minRows = maxRows
+            }
+        }
+        let needsHalfRow = minRows < totalRows
+        constrain(scroll) { scroll in
+            scroll.height >= height(rows: minRows, halfRow: needsHalfRow)
+        }
     }
 }
 
