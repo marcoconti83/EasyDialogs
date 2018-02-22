@@ -10,7 +10,9 @@ import Foundation
 import BrightFutures
 import Result
 
-public struct AbortedError: Error {}
+public struct AbortedError: Error {
+    public init() {}
+}
 
 struct InputFuture {
     
