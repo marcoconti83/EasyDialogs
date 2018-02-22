@@ -21,6 +21,7 @@
 //
 
 import Foundation
+import BrightFutures
 
 extension String {
     
@@ -33,6 +34,15 @@ extension String {
             .askInForm(message: message, handler: handler)
     }
     
+    /// Asks the user for a single-line input
+    static public func ask(_ message: String,
+                           initialValue: String? = nil) -> Future<String, AbortedError>
+    {
+        return Future {
+            self.ask(message, handler: InputFuture.handler($0))
+        }
+    }
+    
     /// Asks the user for a multi-line input
     static public func askLongAnswer(_ message: String,
                                     initialValue: String? = nil,
@@ -42,6 +52,19 @@ extension String {
                       value: initialValue,
                       minimumHeight: 300)
             .askInForm(message: message, handler: handler)
+        
+    }
+    
+    /// Asks the user for a multi-line input
+    static public func askLongAnswer(_ message: String,
+                                     initialValue: String? = nil) -> Future<String, AbortedError>
+    {
+        return Future {
+            self.askLongAnswer(message,
+                               initialValue: initialValue,
+                               handler: InputFuture.handler($0)
+            )
+        }
         
     }
 }
@@ -57,6 +80,19 @@ extension Int {
                        value: initialValue)
             .askInForm(message: message, handler: handler)
     }
+    
+    /// Asks the user for a numeric input
+    static public func ask(_ message: String,
+                           initialValue: Int? = nil) -> Future<Int, AbortedError>
+    {
+        return Future {
+            self.ask(
+                message,
+                initialValue: initialValue,
+                handler: InputFuture.handler($0)
+            )
+        }
+    }
 }
 
 extension URL {
@@ -69,6 +105,19 @@ extension URL {
         TextFieldInput(label: nil,
                       value: initialValue)
             .askInForm(message: message, handler: handler)
+    }
+    
+    /// Asks the user for a URL
+    static public func ask(_ message: String,
+                           initialValue: URL? = nil) -> Future<URL, AbortedError>
+    {
+        return Future {
+            self.ask(
+                message,
+                initialValue: initialValue,
+                handler: InputFuture.handler($0)
+            )
+        }
     }
     
 }

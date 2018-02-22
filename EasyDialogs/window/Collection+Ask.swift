@@ -21,6 +21,7 @@
 //
 
 import Foundation
+import BrightFutures
 
 extension Sequence where Self.Iterator.Element: Equatable {
     
@@ -37,6 +38,22 @@ extension Sequence where Self.Iterator.Element: Equatable {
                              value: initialValue ?? array.first)
             .askInForm(message: message, handler: handler)
     }
+    
+    /// Asks to choose one or more values from the collection
+    public func ask(_ message: String,
+                    initialValue: Self.Iterator.Element? = nil,
+                    valueToDisplay: ((Self.Iterator.Element)->Any)? = nil)
+        -> Future<Self.Iterator.Element, AbortedError>
+    {
+        return Future {
+            self.ask(
+                message,
+                initialValue: initialValue,
+                valueToDisplay: valueToDisplay,
+                handler: InputFuture.handler($0)
+            )
+        }
+    }
 
     /// Asks to choose one or more values from the collection
     public func askMultipleAnswers(_ message: String,
@@ -49,5 +66,21 @@ extension Sequence where Self.Iterator.Element: Equatable {
                                valueToDisplay: valueToDisplay,
                                selectedValues: initialValue)
             .askInForm(message: message, handler: handler)
+    }
+    
+    /// Asks to choose one or more values from the collection
+    public func askMultipleAnswers(_ message: String,
+                                   initialValue: [Self.Iterator.Element] = [],
+                                   valueToDisplay: ((Self.Iterator.Element)->Any)? = nil)
+        -> Future<[Self.Iterator.Element], AbortedError>
+    {
+        return Future {
+            self.askMultipleAnswers(
+                message,
+                initialValue: initialValue,
+                valueToDisplay: valueToDisplay,
+                handler: InputFuture.handler($0)
+            )
+        }
     }
 }

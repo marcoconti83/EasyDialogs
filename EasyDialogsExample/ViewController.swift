@@ -45,9 +45,8 @@ class ViewController: NSViewController {
         let simpleInput = ClosureButton(label: "Simple value input") { [weak self] _ in
             self?.simpleInput()
         }
-        let progressTest = ClosureButton(label: "Progress dialog") { _ in testProgressDialog(self.view.window!) }
         
-        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, progressTest, self.outputField])
+        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, self.outputField])
     }
     
     fileprivate func log(_ string: String) {
@@ -83,14 +82,19 @@ extension ViewController {
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
-            self.log("Fetching \(value)...")
+            let progress = ProgressDialog.showProgress(message: "Fetching website",
+                                        window: self.view.window!,
+                                        autoDismissWhenDone: false)
             URLSession.shared.dataTask(with: value, completionHandler: { (_, response, _) in
-                DispatchQueue.main.async {
+                progress.appendLog("Fetching \(value)...")
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { // artificial delay
                     guard let response = response as? HTTPURLResponse else {
-                        self.log("Network error")
+                        progress.appendLog("Network error", style: .error)
                         return
                     }
-                    self.log("Response status: \(response.statusCode)")
+                    progress.appendLog("Response status: \(response.statusCode)", style: .info)
+                    progress.appendLog("...Done!")
+                    progress.done()
                 }
             }).resume()
         }
@@ -148,17 +152,23 @@ extension ViewController {
             label: "Favorite color",
             possibleValues: ["red", "blue", "yellow"]
         )
-        FormWindow.displayForm(
+        FormWindow<(colors: String, name: String, age: Int)>.displayForm(
             inputs: [
                 nameInput,
                 ageInput,
                 colorInput
             ],
             headerText: "Please tell me about yourself",
+            validateValue: {
+                let colors = colorInput.value!.isEmpty ?
+                    "no color" :
+                    colorInput.value!.joined(separator: ", ")
+                guard let name = nameInput.value else { return nil }
+                guard let age = ageInput.value else { return nil }
+                return (colors: colors, name: name, age: age)
+            },
             onConfirm: { 
-                let colors = colorInput.value!.isEmpty ? "no color" : colorInput.value!.joined(separator: ", ")
-                self.log("\(nameInput.value!), age \(ageInput.value!), likes \(colors)")
-                return true
+                self.log("\($0.name), age \($0.age), likes \($0.colors)")
         })
         
     }
@@ -240,28 +250,3 @@ enum LengthAnalysis: String, CustomStringConvertible {
 }
 
 extension String: EmptyInit {}
-
-func testProgressDialog(_ window: NSWindow) {
-    
-    func later(_ block: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: block)
-    }
-    
-    let progress = ProgressDialog.showProgress(window: window)
-    later {
-        progress.appendLog("Progress update...", style: .progressUpdate)
-        progress.updateProgress(current: 1, total: 10)
-        later {
-            progress.appendLog("This is a warning", style: .error)
-            progress.updateProgress(current: 4, total: 10)
-            later {
-                progress.appendLog("Minor details, yadda yadda", style: .info)
-                progress.updateProgress(current: 6, total: 10)
-                later {
-                    progress.done()
-                }
-            }
-        }
-    }
-}
-

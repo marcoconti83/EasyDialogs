@@ -23,7 +23,7 @@
 
 import Foundation
 
-public class ObjectFormWindow<VALUE: EmptyInit & Equatable>: FormWindow {
+public class ObjectFormWindow<VALUE: EmptyInit & Equatable>: FormWindow<VALUE> {
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,44 +35,41 @@ public class ObjectFormWindow<VALUE: EmptyInit & Equatable>: FormWindow {
         bindings: [AnyObjectInputBinding<VALUE>],
         headerText: String? = nil,
         minFormHeight: CGFloat = 200,
-        onConfirm: @escaping (VALUE?) -> (),
+        onConfirm: @escaping (VALUE) -> (),
         value: VALUE? = nil
         )
     {
         self.bindings = bindings
+        let createObject = {
+            return ObjectFormWindow<VALUE>.createObject(
+                bindings: bindings,
+                initialValue: value)
+        }
         super.init(
             inputs: bindings.map { $0.input },
             headerText: headerText,
             minFormHeight: minFormHeight,
-            onConfirm: { false })
-        self.onConfirm = { [weak self] in
-            guard let `self` = self else { return false }
-            if let newValue = self.createObject(initialValue: value) {
-                onConfirm(newValue)
-                return true
-            }
-            return false
-        }
+            validateValue: { createObject() },
+            onConfirm: { onConfirm($0) }
+        )
     }
     
-    private func createObject(initialValue: VALUE?) -> VALUE? {
+    private static func createObject(
+        bindings: [AnyObjectInputBinding<VALUE>],
+        initialValue: VALUE?
+        ) -> VALUE?
+    {
         
         var object = initialValue ?? VALUE()
         do {
-            try self.bindings.forEach {
+            try bindings.forEach {
                 try $0.write(on: &object)
             }
-        } catch let error as UnexpectedNilValueError {
-            self.showError(error)
-            return nil
         } catch {
+            // TODO: show error on UI
             return nil
         }
         return object
-    }
-    
-    private func showError(_ error: UnexpectedNilValueError) {
-        // TODO: show error on UI
     }
 }
 

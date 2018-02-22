@@ -24,20 +24,24 @@
 import Cocoa
 import Cartography
 import ClosureControls
+import BrightFutures
+
+private let contentViewInternalPadding: CGFloat = 15
 
 /// A window that contains input fields
-public class FormWindow: ModalWindow {
+public class FormWindow<ResultValue>: ModalWindow {
     
-    static let contentViewInternalPadding: CGFloat = 15
-
     /// Inputs to be displayed in the form
     let inputs: [InputView]
     
     /// Error display
     fileprivate var errorLabel: NSTextField! = nil
     
+    /// Called to validate form
+    private var validateValue: ()->(ResultValue?)
+    
     /// Closure to invoke when the user press the confirm button
-    internal(set) var onConfirm: ()->(Bool)
+    internal(set) var onConfirm: (ResultValue)->()
     
     /// Closure invoked when the user cancels the form
     private let onCancel: (()->())?
@@ -49,11 +53,13 @@ public class FormWindow: ModalWindow {
         headerText: String? = nil,
         minFormHeight: CGFloat = 200,
         confirmButtonText: String = "OK",
-        onConfirm: @escaping ()->(Bool),
+        validateValue: @escaping ()->(ResultValue?),
+        onConfirm: @escaping (ResultValue)->(),
         onCancel: (()->())? = nil
     )
     {
         self.onConfirm = onConfirm
+        self.validateValue = validateValue
         self.inputs = inputs
         self.onCancel = onCancel
         super.init()
@@ -64,14 +70,14 @@ public class FormWindow: ModalWindow {
     }
     
     /// Display the window, it won't be dismissed until the
-    /// close button is used. This is achieved by retaining 
-    /// a reference internally.
+    /// close button is used
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
         minFormHeight: CGFloat = 200,
         confirmButtonText: String = "OK",
-        onConfirm: @escaping ()->(Bool),
+        validateValue: @escaping ()->(ResultValue?),
+        onConfirm: @escaping (ResultValue)->(),
         onCancel: (()->())? = nil
         )
     {
@@ -80,10 +86,35 @@ public class FormWindow: ModalWindow {
             headerText: headerText,
             minFormHeight: minFormHeight,
             confirmButtonText: confirmButtonText,
+            validateValue: validateValue,
             onConfirm: onConfirm,
             onCancel: onCancel
         ).present()
     }
+    
+    /// Display the window, it won't be dismissed until the
+    /// close button is used
+    public static func displayForm(
+        inputs: [InputView],
+        headerText: String? = nil,
+        minFormHeight: CGFloat = 200,
+        confirmButtonText: String = "OK",
+        validateValue: @escaping ()->(ResultValue?)
+        ) -> Future<ResultValue, AbortedError>
+    {
+        return Future { completion in
+            self.displayForm(
+                inputs: inputs,
+                headerText: headerText,
+                minFormHeight: minFormHeight,
+                confirmButtonText: confirmButtonText,
+                validateValue: validateValue,
+                onConfirm: { completion(.success($0)) },
+                onCancel: { completion(.failure(AbortedError())) }
+            )
+        }
+    }
+    
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -96,13 +127,14 @@ public class FormWindow: ModalWindow {
                 return
             }
         }
-        guard self.onConfirm() else { return }
+        guard let value = self.validateValue() else { return }
         self.dismiss()
+        self.onConfirm(value)
     }
     
     fileprivate func cancelButtonPressed() {
-        self.onCancel?()
         self.dismiss()
+        self.onCancel?()
     }
     
     private func showError(_ message: String) {
@@ -145,8 +177,8 @@ extension FormWindow {
         
         container.addSubview(scroll)
         constrain(scroll, container) { scroll, container in
-            scroll.trailing == container.trailing - FormWindow.contentViewInternalPadding
-            scroll.leading == container.leading + FormWindow.contentViewInternalPadding
+            scroll.trailing == container.trailing - contentViewInternalPadding
+            scroll.leading == container.leading + contentViewInternalPadding
         }
         
         constrain(scroll, stack) { scroll, stack in
@@ -168,14 +200,14 @@ extension FormWindow {
             
             container.addSubview(label)
             constrain(label, stack, container) { label, stack, container in
-                label.top == container.top + FormWindow.contentViewInternalPadding
-                label.bottom == stack.top - FormWindow.contentViewInternalPadding
+                label.top == container.top + contentViewInternalPadding
+                label.bottom == stack.top - contentViewInternalPadding
                 label.trailing == stack.trailing
                 label.leading == stack.leading
             }
         } else {
             constrain(stack, container) { stack, container in
-                stack.top == container.top + FormWindow.contentViewInternalPadding
+                stack.top == container.top + contentViewInternalPadding
             }
         }
     }
@@ -202,16 +234,16 @@ extension FormWindow {
         container.addSubview(errorLabel)
         
         constrain(OKButton, stack, container, errorLabel) { button, stack, container, error in
-            button.bottom == container.bottom - FormWindow.contentViewInternalPadding
-            button.trailing == container.trailing - FormWindow.contentViewInternalPadding
-            error.trailing == container.trailing - FormWindow.contentViewInternalPadding
-            error.leading == container.leading + FormWindow.contentViewInternalPadding
-            stack.bottom == error.top - FormWindow.contentViewInternalPadding
-            error.bottom == button.top - FormWindow.contentViewInternalPadding
+            button.bottom == container.bottom - contentViewInternalPadding
+            button.trailing == container.trailing - contentViewInternalPadding
+            error.trailing == container.trailing - contentViewInternalPadding
+            error.leading == container.leading + contentViewInternalPadding
+            stack.bottom == error.top - contentViewInternalPadding
+            error.bottom == button.top - contentViewInternalPadding
         }
         
         constrain(OKButton, cancelButton, container) { OKButton, cancelButton, container in
-            cancelButton.leading == container.leading + FormWindow.contentViewInternalPadding
+            cancelButton.leading == container.leading + contentViewInternalPadding
             cancelButton.top == OKButton.top
             cancelButton.bottom == OKButton.bottom
             OKButton.width >= 100

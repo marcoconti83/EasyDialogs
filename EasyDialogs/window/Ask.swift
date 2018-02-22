@@ -21,6 +21,7 @@
 //
 
 import Foundation
+import BrightFutures
 
 /// A response to a request for input
 public enum InputResponse<T> {
@@ -46,12 +47,18 @@ extension ValueInput {
         FormWindow.displayForm(
             inputs: [self],
             headerText: message,
-            onConfirm: {
-                guard let v = self.value else { return false }
-                handler(.ok(v))
-                return true
-        },
+            validateValue: { self.value },
+            onConfirm: { handler(.ok($0)) },
             onCancel: { handler(.cancel) }
         )
+    }
+    
+    /// Display a modal form with this value input. Returns a future.
+    public func askInForm(message: String) -> Future<VALUE, AbortedError> {
+        return Future { completion in
+            self.askInForm(
+                message: message,
+                handler: InputFuture.handler(completion))
+        }
     }
 }

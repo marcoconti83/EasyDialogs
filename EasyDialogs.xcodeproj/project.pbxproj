@@ -43,6 +43,13 @@
 		54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */; };
 		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54E003E9203E9AEA00D054A3 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; };
+		54E003EA203E9AEA00D054A3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; };
+		54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E003EB203E9FF700D054A3 /* InputFuture.swift */; };
+		54E003ED203EAAC000D054A3 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; };
+		54E003EE203EAAC300D054A3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; };
+		54E003EF203EAACB00D054A3 /* BrightFutures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54E003F0203EAACB00D054A3 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
@@ -69,6 +76,8 @@
 				541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */,
 				54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */,
 				54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */,
+				54E003EF203EAACB00D054A3 /* BrightFutures.framework in Embed Frameworks */,
+				54E003F0203EAACB00D054A3 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +133,9 @@
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDialogs.h; sourceTree = "<group>"; };
 		54DBCDE91F0F771B008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54E003E7203E9AEA00D054A3 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/Mac/BrightFutures.framework; sourceTree = "<group>"; };
+		54E003E8203E9AEA00D054A3 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
+		54E003EB203E9FF700D054A3 /* InputFuture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFuture.swift; sourceTree = "<group>"; };
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
@@ -136,6 +148,8 @@
 			files = (
 				541C6F031F17BE6300C29CC4 /* EasyDialogs.framework in Frameworks */,
 				541C6F101F17C7C500C29CC4 /* Cartography.framework in Frameworks */,
+				54E003ED203EAAC000D054A3 /* BrightFutures.framework in Frameworks */,
+				54E003EE203EAAC300D054A3 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */,
+				54E003E9203E9AEA00D054A3 /* BrightFutures.framework in Frameworks */,
+				54E003EA203E9AEA00D054A3 /* Result.framework in Frameworks */,
 				545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */,
 				541C6F0E1F17C78A00C29CC4 /* Cartography.framework in Frameworks */,
 			);
@@ -167,6 +183,8 @@
 		541C6F0F1F17C78E00C29CC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54E003E7203E9AEA00D054A3 /* BrightFutures.framework */,
+				54E003E8203E9AEA00D054A3 /* Result.framework */,
 				545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */,
 				545C8F121F3F52BD00ED1F1B /* EasyTables.framework */,
 				541C6F0D1F17C78A00C29CC4 /* Cartography.framework */,
@@ -301,6 +319,7 @@
 				545ACDC51F653EFE007EB769 /* String+Ask.swift */,
 				545ACDC71F65458E007EB769 /* Collection+Ask.swift */,
 				545ACDCB1F654C78007EB769 /* Bool+Ask.swift */,
+				54E003EB203E9FF700D054A3 /* InputFuture.swift */,
 			);
 			path = window;
 			sourceTree = "<group>";
@@ -448,6 +467,7 @@
 				54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */,
 				5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
+				54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
 				5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */,

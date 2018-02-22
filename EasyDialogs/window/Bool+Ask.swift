@@ -23,6 +23,10 @@
 import Foundation
 import ClosureControls
 import Cartography
+import BrightFutures
+import Result
+
+private let contentViewInternalPadding: CGFloat = 15
 
 extension Bool {
     
@@ -45,6 +49,14 @@ extension Bool {
             ])
     }
     
+    /// Asks a yes/no/cancel question
+    public static func askWithCancel(_ message: String) -> Future<Bool, AbortedError>
+    {
+        return Future {
+            self.askWithCancel(message, handler: InputFuture.handler($0))
+        }
+    }
+    
     /// Asks a yes/no question
     public static func ask(_ message: String,
                            handler: @escaping (Bool)->())
@@ -59,6 +71,16 @@ extension Bool {
                     handler(true)
                 })
             ])
+    }
+    
+    /// Asks a yes/no question
+    public static func ask(_ message: String) -> Future<Bool, NoError>
+    {
+        return Future { completion in
+            self.ask(message) {
+                completion(.success($0))
+            }
+        }
     }
 }
 
@@ -91,13 +113,13 @@ private class ButtonsFormWindow: ModalWindow {
         wrapperView.addSubview(buttonsView)
         
         constrain(label, wrapperView, buttonsView) { label, wrapper, buttons in
-            label.top == wrapper.top + FormWindow.contentViewInternalPadding
-            label.trailing == wrapper.trailing - FormWindow.contentViewInternalPadding
-            label.leading == wrapper.leading + FormWindow.contentViewInternalPadding
+            label.top == wrapper.top + contentViewInternalPadding
+            label.trailing == wrapper.trailing - contentViewInternalPadding
+            label.leading == wrapper.leading + contentViewInternalPadding
             buttons.leading == label.leading
             buttons.trailing == label.trailing
-            buttons.top == label.bottom + FormWindow.contentViewInternalPadding
-            buttons.bottom == wrapper.bottom - FormWindow.contentViewInternalPadding
+            buttons.top == label.bottom + contentViewInternalPadding
+            buttons.bottom == wrapper.bottom - contentViewInternalPadding
         }
         self.setupButtons(buttons, wrapperView: buttonsView)
     }
@@ -118,7 +140,7 @@ private class ButtonsFormWindow: ModalWindow {
                 constrain(button, prevButton) { button, prevButton in
                     button.top == prevButton.top
                     button.bottom == prevButton.bottom
-                    button.right == prevButton.left - FormWindow.contentViewInternalPadding
+                    button.right == prevButton.left - contentViewInternalPadding
                     button.width >= button.height
                 }
             } else {
@@ -133,7 +155,7 @@ private class ButtonsFormWindow: ModalWindow {
         }
         
         constrain(buttons.last!, wrapperView) { button, wrapper in
-            button.leading >= wrapper.leading + FormWindow.contentViewInternalPadding
+            button.leading >= wrapper.leading + contentViewInternalPadding
         }
     }
     
