@@ -27,11 +27,13 @@ extension Sequence where Self.Iterator.Element: Equatable {
     /// Asks to choose one or more values from the collection
     public func ask(_ message: String,
                        initialValue: Self.Iterator.Element? = nil,
+                       valueToDisplay: ((Self.Iterator.Element)->Any)? = nil,
                        handler: @escaping (InputResponse<Self.Iterator.Element>)->())
     {
         let array = Array(self)
         SingleSelectionInput(label: nil,
                              values: array,
+                             valueToDisplay: valueToDisplay,
                              value: initialValue ?? array.first)
             .askInForm(message: message, handler: handler)
     }
@@ -39,10 +41,12 @@ extension Sequence where Self.Iterator.Element: Equatable {
     /// Asks to choose one or more values from the collection
     public func askMultipleAnswers(_ message: String,
                     initialValue: [Self.Iterator.Element] = [],
+                    valueToDisplay: ((Self.Iterator.Element)->Any)? = nil,
                     handler: @escaping (InputResponse<[Self.Iterator.Element]>)->())
     {
         MultipleSelectionInput(label: nil,
                                possibleValues: Array(self),
+                               valueToDisplay: valueToDisplay,
                                selectedValues: initialValue)
             .askInForm(message: message, handler: handler)
     }
