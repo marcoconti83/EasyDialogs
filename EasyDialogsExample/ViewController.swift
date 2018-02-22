@@ -82,18 +82,18 @@ extension ViewController {
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
-            let progress = ProgressDialog.showProgress(message: "Fetching website",
-                                        window: self.view.window!,
-                                        autoDismissWhenDone: false)
+            let progress = ProgressDialog.showProgress(
+                message: "Fetching website",
+                window: self.view.window!,
+                autoDismissWhenDone: false)
             URLSession.shared.dataTask(with: value, completionHandler: { (_, response, _) in
-                progress.appendLog("Fetching \(value)...")
+                progress.appendLog("Fetching \(value)...", style: .info)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { // artificial delay
                     guard let response = response as? HTTPURLResponse else {
                         progress.appendLog("Network error", style: .error)
                         return
                     }
-                    progress.appendLog("Response status: \(response.statusCode)", style: .info)
-                    progress.appendLog("...Done!")
+                    progress.appendLog("Response status: \(response.statusCode)", style: .done)
                     progress.done()
                 }
             }).resume()
