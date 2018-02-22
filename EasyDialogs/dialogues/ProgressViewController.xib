@@ -12,6 +12,7 @@
                 <outlet property="buttonDismiss" destination="7XY-h9-c2m" id="9KP-16-hwY"/>
                 <outlet property="dummyIndicator" destination="WeF-zG-J3w" id="RqS-RB-i5y"/>
                 <outlet property="indicator" destination="NaM-8F-fx0" id="0M1-Vg-2yX"/>
+                <outlet property="messageTextView" destination="Zgu-4u-nZK" id="TOS-zq-oEH"/>
                 <outlet property="textScrollViewHeightConstraint" destination="9lC-Cj-Fn7" id="aXs-Ar-mcg"/>
                 <outlet property="textView" destination="0pu-Kb-pxx" id="amp-ak-Xni"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -51,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="456" height="14"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="456" height="1"/>
+                                <size key="minSize" width="458" height="1"/>
                                 <size key="maxSize" width="463" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </textView>

@@ -24,6 +24,7 @@ import Cocoa
 
 class ProgressViewController: NSViewController, ProgressMonitor {
     
+    @IBOutlet weak var messageTextView: NSTextField!
     @IBOutlet weak var buttonAbort: NSButton!
     @IBOutlet weak var buttonDismiss: NSButton!
     @IBOutlet weak var dummyIndicator: NSProgressIndicator!
@@ -34,11 +35,14 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     private var cancelCallback: (()->())?
     private var message: String
     private var autoDismissWhenDone: Bool
+    private var doneMessage: String?
     
     init(message: String,
+         doneMessage: String?,
          autoDismissWhenDone: Bool,
          cancelCallback: (()->())?)
     {
+        self.doneMessage = doneMessage
         self.cancelCallback = cancelCallback
         self.message = message
         self.autoDismissWhenDone = autoDismissWhenDone
@@ -51,6 +55,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.messageTextView.stringValue = self.message
         self.buttonAbort.isEnabled = self.cancelCallback != nil
         self.buttonDismiss.isEnabled = false
         self.buttonDismiss.isHidden = true
@@ -100,8 +105,12 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     func done() {
         DispatchQueue.main.async {
+            if let doneMessage = self.doneMessage {
+                self.messageTextView.stringValue = doneMessage
+            }
             self.indicator.maxValue = 1
             self.indicator.doubleValue = 1
+            self.indicator.isHidden = true
             self.buttonAbort.isHidden = true
             self.dummyIndicator.isHidden = true
             if self.autoDismissWhenDone {
@@ -152,6 +161,7 @@ public enum LogStyle {
     case progressUpdate
     case info
     case plain
+    case done
     
     func format(_ string: String) -> NSAttributedString {
         return self.format(NSAttributedString(string: string))
@@ -170,6 +180,8 @@ public enum LogStyle {
             return "➡️ "
         case .error:
             return "⚠️ "
+        case .done:
+            return "✅ "
         default:
             return ""
         }
@@ -197,6 +209,7 @@ public struct ProgressDialog {
      not to update until the work is completed.
      
      - parameter message: the message to display in the window
+     - parameter doneMessage: the message to display when done, it will replace the initial message
      - parameter window: the window where the sheet should be presented
      - parameter autoDismissWhenDone: if `true`, the sheet will be dismissed as soon
      as the `done` method is invoked on the returned `ProgressMonitor`. If `false`,
@@ -212,6 +225,7 @@ public struct ProgressDialog {
      */
     public static func showProgress(
         message: String = "Operation in progress...",
+        doneMessage: String? = nil,
         window: NSWindow,
         autoDismissWhenDone: Bool = false,
         cancelCallback: (()->())? = nil
@@ -219,6 +233,7 @@ public struct ProgressDialog {
     {
         let controller = ProgressViewController(
             message: message,
+            doneMessage: doneMessage,
             autoDismissWhenDone: autoDismissWhenDone,
             cancelCallback: cancelCallback)
         let sheetWindow = NSWindow(contentViewController: controller)
