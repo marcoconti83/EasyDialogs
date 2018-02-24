@@ -10,7 +10,7 @@ This library provides input dialogs for text, numbers, dropdown, multiple select
 
 The library is built with the assumption that it will be manipulated from the main thread. Using the library from another thread is not supported (i.e. the library accesses and updates UI elements extensively).
 
-## Overview of features
+# Overview of features
 
 - [Form input controls](#form-input-controls)
     - [Controls catalogue](#input-controls-catalogue)
@@ -46,26 +46,26 @@ To add custom validation rules, use the validation rule `Validation.Custom`, whi
 
 #### `TextViewInput`
 
-![Mutiline text input](multiline%20text.png)
+![Mutiline text input](img/multiline-text.png)
 
 A multiline string input that is rendered as a text view with scrollbars.
 
 #### `TextFieldInput`
 
-![Text input](text%20input.png)
+![Text input](img/text-input.png)
 
 A generic class that supports `Int`, `UInt`, `String` and `URL` out of the box. Additional types can be added by making the type conform to the `StringInputConvertible` protocol. The input is rendered as a single-line text input.
 
 
 #### `SingleSelectionInput`
 
-![List input](list%20input.png)
+![List input](img/list-input.png)
 
 A generic class that allows to select a single object from a list of objects. The input is rendered as a drop down.
 
 #### `MultipleSelectionInput`
 
-![Multiple selection input](multiple%20input.png)
+![Multiple selection input](img/multiple-input.png)
 
 A generic class that allows to select zero, one or more objects from a list (internally rendered as a scrollable table). User can select multiple objects using checkboxes.
 
@@ -112,7 +112,7 @@ let factory = BindingsFactory<Ingredient>(
 ```
 ## Form dialogs
 
-![Form](form.png)
+![Form](img/form.png)
 
 Form dialogs can easily be created using the `FormWindow.displayForm(...)` method. When invoked, the method will create a top-level modal window that presents the inputs passed to the method.
 
@@ -120,7 +120,7 @@ The displayed forms has two buttons, `OK` and `Cancel`. On clicking `OK`, all fo
 
 
 ## Progress dialogs
-![Progress dialog](progress.png)
+![Progress dialog](img/progress.png)
 
 Progress dialogs can be displayed using `ProgressDialog.showProgress(...)`. A progress dialog will be displayed as a modal sheet on top of the given window.
 

@@ -10,7 +10,7 @@ The library offers two different approaches to asynchronicity: one based on clos
 
 ## Example
 
-![Example](docs/example1.png)
+![Example](docs/img/example1.png)
 
 To create a modal form window like the one seen in the screenshot, all you need is this code:
 
