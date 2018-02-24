@@ -83,7 +83,8 @@ extension ViewController {
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
             let progress = ProgressDialog.showProgress(
-                message: "Fetching website",
+                message: "Fetching website...",
+                doneMessage: "Done fetching!",
                 window: self.view.window!,
                 autoDismissWhenDone: false)
             URLSession.shared.dataTask(with: value, completionHandler: { (_, response, _) in
@@ -91,6 +92,7 @@ extension ViewController {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { // artificial delay
                     guard let response = response as? HTTPURLResponse else {
                         progress.appendLog("Network error", style: .error)
+                        progress.done()
                         return
                     }
                     progress.appendLog("Response status: \(response.statusCode)", style: .done)

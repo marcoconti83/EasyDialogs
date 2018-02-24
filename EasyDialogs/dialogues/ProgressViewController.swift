@@ -34,8 +34,35 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     @IBOutlet weak var textScrollViewHeightConstraint: NSLayoutConstraint!
     private var cancelCallback: (()->())?
     private var message: String
-    private var autoDismissWhenDone: Bool
+    var autoDismissWhenDone: Bool {
+        didSet {
+            if self.autoDismissWhenDone && self.isDone {
+                dismiss()
+            }
+        }
+    }
     private var doneMessage: String?
+    
+    private var isDone: Bool {
+        didSet {
+            if self.isDone {
+                if let doneMessage = self.doneMessage {
+                    self.messageTextView.stringValue = doneMessage
+                }
+                self.indicator.maxValue = 1
+                self.indicator.doubleValue = 1
+                self.indicator.isHidden = true
+                self.buttonAbort.isHidden = true
+                self.dummyIndicator.isHidden = true
+                if self.autoDismissWhenDone {
+                    self.dismiss()
+                } else {
+                    self.buttonDismiss.isHidden = false
+                    self.buttonDismiss.isEnabled = true
+                }
+            }
+        }
+    }
     
     init(message: String,
          doneMessage: String?,
@@ -46,6 +73,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
         self.cancelCallback = cancelCallback
         self.message = message
         self.autoDismissWhenDone = autoDismissWhenDone
+        self.isDone = false
         super.init(nibName: nil, bundle: Bundle.init(for: ProgressViewController.self))
     }
     
@@ -105,20 +133,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     
     func done() {
         DispatchQueue.main.async {
-            if let doneMessage = self.doneMessage {
-                self.messageTextView.stringValue = doneMessage
-            }
-            self.indicator.maxValue = 1
-            self.indicator.doubleValue = 1
-            self.indicator.isHidden = true
-            self.buttonAbort.isHidden = true
-            self.dummyIndicator.isHidden = true
-            if self.autoDismissWhenDone {
-                self.dismiss()
-            } else {
-                self.buttonDismiss.isHidden = false
-                self.buttonDismiss.isEnabled = true
-            }
+            self.isDone = true
         }
     }
 }
@@ -141,6 +156,8 @@ public protocol ProgressMonitor: class {
     func appendLog(_ log: NSAttributedString)
     /// Mark as completed
     func done()
+    /// Autodismiss the dialog when done
+    var autoDismissWhenDone: Bool { get set }
 }
 
 extension ProgressMonitor {
