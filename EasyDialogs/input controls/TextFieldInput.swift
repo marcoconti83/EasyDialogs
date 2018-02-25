@@ -59,6 +59,11 @@ public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NS
         )
     }
     
+    public var delegate: NSTextFieldDelegate? {
+        get { return self.controlView.delegate }
+        set { self.controlView.delegate = newValue }
+    }
+    
     required public init?(coder: NSCoder) {
         fatalError()
     }

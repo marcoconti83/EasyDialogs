@@ -36,6 +36,8 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
     /// Table selection
     private let tableSource: EasyTableSource<VALUE>
     
+    public var selectionChangeDelegate: (([VALUE])->())? = nil
+    
     convenience public init(label: String? = nil,
                 possibleValues: [VALUE],
                 valueToDisplay: ((VALUE)->Any)? = nil,
@@ -74,15 +76,16 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             table.headerView = nil
         }
         self.tableView = table
+        let closure = MutableRef<([VALUE]) -> Void>()
         let tableSource = EasyTableSource(
             initialObjects: possibleValues,
             columns: columns,
             contextMenuOperations: [],
             table: table,
             selectionModel: .multipleCheckbox,
-            selectionCallback: { _ in })
+            selectionCallback: { closure.ref?($0) }
+        )
         self.tableSource = tableSource
-        
         let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
         MultipleSelectionInput.setScrollSize(scroll: scroll,
                                              rowHeight: rowHeight,
@@ -103,6 +106,9 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
             },
             validationRules: validationRules
         )
+        closure.ref = { [weak self] sel in
+            self?.selectionChangeDelegate?(sel)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -142,4 +148,3 @@ extension Array where Element: Equatable {
         return self.index(where: { $0 == value })
     }
 }
-

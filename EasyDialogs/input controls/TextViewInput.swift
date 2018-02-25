@@ -75,7 +75,13 @@ public class TextViewInput: ValueInput<String, NSView> {
     required public init?(coder: NSCoder) {
         fatalError()
     }
+    
+    public var delegate: NSTextViewDelegate? {
+        get { return self.textView.delegate }
+        set { self.textView.delegate = newValue }
+    }
 }
+
 
 extension NSTextView {
     

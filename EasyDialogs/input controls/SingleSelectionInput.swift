@@ -73,6 +73,11 @@ public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBo
     public required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    public var delegate: NSComboBoxDelegate? {
+        get { return self.controlView.delegate }
+        set { self.controlView.delegate = newValue }
+    }
 }
 
 protocol IdentityEquatable: class, Equatable { }

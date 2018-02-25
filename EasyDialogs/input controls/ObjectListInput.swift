@@ -51,6 +51,9 @@ public class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     /// Button to remove elements from list
     private var removeButton: ClosureButton? = nil
     
+    /// Delegate for changes in field value
+    public var delegate: (([VALUE])->())? = nil
+    
     /// A reference to future self. Needed to be able to pass self to super
     /// constructor arguments
     private var futureReference: WeakMutableRef<ObjectListInput<VALUE>>
@@ -184,6 +187,7 @@ extension ObjectListInput {
                 remaining.remove(at: index)
             }
             self.tableSource.setContent(remaining)
+            self.notifyDelegate()
         }
         self.removeButton = button
         button.image = Images.get(name: "delete.png")
@@ -200,6 +204,7 @@ extension ObjectListInput {
             { [weak self] response in
                 guard let `self` = self, case .ok(let objects) = response else { return }
                 self.tableSource.setContent(self.tableSource.content + objects.map { Unique($0) })
+                self.notifyDelegate()
             }
         }
         button.image = Images.get(name: "zoom")
@@ -224,6 +229,7 @@ extension ObjectListInput {
                     items.append(edited)
                 }
                 self?.tableSource.setContent(items)
+                self?.notifyDelegate()
             }
         }
         button.image = Images.get(name: "pencil.png")
@@ -241,6 +247,7 @@ extension ObjectListInput {
                     let created = $0
                     else { return }
                 self.tableSource.setContent(self.tableSource.content + [Unique(created)])
+                self.notifyDelegate()
             }
         }
         button.image = Images.get(name: "add.png")
@@ -263,6 +270,11 @@ extension ObjectListInput {
         let hasSelected = !self.tableSource.dataSource.selectedItems.isEmpty
         self.editButton?.isEnabled = hasSelected
         self.removeButton?.isEnabled = hasSelected
+    }
+    
+    private func notifyDelegate() {
+        let currentValue = self.tableSource.content
+        self.delegate?(currentValue.map { $0.object })
     }
 }
 

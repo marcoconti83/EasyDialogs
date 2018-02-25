@@ -44,3 +44,13 @@ class Unique<Object>: CustomStringConvertible, Equatable {
 class WeakMutableRef<Object: AnyObject> {
     weak var object: Object? = nil
 }
+
+/// A mutable box
+class MutableRef<Object> {
+    
+    var ref: Object? = nil
+    
+    init(ref: Object? = nil) {
+        self.ref = ref
+    }
+}
