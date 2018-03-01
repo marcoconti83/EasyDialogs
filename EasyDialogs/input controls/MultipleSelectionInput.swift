@@ -44,7 +44,8 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                 selectedValues: [VALUE] = [],
                 validationRules: [AnyInputValidation<[VALUE]>] = [],
                 maxRowsToDisplay: Int? = nil,
-                minRowsToDisplay: Int = 3
+                minRowsToDisplay: Int = 3,
+                showHeader: Bool = false
         )
     {
         let valueToDisplay = valueToDisplay ?? { "\($0)" }
@@ -55,7 +56,8 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                   columns: columns,
                   validationRules: validationRules,
                   maxRowsToDisplay: maxRowsToDisplay,
-                  minRowsToDisplay: minRowsToDisplay
+                  minRowsToDisplay: minRowsToDisplay,
+                  showHeader: showHeader
         )
     }
     
@@ -91,7 +93,8 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                                              rowHeight: rowHeight,
                                              minRows: minRowsToDisplay,
                                              maxRows: maxRowsToDisplay,
-                                             totalRows: possibleValues.count)
+                                             totalRows: possibleValues.count,
+                                             showHeader: showHeader)
         scroll.hasVerticalScroller = true
         super.init(
             label: label,
@@ -119,11 +122,14 @@ public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScr
                                       rowHeight: CGFloat,
                                       minRows: Int,
                                       maxRows: Int?,
-                                      totalRows: Int)
+                                      totalRows: Int,
+                                      showHeader: Bool)
     {
         func height(rows: Int, halfRow: Bool) -> CGFloat {
-            return (CGFloat(rows) + (halfRow ? 0.5 : 0.0)) * rowHeight
+            let headerSize = showHeader ? 1.2 : 0
+            return (CGFloat(rows) + CGFloat(headerSize) + (halfRow ? 0.5 : 0.0)) * rowHeight
         }
+    
         var minRows = minRows
         if let maxRows = maxRows {
             let needsHalfRow = totalRows > maxRows
