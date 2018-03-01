@@ -34,7 +34,7 @@ public class ObjectFormWindow<VALUE: EmptyInit & Equatable>: FormWindow<VALUE> {
     public init(
         bindings: [AnyObjectInputBinding<VALUE>],
         headerText: String? = nil,
-        minFormHeight: CGFloat = 200,
+        maxFormHeight: CGFloat? = nil,
         onConfirm: @escaping (VALUE) -> (),
         value: VALUE? = nil
         )
@@ -48,7 +48,7 @@ public class ObjectFormWindow<VALUE: EmptyInit & Equatable>: FormWindow<VALUE> {
         super.init(
             inputs: bindings.map { $0.input },
             headerText: headerText,
-            minFormHeight: minFormHeight,
+            maxFormHeight: maxFormHeight,
             validateValue: { createObject() },
             onConfirm: { onConfirm($0) }
         )

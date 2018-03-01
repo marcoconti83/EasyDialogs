@@ -51,7 +51,7 @@ public class FormWindow<ResultValue>: ModalWindow {
     init(
         inputs: [InputView],
         headerText: String? = nil,
-        minFormHeight: CGFloat = 200,
+        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?),
         onConfirm: @escaping (ResultValue)->(),
@@ -64,7 +64,7 @@ public class FormWindow<ResultValue>: ModalWindow {
         self.onCancel = onCancel
         super.init()
         
-        self.setupWindow(minFormHeight: minFormHeight,
+        self.setupWindow(maxFormHeight: maxFormHeight,
                          headerText: headerText,
                          confirmButtonText: confirmButtonText)
     }
@@ -74,7 +74,7 @@ public class FormWindow<ResultValue>: ModalWindow {
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
-        minFormHeight: CGFloat = 200,
+        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?),
         onConfirm: @escaping (ResultValue)->(),
@@ -84,7 +84,7 @@ public class FormWindow<ResultValue>: ModalWindow {
         FormWindow(
             inputs: inputs,
             headerText: headerText,
-            minFormHeight: minFormHeight,
+            maxFormHeight: maxFormHeight,
             confirmButtonText: confirmButtonText,
             validateValue: validateValue,
             onConfirm: onConfirm,
@@ -97,7 +97,7 @@ public class FormWindow<ResultValue>: ModalWindow {
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
-        minFormHeight: CGFloat = 200,
+        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?)
         ) -> Future<ResultValue, AbortedError>
@@ -106,7 +106,7 @@ public class FormWindow<ResultValue>: ModalWindow {
             self.displayForm(
                 inputs: inputs,
                 headerText: headerText,
-                minFormHeight: minFormHeight,
+                maxFormHeight: maxFormHeight,
                 confirmButtonText: confirmButtonText,
                 validateValue: validateValue,
                 onConfirm: { completion(.success($0)) },
@@ -148,7 +148,7 @@ extension FormWindow {
     
     /// Creates controls and layout
     fileprivate func setupWindow(
-        minFormHeight: CGFloat,
+        maxFormHeight: CGFloat?,
         headerText: String?,
         confirmButtonText: String
         ) {
@@ -161,58 +161,75 @@ extension FormWindow {
             wrapper.width >= 500
         }
         
-        let stack = self.createStackView(minFormHeight: minFormHeight, in: wrapperView)
-        self.createHeaderIfNeeded(headerText: headerText, stack: stack, in: wrapperView)
-        self.createButtons(confirmButtonText: confirmButtonText, stack: stack, in: wrapperView)
+        let header = self.createHeader(headerText: headerText)
+        let footer = self.createFooter(confirmButtonText: confirmButtonText)
+        let stack = self.createStackView(maxFormHeight: maxFormHeight)
+        
+        [header, stack, footer].forEach { wrapperView.addSubview($0) }
+        constrain(header, footer, stack, wrapperView) { header, footer, stack, wrapperView in
+            header.left == wrapperView.left + contentViewInternalPadding
+            header.right == wrapperView.right - contentViewInternalPadding
+            header.width == footer.width
+            header.width == stack.width
+            header.top == wrapperView.top
+            stack.top == header.bottom
+            stack.left == header.left
+            footer.left == header.left
+            stack.bottom == footer.top
+            footer.bottom == wrapperView.bottom
+        }
     }
     
-    private func createStackView(minFormHeight: CGFloat, in container: NSView) -> NSView {
+    private func createStackView(maxFormHeight: CGFloat? = nil) -> NSView {
         
         let stack = NSStackView()
         stack.orientation = .vertical
         stack.spacing = 1
-        let scroll = NSScrollView.verticalScrollView(for: stack)
+        let scroll = NSScrollView()
+        scroll.documentView = stack
         scroll.drawsBackground = false
         scroll.borderType = .noBorder
-        
-        container.addSubview(scroll)
-        constrain(scroll, container) { scroll, container in
-            scroll.trailing == container.trailing - contentViewInternalPadding
-            scroll.leading == container.leading + contentViewInternalPadding
-        }
+        scroll.autohidesScrollers = true
+        scroll.allowsMagnification = false
+        scroll.verticalScrollElasticity = .none
+        scroll.hasVerticalScroller = true
+        scroll.autohidesScrollers = true
         
         constrain(scroll, stack) { scroll, stack in
             stack.top == scroll.top
             stack.left == scroll.left
             stack.right == scroll.right
             stack.width == scroll.width
-            scroll.height == stack.height
+            scroll.height <= stack.height
+            if let maxHeight = maxFormHeight {
+                scroll.height <= maxHeight
+            } else {
+                scroll.height == stack.height
+            }
+            scroll.height >= 200
         }
+        scroll.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         stack.addArrangedSubviewsAndExpand(self.inputs)
-
         return scroll
     }
     
-    private func createHeaderIfNeeded(headerText: String?, stack: NSView, in container: NSView) {
+    
+    private func createHeader(headerText: String?) -> NSView {
         
+        let header = NSView()
         if let headerText = headerText {
             let label = NSTextField.createMultilineLabel(headerText)
-            
-            container.addSubview(label)
-            constrain(label, stack, container) { label, stack, container in
-                label.top == container.top + contentViewInternalPadding
-                label.bottom == stack.top - contentViewInternalPadding
-                label.trailing == stack.trailing
-                label.leading == stack.leading
-            }
-        } else {
-            constrain(stack, container) { stack, container in
-                stack.top == container.top + contentViewInternalPadding
+            header.addSubview(label)
+            constrain(header, label) { header, label in
+                label.top == header.top + contentViewInternalPadding
+                label.bottom == header.bottom - contentViewInternalPadding
             }
         }
+        header.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        return header
     }
     
-    private func createButtons(confirmButtonText: String, stack: NSView, in container: NSView) {
+    private func createFooter(confirmButtonText: String) -> NSView {
         
         let OKButton = ClosureButton(label: confirmButtonText) { [weak self] _ in
             self?.confirmButtonPressed()
@@ -229,26 +246,29 @@ extension FormWindow {
         
         self.errorLabel = errorLabel
         
-        container.addSubview(OKButton)
-        container.addSubview(cancelButton)
-        container.addSubview(errorLabel)
+        let footer = NSView()
+        footer.addSubview(OKButton)
+        footer.addSubview(cancelButton)
+        footer.addSubview(errorLabel)
         
-        constrain(OKButton, stack, container, errorLabel) { button, stack, container, error in
-            button.bottom == container.bottom - contentViewInternalPadding
-            button.trailing == container.trailing - contentViewInternalPadding
-            error.trailing == container.trailing - contentViewInternalPadding
-            error.leading == container.leading + contentViewInternalPadding
-            stack.bottom == error.top - contentViewInternalPadding
+        constrain(OKButton, footer, errorLabel) { button, footer, error in
+            button.bottom == footer.bottom - contentViewInternalPadding
+            button.trailing == footer.trailing - contentViewInternalPadding
+            error.trailing == footer.trailing
+            error.leading == footer.leading
+            error.top == footer.top + contentViewInternalPadding
             error.bottom == button.top - contentViewInternalPadding
         }
         
-        constrain(OKButton, cancelButton, container) { OKButton, cancelButton, container in
-            cancelButton.leading == container.leading + contentViewInternalPadding
+        constrain(OKButton, cancelButton, footer) { OKButton, cancelButton, footer in
+            cancelButton.leading == footer.leading
             cancelButton.top == OKButton.top
             cancelButton.bottom == OKButton.bottom
             OKButton.width >= 100
             cancelButton.width >= 100
-            OKButton.height >= 30
+            // OKButton.height == 30
         }
+        footer.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        return footer
     }
 }

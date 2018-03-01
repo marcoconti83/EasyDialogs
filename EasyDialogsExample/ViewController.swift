@@ -47,6 +47,7 @@ class ViewController: NSViewController {
         }
         
         self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, self.outputField])
+        openInputWindow()
     }
     
     fileprivate func log(_ string: String) {
@@ -161,6 +162,7 @@ extension ViewController {
                 colorInput
             ],
             headerText: "Please tell me about yourself",
+            maxFormHeight: 500,
             validateValue: {
                 let colors = colorInput.value!.isEmpty ?
                     "no color" :
