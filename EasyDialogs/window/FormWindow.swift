@@ -51,7 +51,6 @@ public class FormWindow<ResultValue>: ModalWindow {
     init(
         inputs: [InputView],
         headerText: String? = nil,
-        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?),
         onConfirm: @escaping (ResultValue)->(),
@@ -64,8 +63,7 @@ public class FormWindow<ResultValue>: ModalWindow {
         self.onCancel = onCancel
         super.init()
         
-        self.setupWindow(maxFormHeight: maxFormHeight,
-                         headerText: headerText,
+        self.setupWindow(headerText: headerText,
                          confirmButtonText: confirmButtonText)
     }
     
@@ -74,7 +72,6 @@ public class FormWindow<ResultValue>: ModalWindow {
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
-        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?),
         onConfirm: @escaping (ResultValue)->(),
@@ -84,7 +81,6 @@ public class FormWindow<ResultValue>: ModalWindow {
         FormWindow(
             inputs: inputs,
             headerText: headerText,
-            maxFormHeight: maxFormHeight,
             confirmButtonText: confirmButtonText,
             validateValue: validateValue,
             onConfirm: onConfirm,
@@ -97,7 +93,6 @@ public class FormWindow<ResultValue>: ModalWindow {
     public static func displayForm(
         inputs: [InputView],
         headerText: String? = nil,
-        maxFormHeight: CGFloat? = nil,
         confirmButtonText: String = "OK",
         validateValue: @escaping ()->(ResultValue?)
         ) -> Future<ResultValue, AbortedError>
@@ -106,7 +101,6 @@ public class FormWindow<ResultValue>: ModalWindow {
             self.displayForm(
                 inputs: inputs,
                 headerText: headerText,
-                maxFormHeight: maxFormHeight,
                 confirmButtonText: confirmButtonText,
                 validateValue: validateValue,
                 onConfirm: { completion(.success($0)) },
@@ -148,7 +142,6 @@ extension FormWindow {
     
     /// Creates controls and layout
     fileprivate func setupWindow(
-        maxFormHeight: CGFloat?,
         headerText: String?,
         confirmButtonText: String
         ) {
@@ -163,7 +156,8 @@ extension FormWindow {
         
         let header = self.createHeader(headerText: headerText)
         let footer = self.createFooter(confirmButtonText: confirmButtonText)
-        let stack = self.createStackView(maxFormHeight: maxFormHeight)
+        let stack = self.createStackView()
+        stack.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         [header, stack, footer].forEach { wrapperView.addSubview($0) }
         constrain(header, footer, stack, wrapperView) { header, footer, stack, wrapperView in
@@ -180,7 +174,7 @@ extension FormWindow {
         }
     }
     
-    private func createStackView(maxFormHeight: CGFloat? = nil) -> NSView {
+    private func createStackView() -> NSView {
         
         let stack = NSStackView()
         stack.orientation = .vertical
@@ -200,15 +194,9 @@ extension FormWindow {
             stack.left == scroll.left
             stack.right == scroll.right
             stack.width == scroll.width
-            scroll.height <= stack.height
-            if let maxHeight = maxFormHeight {
-                scroll.height <= maxHeight
-            } else {
-                scroll.height == stack.height
-            }
-            scroll.height >= 200
+            scroll.height <= stack.height ~ NSLayoutConstraint.Priority.defaultHigh.rawValue
+            scroll.height >= 300
         }
-        scroll.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         stack.addArrangedSubviewsAndExpand(self.inputs)
         return scroll
     }
@@ -237,6 +225,7 @@ extension FormWindow {
         let cancelButton = ClosureButton(label: "Cancel") { [weak self] _ in
             self?.cancelButtonPressed()
         }
+        OKButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         let errorLabel = NSTextField.createLabel()
         errorLabel.isHidden = true
@@ -266,7 +255,6 @@ extension FormWindow {
             cancelButton.bottom == OKButton.bottom
             OKButton.width >= 100
             cancelButton.width >= 100
-            // OKButton.height == 30
         }
         footer.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return footer
