@@ -24,7 +24,7 @@
 import Cocoa
 import Cartography
 
-public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBox> {
+open class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBox> {
     
     public init(label: String?,
                      values: [VALUE],

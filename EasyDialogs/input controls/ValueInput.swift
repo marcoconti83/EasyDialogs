@@ -24,7 +24,7 @@
 import Foundation
 import Cartography
 
-public class InputView: NSView {
+open class InputView: NSView {
     
     /// Whether the input has a valid value
     public var hasValidValue: Bool {
@@ -54,7 +54,7 @@ public protocol InputViewForValue: class {
 
 /// A view with a label and an input control to enter a value.
 /// It parses and validates the input
-public class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
+open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     
     public typealias InputValue = VALUE
     

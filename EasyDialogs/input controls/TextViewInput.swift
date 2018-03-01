@@ -25,7 +25,7 @@ import Foundation
 import Cartography
 
 
-public class TextViewInput: ValueInput<String, NSView> {
+open class TextViewInput: ValueInput<String, NSView> {
     
     /// The scroll view wrapping an inner text view
     public let scrollView: NSScrollView

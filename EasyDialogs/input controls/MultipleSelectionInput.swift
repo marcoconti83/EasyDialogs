@@ -25,7 +25,7 @@ import Cocoa
 import Cartography
 import EasyTables
 
-public class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScrollView> {
+open class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScrollView> {
     
     /// The scroll view wrapping an inner table view
     public let scrollView: NSScrollView

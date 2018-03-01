@@ -28,7 +28,7 @@ import EasyTables
 import ClosureControls
 
 /// An inputs that displays a list of objects
-public class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
+open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     
     /// Table selection
     private let tableSource: EasyTableSource<Unique<VALUE>>

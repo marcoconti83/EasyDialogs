@@ -35,7 +35,7 @@ public protocol StringInputConvertible {
     init?(fromStringInput: String)
 }
 
-public class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
+open class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
 
     public init(label: String? = nil,
                 value: VALUE? = nil,
