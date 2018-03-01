@@ -110,7 +110,7 @@ extension ViewController {
         let analysisTypeInput = SingleSelectionInput(
             label: "What to count",
             values: LengthAnalysis.all,
-            value: .numberOfCharacters)
+            allowEmpty: false)
         
         let analyzeButton = ClosureButton(label: "Analyze text") { _ in
             guard let string = textInput.value else { return }

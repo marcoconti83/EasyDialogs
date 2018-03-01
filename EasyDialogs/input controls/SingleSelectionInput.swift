@@ -50,9 +50,19 @@ public class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBo
             combo.addItem(withObjectValue: itemToDisplay)
         }
         
+        // Default value
+        let selectedValue: VALUE?
+        if let value = value, possibleValues.contains(where: { $0 == value }) {
+            selectedValue = value
+        } else if !allowEmpty, let first = possibleValues.first {
+                selectedValue = first
+        } else {
+            selectedValue = nil
+        }
+        
         super.init(
             label: label,
-            value: value,
+            value: selectedValue,
             controlView: combo,
             valueExtraction: { control in
                 let index = control.indexOfSelectedItem
