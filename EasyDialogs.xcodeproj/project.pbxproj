@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		540FB7951F9094600020E7AE /* ObjectListInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540FB7941F9094600020E7AE /* ObjectListInput.swift */; };
 		541C6EF71F17BE4700C29CC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */; };
-		541C6EF91F17BE4700C29CC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C6EF81F17BE4700C29CC4 /* ViewController.swift */; };
 		541C6EFB1F17BE4700C29CC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 541C6EFA1F17BE4700C29CC4 /* Assets.xcassets */; };
 		541C6EFE1F17BE4700C29CC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 541C6EFC1F17BE4700C29CC4 /* Main.storyboard */; };
 		541C6F031F17BE6300C29CC4 /* EasyDialogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */; };
@@ -90,7 +89,6 @@
 		54111D15202E3C7200CB1799 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
 		541C6EF41F17BE4700C29CC4 /* EasyDialogsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDialogsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		541C6EF81F17BE4700C29CC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		541C6EFA1F17BE4700C29CC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		541C6EFD1F17BE4700C29CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		541C6EFF1F17BE4700C29CC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				541C6EF61F17BE4700C29CC4 /* AppDelegate.swift */,
-				541C6EF81F17BE4700C29CC4 /* ViewController.swift */,
 				541C6EFA1F17BE4700C29CC4 /* Assets.xcassets */,
 				541C6EFC1F17BE4700C29CC4 /* Main.storyboard */,
 				541C6EFF1F17BE4700C29CC4 /* Info.plist */,
@@ -455,7 +452,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				541C6EF91F17BE4700C29CC4 /* ViewController.swift in Sources */,
 				541C6EF71F17BE4700C29CC4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

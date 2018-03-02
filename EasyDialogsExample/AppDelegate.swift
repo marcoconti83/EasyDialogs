@@ -22,6 +22,7 @@
 
 
 import Cocoa
+import EasyDialogs
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -29,7 +30,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        FormWindow.displayForm(
+            inputs: (1...100).map {
+                TextFieldInput<String>(label: "Text \($0)")
+            },
+            validateValue: { true }
+            ).onSuccess { _ in }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
