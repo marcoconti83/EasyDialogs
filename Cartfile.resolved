@@ -1,5 +1,5 @@
 github "Thomvis/BrightFutures" "6.0.0"
 github "antitypical/Result" "3.2.4"
 github "marcoconti83/ClosureControls" "v0.3"
-github "marcoconti83/EasyTables" "v0.8"
+github "marcoconti83/EasyTables" "8da3410cc6d5bfc6b523e8dca09e69f3288647c2"
 github "robb/Cartography" "1.1.0"

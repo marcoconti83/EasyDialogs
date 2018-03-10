@@ -45,6 +45,9 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     /// passed a callback to invoke when the object has been modified.
     public typealias ObjectEditHandler = (VALUE, @escaping ObjectReadyCallback)->()
     
+    /// Object edit handler
+    private var objectEditHandler: ObjectEditHandler? = nil
+    
     /// Button to edit element in list
     private var editButton: ClosureButton? = nil
     
@@ -53,6 +56,9 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     
     /// Delegate for changes in field value
     public var delegate: (([VALUE])->())? = nil
+    
+    /// Table view holding the current objects
+    private var table: NSTableView
     
     /// A reference to future self. Needed to be able to pass self to super
     /// constructor arguments
@@ -70,7 +76,7 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     {
         let reference = WeakMutableRef<ObjectListInput<VALUE>>()
         let columns = columns ?? [ColumnDefinition(name: "Value", value: { "\($0)" })]
-        let (tableContainer, tableSource) =
+        let (tableContainer, table, tableSource) =
             ObjectListInput<VALUE>.createTable(
                 maxRowsToDisplay: maxRowsToDisplay,
                 initialValues: initialValues,
@@ -80,6 +86,8 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
         self.tableSource = tableSource
         let contentView = type(of: self).createBox()
         self.futureReference = reference
+        self.table = table
+        self.objectEditHandler = objectEdit
         
         // Super
         super.init(
@@ -107,10 +115,19 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
             contentView: contentView,
             table: tableContainer,
             toolbar: toolbar)
+        
+        self.table.target = self
+        self.table.doubleAction = #selector(onDoubleClick)
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func onDoubleClick() {
+        guard self.table.clickedRow >= 0 else { return }
+        let object = self.tableSource.content[self.table.clickedRow]
+        self.showEditForm(object, closure: self.objectEditHandler)
     }
 }
 extension ObjectListInput {
@@ -134,7 +151,7 @@ extension ObjectListInput {
         initialValues: [VALUE],
         columns: [ColumnDefinition<VALUE>],
         reference: WeakMutableRef<ObjectListInput<VALUE>>
-        ) -> (NSView, EasyTableSource<Unique<VALUE>>)
+        ) -> (NSView, NSTableView, EasyTableSource<Unique<VALUE>>)
     {
         let (scroll, table) = NSTableView.inScrollView()
         table.headerView = nil
@@ -149,7 +166,7 @@ extension ObjectListInput {
         constrain(scroll) { scroll in
             scroll.height == CGFloat(maxRowsToDisplay) * rowHeight
         }
-        return (scroll, tableSource)
+        return (scroll, table, tableSource)
     }
     
     private func createToolbarAndButtons(
@@ -219,18 +236,7 @@ extension ObjectListInput {
                 let `self` = self,
                 let item = self.tableSource.dataSource.selectedItems.first
                 else { return }
-            closure(item.object) { [weak self] newObj in
-                guard let edited = newObj.flatMap({ Unique($0) }) else { return }
-                guard var items = self?.tableSource.content else { return }
-                if let index = items.index(of: item) {
-                    items.remove(at: index)
-                    items.insert(edited, at: index)
-                } else {
-                    items.append(edited)
-                }
-                self?.tableSource.setContent(items)
-                self?.notifyDelegate()
-            }
+            self.showEditForm(item, closure: closure)
         }
         button.image = Images.get(name: "pencil.png")
         self.editButton = button
@@ -275,6 +281,22 @@ extension ObjectListInput {
     private func notifyDelegate() {
         let currentValue = self.tableSource.content
         self.delegate?(currentValue.map { $0.object })
+    }
+    
+    private func showEditForm(_ item: Unique<VALUE>, closure: ObjectEditHandler?) {
+        closure?(item.object) { [weak self] newObj in
+            guard let edited = newObj.flatMap({ Unique($0) }) else { return }
+            guard var items = self?.tableSource.content else { return }
+            if let index = items.index(of: item) {
+                items.remove(at: index)
+                items.insert(edited, at: index)
+            } else {
+                items.append(edited)
+            }
+            self?.tableSource.setContent(items)
+            self?.notifyDelegate()
+        }
+
     }
 }
 

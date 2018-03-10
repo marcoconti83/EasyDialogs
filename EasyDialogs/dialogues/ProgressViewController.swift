@@ -30,6 +30,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     @IBOutlet weak var dummyIndicator: NSProgressIndicator!
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var indicator: NSProgressIndicator!
+    let uuid = UUID()
     
     @IBOutlet weak var textScrollViewHeightConstraint: NSLayoutConstraint!
     private var cancelCallback: (()->())?
@@ -116,9 +117,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     }
     
     func updateProgress(current: Int, total: Int) {
-        DispatchQueue.main.async {
-            self.updateProgress(current: Double(current), total: Double(total))
-        }
+        self.updateProgress(current: Double(current), total: Double(total))
     }
     
     func appendLog(_ log: NSAttributedString) {
