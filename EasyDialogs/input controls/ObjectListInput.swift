@@ -54,6 +54,12 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     /// Button to remove elements from list
     private var removeButton: ClosureButton? = nil
     
+    /// Button to move up
+    private var moveUpButton: ClosureButton? = nil
+    
+    /// Button to move down
+    private var moveDownButton: ClosureButton? = nil
+    
     /// Delegate for changes in field value
     public var delegate: (([VALUE])->())? = nil
     
@@ -161,6 +167,7 @@ extension ObjectListInput {
             contextMenuOperations: [],
             table: table,
             selectionModel: .multipleNative,
+            autosortByFirstColumn: false,
             selectionCallback: { _ in reference.object?.updateSelection() })
         let rowHeight = tableSource.table.rowHeight + tableSource.table.intercellSpacing.height
         constrain(scroll) { scroll in
@@ -178,7 +185,9 @@ extension ObjectListInput {
             self.createAddButton(objectCreationClosure: create),
             self.createChooseFromListButton(possibleObjects: possibleObjects),
             self.createEditButton(closure: edit),
-            self.createRemoveButton()
+            self.createRemoveButton(),
+            self.createUpButton(),
+            self.createDownButton()
             ].flatMap { $0 }
         buttons.forEach {
             $0.showsBorderOnlyWhileMouseInside = true
@@ -212,6 +221,41 @@ extension ObjectListInput {
         button.isEnabled = false
         return button
     }
+    
+    private func createUpButton() -> ClosureButton? {
+        let button = ClosureButton() { [weak self] _ in
+            guard let `self` = self else { return }
+            let selected = self.tableSource.dataSource.selectedItems
+            guard !selected.isEmpty else { return }
+            let list = self.tableSource.content.movingPositionOf(selected, offset: -1)
+            self.tableSource.setContent(list)
+            self.tableSource.dataSource.select(items: selected, extendSelection: false)
+            self.notifyDelegate()
+        }
+        self.moveUpButton = button
+        button.image = Images.get(name: "arrow_up.png")
+        button.toolTip = "Move up"
+        button.isEnabled = false
+        return button
+    }
+
+    private func createDownButton() -> ClosureButton? {
+        let button = ClosureButton() { [weak self] _ in
+            guard let `self` = self else { return }
+            let selected = self.tableSource.dataSource.selectedItems
+            guard !selected.isEmpty else { return }
+            let list = self.tableSource.content.movingPositionOf(selected, offset: 1)
+            self.tableSource.setContent(list)
+            self.tableSource.dataSource.select(items: selected, extendSelection: false)
+            self.notifyDelegate()
+        }
+        self.moveDownButton = button
+        button.image = Images.get(name: "arrow_down.png")
+        button.toolTip = "Move down"
+        button.isEnabled = false
+        return button
+    }
+
     
     private func createChooseFromListButton(possibleObjects: [VALUE]) -> ClosureButton? {
         guard !possibleObjects.isEmpty else { return nil }
@@ -276,6 +320,8 @@ extension ObjectListInput {
         let hasSelected = !self.tableSource.dataSource.selectedItems.isEmpty
         self.editButton?.isEnabled = hasSelected
         self.removeButton?.isEnabled = hasSelected
+        self.moveUpButton?.isEnabled = hasSelected
+        self.moveDownButton?.isEnabled = hasSelected
     }
     
     private func notifyDelegate() {
@@ -313,5 +359,33 @@ extension Unique {
                 return column.value(wrapper.object)
             }
         )
+    }
+}
+
+extension Array where Element: Equatable {
+    
+    public func movingPositionOf(_ elements: [Element], offset: Int) -> Array<Element> {
+        guard !elements.isEmpty, offset != 0 else { return self }
+        var result = self
+        (offset > 0 ? elements.reversed() : elements).forEach {
+            result = result.movingPositionOf($0, offset: offset)
+        }
+        return result
+    }
+    
+    private func movingPositionOf(_ element: Element, offset: Int) -> Array<Element> {
+        guard let index = self.index(of: element) else { return self }
+        var newPosition = index + offset
+        if newPosition < 0 {
+            newPosition = 0
+        }
+        if newPosition >= self.count {
+            newPosition = self.count - 1
+        }
+        guard newPosition != index else { return self }
+        var newArray = self
+        let element = newArray.remove(at: index)
+        newArray.insert(element, at: newPosition)
+        return newArray
     }
 }

@@ -25,6 +25,8 @@
 		5427D3361F952B3400B585AD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3321F952B3400B585AD /* add.png */; };
 		5427D3371F952B3400B585AD /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 5427D3331F952B3400B585AD /* pencil.png */; };
 		542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542985121F1E7FCC003EFDFB /* TextViewInput.swift */; };
+		543420A02053E1FC003667A4 /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5434209E2053E1FB003667A4 /* arrow_down.png */; };
+		543420A12053E1FC003667A4 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5434209F2053E1FB003667A4 /* arrow_up.png */; };
 		5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5444EF801F65BDBF00385A57 /* ModalWindow.swift */; };
 		5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5451A562202D7D3A0093173D /* ProgressViewController.swift */; };
 		5451A565202D7D3A0093173D /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5451A563202D7D3A0093173D /* ProgressViewController.xib */; };
@@ -111,6 +113,8 @@
 		542829BC202E345900564E6C /* multiple-input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiple-input.png"; sourceTree = "<group>"; };
 		542829BD202E37FB00564E6C /* automatic-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "automatic-form.png"; sourceTree = "<group>"; };
 		542985121F1E7FCC003EFDFB /* TextViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewInput.swift; sourceTree = "<group>"; };
+		5434209E2053E1FB003667A4 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
+		5434209F2053E1FB003667A4 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
 		5444EF801F65BDBF00385A57 /* ModalWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalWindow.swift; sourceTree = "<group>"; };
 		544E88BE204184B9003568AD /* example1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example1.png; sourceTree = "<group>"; };
 		5451A562202D7D3A0093173D /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 		5427CB591F9526CA00B585AD /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5434209E2053E1FB003667A4 /* arrow_down.png */,
+				5434209F2053E1FB003667A4 /* arrow_up.png */,
 				5427D3321F952B3400B585AD /* add.png */,
 				5427D3301F952B3400B585AD /* delete.png */,
 				5427D3331F952B3400B585AD /* pencil.png */,
@@ -441,7 +447,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5427D3371F952B3400B585AD /* pencil.png in Resources */,
+				543420A02053E1FC003667A4 /* arrow_down.png in Resources */,
 				5427D3351F952B3400B585AD /* zoom.png in Resources */,
+				543420A12053E1FC003667A4 /* arrow_up.png in Resources */,
 				5427D3341F952B3400B585AD /* delete.png in Resources */,
 				5451A565202D7D3A0093173D /* ProgressViewController.xib in Resources */,
 				5427D3361F952B3400B585AD /* add.png in Resources */,

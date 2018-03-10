@@ -129,7 +129,12 @@ extension ViewController {
         
         let inventoryInput = ObjectListInput<Ingredient>(
             label: "Ingredients",
-            initialValues: [Ingredient(name: "Pasta", amount: 300, unit: .grams)],
+            initialValues: [
+                Ingredient(name: "Pasta", amount: 300, unit: .grams),
+                Ingredient(name: "Tomatoes", amount: 4, unit: .pieces),
+                Ingredient(name: "Olive oil", amount: 4, unit: .teaspoons),
+                Ingredient(name: "Garlic", amount: 1, unit:.pieces)
+            ],
             objectCreation: Ingredient.bindings.formWindowForCreationClosure(),
             objectEdit: Ingredient.bindings.formWindowForEditClosure(),
             columns: [
