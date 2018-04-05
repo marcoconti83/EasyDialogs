@@ -193,9 +193,7 @@ extension FormWindow {
             stack.top == scroll.top
             stack.left == scroll.left
             stack.right == scroll.right
-            stack.width == scroll.width
-            scroll.height <= stack.height ~ NSLayoutConstraint.Priority.defaultHigh.rawValue
-            scroll.height >= 300
+            stack.height == scroll.height
         }
         stack.addArrangedSubviewsAndExpand(self.inputs)
         return scroll
@@ -260,3 +258,4 @@ extension FormWindow {
         return footer
     }
 }
+
