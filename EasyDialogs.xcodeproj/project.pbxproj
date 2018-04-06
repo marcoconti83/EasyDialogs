@@ -42,6 +42,7 @@
 		54BF829A1F5F481B00B12618 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF82991F5F481B00B12618 /* Validation.swift */; };
 		54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */; };
 		54BF829F1F5F60B500B12618 /* NSStackView+Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */; };
+		54D0A9E220781D3900E2C6D4 /* CheckBoxInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D0A9E120781D3900E2C6D4 /* CheckBoxInput.swift */; };
 		54D4907C1F1E959900FA3A1C /* SingleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */; };
 		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,6 +134,7 @@
 		54BF82991F5F481B00B12618 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		54BF829C1F5F60A700B12618 /* NSTextView+Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Labels.swift"; sourceTree = "<group>"; };
 		54BF829E1F5F60B500B12618 /* NSStackView+Fill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStackView+Fill.swift"; sourceTree = "<group>"; };
+		54D0A9E120781D3900E2C6D4 /* CheckBoxInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxInput.swift; sourceTree = "<group>"; };
 		54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectionInput.swift; sourceTree = "<group>"; };
 		54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionInput.swift; sourceTree = "<group>"; };
 		54DBCDE51F0F771B008DB8E3 /* EasyDialogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyDialogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 				54835CB71F93B82E00DC7EE4 /* object creation */,
 				541C6F131F17CB4700C29CC4 /* ValueInput.swift */,
 				542985121F1E7FCC003EFDFB /* TextViewInput.swift */,
+				54D0A9E120781D3900E2C6D4 /* CheckBoxInput.swift */,
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
 				54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */,
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
@@ -479,6 +482,7 @@
 				54835CBB1F93B88B00DC7EE4 /* ObjectFormWindow.swift in Sources */,
 				541C6F141F17CB4700C29CC4 /* ValueInput.swift in Sources */,
 				54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */,
+				54D0A9E220781D3900E2C6D4 /* CheckBoxInput.swift in Sources */,
 				545ACDC61F653EFE007EB769 /* String+Ask.swift in Sources */,
 				5427D32D1F95278300B585AD /* Wrappers.swift in Sources */,
 				54835CB91F93B83800DC7EE4 /* InputBinding.swift in Sources */,

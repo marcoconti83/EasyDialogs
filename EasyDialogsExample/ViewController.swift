@@ -80,14 +80,16 @@ extension ViewController {
     
     fileprivate func createURLSection() {
         let urlInput = TextFieldInput<URL>(label: "Website URL", value: URL(string: "https://www.w3.org/")!)
+        let printSourceInput = CheckBoxInput(label: "Print source", value: true)
         let fetchURLButton = ClosureButton(label: "Fetch website") { _ in
             guard let value = urlInput.value else { return }
+            let printSource = printSourceInput.value!
             let progress = ProgressDialog.showProgress(
                 message: "Fetching website...",
                 doneMessage: "Done fetching!",
                 window: self.view.window!,
                 autoDismissWhenDone: false)
-            URLSession.shared.dataTask(with: value, completionHandler: { (_, response, _) in
+            URLSession.shared.dataTask(with: value, completionHandler: { (data, response, _) in
                 progress.appendLog("Fetching \(value)...", style: .info)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { // artificial delay
                     guard let response = response as? HTTPURLResponse else {
@@ -96,11 +98,14 @@ extension ViewController {
                         return
                     }
                     progress.appendLog("Response status: \(response.statusCode)", style: .done)
+                    if printSource, let data = data, let source = String(data: data, encoding: .utf8) {
+                        progress.appendLog(source, style: .info)
+                    }
                     progress.done()
                 }
             }).resume()
         }
-        self.stackView.addArrangedSubviewsAndExpand([urlInput, fetchURLButton])
+        self.stackView.addArrangedSubviewsAndExpand([urlInput, printSourceInput, fetchURLButton])
     }
     
     fileprivate func createTextSection() {
