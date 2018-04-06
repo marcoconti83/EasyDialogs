@@ -188,7 +188,7 @@ extension ObjectListInput {
             self.createRemoveButton(),
             self.createUpButton(),
             self.createDownButton()
-            ].flatMap { $0 }
+            ].compactMap { $0 }
         buttons.forEach {
             $0.showsBorderOnlyWhileMouseInside = true
             constrain($0) { button in

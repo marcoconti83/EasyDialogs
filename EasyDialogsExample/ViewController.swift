@@ -250,7 +250,7 @@ enum LengthAnalysis: String, CustomStringConvertible {
         case .numberOfWords:
             return text.components(separatedBy: CharacterSet.whitespacesAndNewlines).count
         case .numberOfCharacters:
-            return text.characters.count
+            return text.count
         }
     }
  
