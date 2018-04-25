@@ -39,7 +39,9 @@ extension String {
                            initialValue: String? = nil) -> Future<String, AbortedError>
     {
         return Future {
-            self.ask(message, handler: InputFuture.handler($0))
+            self.ask(message,
+                     initialValue: initialValue,
+                     handler: InputFuture.handler($0))
         }
     }
     
