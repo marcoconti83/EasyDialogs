@@ -147,6 +147,7 @@
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
+		A977243920C29508008A4D58 /* custom-input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-input.png"; sourceTree = "<group>"; };
 		A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditorInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +243,7 @@
 		544E88BD2041840B003568AD /* img */ = {
 			isa = PBXGroup;
 			children = (
+				A977243920C29508008A4D58 /* custom-input.png */,
 				544E88BE204184B9003568AD /* example1.png */,
 				54111D15202E3C7200CB1799 /* progress.png */,
 				54111D14202E3C4800CB1799 /* form.png */,
