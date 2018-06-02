@@ -32,6 +32,8 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     @IBOutlet weak var indicator: NSProgressIndicator!
     let uuid = UUID()
     
+    private var dismissed = false
+    
     @IBOutlet weak var textScrollViewHeightConstraint: NSLayoutConstraint!
     private var cancelCallback: (()->())?
     private var message: String
@@ -102,11 +104,13 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     }
     
     private func dismiss() {
+        self.dismissed = true
         guard let window = self.view.window else { return }
         window.sheetParent?.endSheet(window)
     }
     
     func updateProgress(current: Double, total: Double) {
+        guard !self.dismissed else { return }
         DispatchQueue.main.async {
             self.indicator.isHidden = false
             self.indicator.startAnimation(nil)
@@ -121,6 +125,7 @@ class ProgressViewController: NSViewController, ProgressMonitor {
     }
     
     func appendLog(_ log: NSAttributedString) {
+        guard !self.dismissed else { return }
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.25
