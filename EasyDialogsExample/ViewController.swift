@@ -25,6 +25,7 @@ import EasyDialogs
 import Cartography
 import ClosureControls
 import EasyTables
+import BrightFutures
 
 class ViewController: NSViewController {
 
@@ -45,8 +46,16 @@ class ViewController: NSViewController {
         let simpleInput = ClosureButton(label: "Simple value input") { [weak self] _ in
             self?.simpleInput()
         }
+        let randomInput = CustomEditorInput<UInt32>.init(
+            label: "Randomizer",
+            value: nil,
+            editor:  { _, _ in Future(value: arc4random()) })
         
-        self.stackView.addArrangedSubviewsAndExpand([externalButton, simpleInput, self.outputField])
+        self.stackView.addArrangedSubviewsAndExpand([
+            externalButton,
+            simpleInput,
+            randomInput,
+            self.outputField])
     }
     
     fileprivate func log(_ string: String) {

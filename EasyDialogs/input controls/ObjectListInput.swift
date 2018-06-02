@@ -27,7 +27,7 @@ import Cartography
 import EasyTables
 import ClosureControls
 
-/// An inputs that displays a list of objects
+/// An inputs that displays a list of objects and allows to add, edit and delete them
 open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
     
     /// Table selection
@@ -101,10 +101,10 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
             inlineLabel: false,
             value: initialValues,
             controlView: contentView,
-            valueExtraction: { (Any) -> [VALUE]? in
+            valueExtraction: { _, _ -> [VALUE]? in
                 return tableSource.content.map { $0.object }
         },
-            setValue: { _, value in
+            setValue: { _, _, value in
                 tableSource.setContent(value?.map { Unique($0) } ?? [])
         },
             validationRules: validationRules

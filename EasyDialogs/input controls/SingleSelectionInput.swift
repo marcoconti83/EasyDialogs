@@ -64,12 +64,12 @@ open class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBox>
             label: label,
             value: selectedValue,
             controlView: combo,
-            valueExtraction: { control in
+            valueExtraction: { _, control in
                 let index = control.indexOfSelectedItem
                 guard index >= 0 else { return nil }
                 return possibleValues[index]
             },
-            setValue: { control, value in
+            setValue: { _, control, value in
                 if let value = value, let index = values.index(of: value) {
                     control.selectItem(at: index + (allowEmpty ? 1 : 0))
                 } else {

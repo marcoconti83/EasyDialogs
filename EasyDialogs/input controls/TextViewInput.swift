@@ -61,11 +61,11 @@ open class TextViewInput: ValueInput<String, NSView> {
             inlineLabel: false,
             value: value,
             controlView: contentView,
-            valueExtraction: { _ in
+            valueExtraction: { _, _ in
                 return textView.string
 
             },
-            setValue: { _, value in
+            setValue: { _, _, value in
                 textView.string = value ?? ""
             },
             validationRules: validationRules
@@ -81,7 +81,6 @@ open class TextViewInput: ValueInput<String, NSView> {
         set { self.textView.delegate = newValue }
     }
 }
-
 
 extension NSTextView {
     

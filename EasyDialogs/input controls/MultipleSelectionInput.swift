@@ -101,10 +101,10 @@ open class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScrol
             inlineLabel: false,
             value: selectedValues,
             controlView: self.scrollView,
-            valueExtraction: { (Any) -> [VALUE]? in
+            valueExtraction: { _, _ -> [VALUE]? in
                 return tableSource.dataSource.selectedItems
             },
-            setValue: { _, value in
+            setValue: { _, _, value in
                 tableSource.dataSource.select(items: value ?? [])
             },
             validationRules: validationRules

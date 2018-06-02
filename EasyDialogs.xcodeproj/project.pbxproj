@@ -56,6 +56,7 @@
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
+		A9CD09F620C2705D00D59D1F /* CustomEditorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
+		A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditorInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				542985121F1E7FCC003EFDFB /* TextViewInput.swift */,
 				54D0A9E120781D3900E2C6D4 /* CheckBoxInput.swift */,
 				546F75F71F1DE14500E1426A /* TextFieldInput.swift */,
+				A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */,
 				54D4907B1F1E959900FA3A1C /* SingleSelectionInput.swift */,
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
 				540FB7941F9094600020E7AE /* ObjectListInput.swift */,
@@ -487,6 +490,7 @@
 				5427D32D1F95278300B585AD /* Wrappers.swift in Sources */,
 				54835CB91F93B83800DC7EE4 /* InputBinding.swift in Sources */,
 				54BF829D1F5F60A700B12618 /* NSTextView+Labels.swift in Sources */,
+				A9CD09F620C2705D00D59D1F /* CustomEditorInput.swift in Sources */,
 				5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */,

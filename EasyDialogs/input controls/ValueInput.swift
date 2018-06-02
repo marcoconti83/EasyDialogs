@@ -62,7 +62,7 @@ open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     public let labelView: NSTextField
     
     /// Extracts the value from the control
-    fileprivate let valueExtraction: (CONTROL)->VALUE?
+    fileprivate let valueExtraction: (ValueInput<VALUE, CONTROL>, CONTROL)->VALUE?
     
     /// Validation rules for the parsed input
     var validationRules: [AnyInputValidation<VALUE>]
@@ -71,15 +71,15 @@ open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     public let controlView: CONTROL!
     
     /// Sets the value on the control
-    fileprivate let setValue: (CONTROL, VALUE?)->()
+    fileprivate let setValue: (ValueInput<VALUE, CONTROL>, CONTROL, VALUE?)->()
     
     public init(
         label: String? = nil,
         inlineLabel: Bool = true,
         value: VALUE? = nil,
         controlView: CONTROL,
-        valueExtraction: @escaping (CONTROL)->VALUE?,
-        setValue: @escaping (CONTROL, VALUE?)->() = { _,_  in },
+        valueExtraction: @escaping (ValueInput<VALUE, CONTROL>, CONTROL)->VALUE?,
+        setValue: @escaping (ValueInput<VALUE, CONTROL>, CONTROL, VALUE?)->() = { _,_,_  in },
         validationRules: [AnyInputValidation<VALUE>] = [])
     {
         self.controlView = controlView
@@ -134,7 +134,7 @@ open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     }
     
     override public var hasValidValue: Bool {
-        let value = self.valueExtraction(self.controlView)
+        let value = self.valueExtraction(self, self.controlView)
         for validation in self.validationRules {
             if !validation.validate(value) {
                 return false
@@ -160,11 +160,11 @@ extension ValueInput {
     /// The value represented by the current input
     public var value: VALUE? {
         get {
-            let value = self.valueExtraction(self.controlView)
+            let value = self.valueExtraction(self, self.controlView)
             return self.hasValidValue ? value : nil
         }
         set {
-            self.setValue(self.controlView, newValue)
+            self.setValue(self, self.controlView, newValue)
         }
     }
 }

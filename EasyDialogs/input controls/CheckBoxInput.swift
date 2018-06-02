@@ -39,10 +39,10 @@ open class CheckBoxInput: ValueInput<Bool, NSButton> {
             label: label,
             value: value,
             controlView: checkBox,
-            valueExtraction: { control in
+            valueExtraction: { _, control in
                 return control.state == .on
         },
-            setValue: { control, value in
+            setValue: { _, control, value in
                 control.state = (value ?? false) ? .on : .off
         },
             validationRules: []

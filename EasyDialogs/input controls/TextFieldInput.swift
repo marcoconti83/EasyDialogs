@@ -35,6 +35,7 @@ public protocol StringInputConvertible {
     init?(fromStringInput: String)
 }
 
+/// An input field for any value that can be represented with a one-line string
 open class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTextField> {
 
     public init(label: String? = nil,
@@ -47,11 +48,11 @@ open class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTe
             label: label,
             value: value,
             controlView: textField,
-            valueExtraction: { control in
+            valueExtraction: { _, control in
                 let string = control.stringValue
                 return VALUE(fromStringInput: string)
             },
-            setValue: { control, value in
+            setValue: { _, control, value in
                 let string = value?.toStringInput()
                 control.stringValue = string ?? ""
             },
@@ -115,3 +116,4 @@ extension URL: StringInputConvertible {
         self.init(string: input)
     }
 }
+
