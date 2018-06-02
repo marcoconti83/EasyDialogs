@@ -135,6 +135,10 @@ public class FormWindow<ResultValue>: ModalWindow {
         self.errorLabel.isHidden = false
         self.errorLabel.stringValue = message
     }
+    
+    @objc public func cancel(_ sender: Any?) {
+        self.cancelButtonPressed()
+    }
 }
 
 // MARK: - Form setup
