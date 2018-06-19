@@ -60,6 +60,7 @@ open class CustomEditorInput<VALUE>: ValueInput<VALUE, NSView> {
         button.image = buttonIcon ?? Images.get(name: "pencil.png")
         
         let container = NSView()
+        container.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(textField)
         container.addSubview(button)
         

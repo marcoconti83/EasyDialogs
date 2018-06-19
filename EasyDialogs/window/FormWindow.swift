@@ -152,6 +152,7 @@ extension FormWindow {
         
         let contentView = self.window!.contentView!
         let wrapperView = NSView()
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(wrapperView)
         constrain(contentView, wrapperView) { content, wrapper in
             wrapper.edges == content.edges
@@ -181,9 +182,11 @@ extension FormWindow {
     private func createStackView() -> NSView {
         
         let stack = NSStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.orientation = .vertical
         stack.spacing = 1
         let scroll = NSScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.documentView = stack
         scroll.drawsBackground = false
         scroll.borderType = .noBorder
@@ -209,8 +212,10 @@ extension FormWindow {
     private func createHeader(headerText: String?) -> NSView {
         
         let header = NSView()
+        header.translatesAutoresizingMaskIntoConstraints = false
         if let headerText = headerText {
             let label = NSTextField.createMultilineLabel(headerText)
+            label.translatesAutoresizingMaskIntoConstraints = false
             header.addSubview(label)
             constrain(header, label) { header, label in
                 label.top == header.top + contentViewInternalPadding
@@ -240,6 +245,7 @@ extension FormWindow {
         self.errorLabel = errorLabel
         
         let footer = NSView()
+        footer.translatesAutoresizingMaskIntoConstraints = false
         footer.addSubview(OKButton)
         footer.addSubview(cancelButton)
         footer.addSubview(errorLabel)

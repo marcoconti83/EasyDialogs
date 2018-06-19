@@ -101,6 +101,7 @@ private class ButtonsFormWindow: ModalWindow {
         
         let contentView = self.window!.contentView!
         let wrapperView = NSView()
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(wrapperView)
         constrain(contentView, wrapperView) { content, wrapper in
             wrapper.edges == content.edges
@@ -109,6 +110,7 @@ private class ButtonsFormWindow: ModalWindow {
         
         let label = NSTextField.createMultilineLabel(headerText)
         let buttonsView = NSView()
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(label)
         wrapperView.addSubview(buttonsView)
         
