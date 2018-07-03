@@ -37,6 +37,7 @@ open class InputView: NSView {
     init(name: String) {
         self.name = name
         super.init(frame: NSRect(x: 0, y: 0, width: 100, height: 90))
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required public init?(coder: NSCoder) {

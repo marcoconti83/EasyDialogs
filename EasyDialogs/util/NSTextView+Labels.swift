@@ -34,6 +34,7 @@ extension NSTextField {
     
     public static func createLabel(_ text: String? = nil) -> NSTextField {
         let view = NSTextField()
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.isBezeled = false
         view.drawsBackground = false
         view.isEditable = false
