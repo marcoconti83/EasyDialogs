@@ -27,7 +27,7 @@ public class ModalWindow: NSWindowController {
     /// Holding self reference to make window peristent until dismissed
     fileprivate var selfReference: ModalWindow? = nil
     
-    init() {
+    public init() {
         let window = ModalWindow.createWindow()
         super.init(window: window)
         self.selfReference = self
