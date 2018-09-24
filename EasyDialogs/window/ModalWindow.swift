@@ -42,13 +42,13 @@ public class ModalWindow: NSWindowController {
 extension ModalWindow {
 
     /// Dismiss the window
-    func dismiss() {
+    public func dismiss() {
         NSApp.stopModal()
         self.window!.orderOut(self)
         self.selfReference = nil // this will release the last reference
     }
     
-    func present() {
+    public func present() {
         self.showWindow(nil)
         NSApp.runModal(for: self.window!)
     }
