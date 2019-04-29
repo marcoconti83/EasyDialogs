@@ -115,7 +115,8 @@ open class ObjectListInput<VALUE: Equatable>: ValueInput<[VALUE], NSView> {
         let toolbar = self.createToolbarAndButtons(
             edit: objectEdit,
             create: objectCreation,
-            possibleObjects: possibleObjects)
+            possibleObjects: possibleObjects,
+            columns: columns)
         
         self.setupLayout(
             contentView: contentView,
@@ -179,11 +180,12 @@ extension ObjectListInput {
     private func createToolbarAndButtons(
         edit: ObjectEditHandler?,
         create: ObjectCreationHandler?,
-        possibleObjects: [VALUE]
+        possibleObjects: [VALUE],
+        columns: [ColumnDefinition<VALUE>]?
         ) -> NSView {
         let buttons = [
             self.createAddButton(objectCreationClosure: create),
-            self.createChooseFromListButton(possibleObjects: possibleObjects),
+            self.createChooseFromListButton(possibleObjects: possibleObjects, columns: columns),
             self.createEditButton(closure: edit),
             self.createRemoveButton(),
             self.createUpButton(),
@@ -257,11 +259,16 @@ extension ObjectListInput {
     }
 
     
-    private func createChooseFromListButton(possibleObjects: [VALUE]) -> ClosureButton? {
+    private func createChooseFromListButton(
+        possibleObjects: [VALUE],
+        columns: [ColumnDefinition<VALUE>]?
+    ) -> ClosureButton? {
         guard !possibleObjects.isEmpty else { return nil }
         let button = ClosureButton() { _ in
-            possibleObjects.askMultipleAnswers("Select one or more items to add to the list",
-                                                    initialValue: [])
+            possibleObjects.askMultipleAnswers(
+                "Select one or more items to add to the list",
+                initialValue: [],
+                columns: columns)
             { [weak self] response in
                 guard let `self` = self, case .ok(let objects) = response else { return }
                 self.tableSource.setContent(self.tableSource.content + objects.map { Unique($0) })

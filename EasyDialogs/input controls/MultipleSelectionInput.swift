@@ -45,11 +45,12 @@ open class MultipleSelectionInput<VALUE: Equatable>: ValueInput<[VALUE], NSScrol
                 validationRules: [AnyInputValidation<[VALUE]>] = [],
                 maxRowsToDisplay: Int? = nil,
                 minRowsToDisplay: Int = 3,
+                columns: [ColumnDefinition<VALUE>]? = nil,
                 showHeader: Bool = false
         )
     {
         let valueToDisplay = valueToDisplay ?? { "\($0)" }
-        let columns = [ColumnDefinition(name: "Value", value: valueToDisplay)]
+        let columns = columns ?? [ColumnDefinition(name: "Value", value: valueToDisplay)]
         self.init(label: label,
                   possibleValues: possibleValues,
                   selectedValues: selectedValues,

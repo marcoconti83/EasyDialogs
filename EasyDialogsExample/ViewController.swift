@@ -149,6 +149,10 @@ extension ViewController {
                 Ingredient(name: "Olive oil", amount: 4, unit: .teaspoons),
                 Ingredient(name: "Garlic", amount: 1, unit:.pieces)
             ],
+            possibleObjects: [
+                Ingredient(name: "Salt", amount: 1, unit: .teaspoons),
+                Ingredient(name: "Pepper", amount: 1, unit: .teaspoons),
+            ],
             objectCreation: Ingredient.bindings.formWindowForCreationClosure(),
             objectEdit: Ingredient.bindings.formWindowForEditClosure(),
             columns: [

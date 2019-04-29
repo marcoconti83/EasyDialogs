@@ -22,6 +22,7 @@
 
 import Foundation
 import BrightFutures
+import EasyTables
 
 extension Sequence where Self.Iterator.Element: Equatable {
     
@@ -59,18 +60,22 @@ extension Sequence where Self.Iterator.Element: Equatable {
     public func askMultipleAnswers(_ message: String,
                     initialValue: [Self.Iterator.Element] = [],
                     valueToDisplay: ((Self.Iterator.Element)->Any)? = nil,
+                    columns: [ColumnDefinition<Self.Iterator.Element>]? = nil,
                     handler: @escaping (InputResponse<[Self.Iterator.Element]>)->())
     {
         MultipleSelectionInput(label: nil,
                                possibleValues: Array(self),
                                valueToDisplay: valueToDisplay,
-                               selectedValues: initialValue)
+                               selectedValues: initialValue,
+                               columns: columns,
+                               showHeader: (columns?.count ?? 1) > 1)
             .askInForm(message: message, handler: handler)
     }
     
     /// Asks to choose one or more values from the collection
     public func askMultipleAnswers(_ message: String,
                                    initialValue: [Self.Iterator.Element] = [],
+                                   columns: [ColumnDefinition<Self.Iterator.Element>]? = nil,
                                    valueToDisplay: ((Self.Iterator.Element)->Any)? = nil)
         -> Future<[Self.Iterator.Element], AbortedError>
     {
