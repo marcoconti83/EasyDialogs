@@ -91,7 +91,7 @@ extension Int {
     /// Asks the user for a numeric input
     static public func ask(_ message: String,
                            initialValue: Int? = nil,
-                           secure: Bool) -> Future<Int, AbortedError>
+                           secure: Bool = false) -> Future<Int, AbortedError>
     {
         return Future {
             self.ask(
