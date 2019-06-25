@@ -40,10 +40,16 @@ open class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTe
 
     public init(label: String? = nil,
                 value: VALUE? = nil,
-                validationRules: [AnyInputValidation<VALUE>] = []
+                validationRules: [AnyInputValidation<VALUE>] = [],
+                secure: Bool = false
                 )
     {
-        let textField = NSTextField()
+        let textField: NSTextField
+        if secure {
+            textField = NSSecureTextField()
+        } else {
+            textField = NSTextField()
+        }
         super.init(
             label: label,
             value: value,
@@ -70,7 +76,6 @@ open class TextFieldInput<VALUE: StringInputConvertible>: ValueInput<VALUE, NSTe
     }
     
 }
-
 
 extension String: StringInputConvertible {
     

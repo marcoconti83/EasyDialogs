@@ -28,20 +28,23 @@ extension String {
     /// Asks the user for a single-line input
     static public func ask(_ message: String,
                                 initialValue: String? = nil,
-                                handler: @escaping (InputResponse<String>)->())
+                                handler: @escaping (InputResponse<String>)->(),
+                                secure: Bool = false)
     {
-        TextFieldInput(label: nil, value: initialValue)
+        TextFieldInput(label: nil, value: initialValue, secure: secure)
             .askInForm(message: message, handler: handler)
     }
     
     /// Asks the user for a single-line input
     static public func ask(_ message: String,
-                           initialValue: String? = nil) -> Future<String, AbortedError>
+                           initialValue: String? = nil,
+                           secure: Bool = false) -> Future<String, AbortedError>
     {
         return Future {
             self.ask(message,
                      initialValue: initialValue,
-                     handler: InputFuture.handler($0))
+                     handler: InputFuture.handler($0),
+                     secure: secure)
         }
     }
     
@@ -76,22 +79,26 @@ extension Int {
     /// Asks the user for a numeric input
     static public func ask(_ message: String,
                            initialValue: Int? = nil,
-                           handler: @escaping (InputResponse<Int>)->())
+                           handler: @escaping (InputResponse<Int>)->(),
+                           secure: Bool = false)
     {
         TextFieldInput(label: nil,
-                       value: initialValue)
+                       value: initialValue,
+                       secure: secure)
             .askInForm(message: message, handler: handler)
     }
     
     /// Asks the user for a numeric input
     static public func ask(_ message: String,
-                           initialValue: Int? = nil) -> Future<Int, AbortedError>
+                           initialValue: Int? = nil,
+                           secure: Bool) -> Future<Int, AbortedError>
     {
         return Future {
             self.ask(
                 message,
                 initialValue: initialValue,
-                handler: InputFuture.handler($0)
+                handler: InputFuture.handler($0),
+                secure: secure
             )
         }
     }

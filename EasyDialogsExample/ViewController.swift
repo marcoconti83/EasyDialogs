@@ -66,6 +66,7 @@ class ViewController: NSViewController {
 extension ViewController {
     
     fileprivate func createStringSection() {
+        let passwordInput = TextFieldInput<String>(label: "Secret token", value: "password", secure: true)
         let stringInput = TextFieldInput<String>(label: "Input string", value: "foo")
         let repetitionsInput = TextFieldInput<Int>(
             label: "Repetitions",
@@ -84,6 +85,7 @@ extension ViewController {
         self.stackView.addArrangedSubviewsAndExpand([stringInput,
                                             repetitionsInput,
                                             copyStringButton,
+                                            passwordInput
             ])
     }
     
