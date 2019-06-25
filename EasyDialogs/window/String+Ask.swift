@@ -28,8 +28,8 @@ extension String {
     /// Asks the user for a single-line input
     static public func ask(_ message: String,
                                 initialValue: String? = nil,
-                                handler: @escaping (InputResponse<String>)->(),
-                                secure: Bool = false)
+                                secure: Bool = false,
+                                handler: @escaping (InputResponse<String>)->())
     {
         TextFieldInput(label: nil, value: initialValue, secure: secure)
             .askInForm(message: message, handler: handler)
@@ -79,8 +79,8 @@ extension Int {
     /// Asks the user for a numeric input
     static public func ask(_ message: String,
                            initialValue: Int? = nil,
-                           handler: @escaping (InputResponse<Int>)->(),
-                           secure: Bool = false)
+                           secure: Bool = false,
+                           handler: @escaping (InputResponse<Int>)->())
     {
         TextFieldInput(label: nil,
                        value: initialValue,
