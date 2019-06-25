@@ -43,8 +43,8 @@ extension String {
         return Future {
             self.ask(message,
                      initialValue: initialValue,
-                     handler: InputFuture.handler($0),
-                     secure: secure)
+                     secure: secure,
+                     handler: InputFuture.handler($0))
         }
     }
     
@@ -97,8 +97,8 @@ extension Int {
             self.ask(
                 message,
                 initialValue: initialValue,
-                handler: InputFuture.handler($0),
-                secure: secure
+                secure: secure,
+                handler: InputFuture.handler($0)
             )
         }
     }
