@@ -211,7 +211,7 @@ extension ObjectListInput {
             guard !selected.isEmpty else { return }
             var remaining = self.tableSource.content
             selected.forEach {
-                guard let index = remaining.index(of: $0) else { return }
+                guard let index = remaining.firstIndex(of: $0) else { return }
                 remaining.remove(at: index)
             }
             self.tableSource.setContent(remaining)
@@ -340,7 +340,7 @@ extension ObjectListInput {
         closure?(item.object) { [weak self] newObj in
             guard let edited = newObj.flatMap({ Unique($0) }) else { return }
             guard var items = self?.tableSource.content else { return }
-            if let index = items.index(of: item) {
+            if let index = items.firstIndex(of: item) {
                 items.remove(at: index)
                 items.insert(edited, at: index)
             } else {
@@ -381,7 +381,7 @@ extension Array where Element: Equatable {
     }
     
     private func movingPositionOf(_ element: Element, offset: Int) -> Array<Element> {
-        guard let index = self.index(of: element) else { return self }
+        guard let index = self.firstIndex(of: element) else { return self }
         var newPosition = index + offset
         if newPosition < 0 {
             newPosition = 0

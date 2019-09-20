@@ -47,15 +47,16 @@
 		54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */; };
 		54DBCDF61F0F771C008DB8E3 /* EasyDialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54E003E9203E9AEA00D054A3 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; };
-		54E003EA203E9AEA00D054A3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; };
 		54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E003EB203E9FF700D054A3 /* InputFuture.swift */; };
 		54E003ED203EAAC000D054A3 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; };
-		54E003EE203EAAC300D054A3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; };
 		54E003EF203EAACB00D054A3 /* BrightFutures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E7203E9AEA00D054A3 /* BrightFutures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		54E003F0203EAACB00D054A3 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54E003E8203E9AEA00D054A3 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
+		A956F70122D489B000FB666A /* ValueInputWithToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A956F70022D489B000FB666A /* ValueInputWithToggle.swift */; };
+		A98D5B722335533100815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
+		A98D5B742335536600815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
+		A98D5B752335536600815240 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9CD09F620C2705D00D59D1F /* CustomEditorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,9 +80,9 @@
 				541C6F051F17BE6A00C29CC4 /* EasyDialogs.framework in Embed Frameworks */,
 				541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */,
 				54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */,
+				A98D5B752335536600815240 /* Result.framework in Embed Frameworks */,
 				54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */,
 				54E003EF203EAACB00D054A3 /* BrightFutures.framework in Embed Frameworks */,
-				54E003F0203EAACB00D054A3 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,12 +143,13 @@
 		54DBCDE81F0F771B008DB8E3 /* EasyDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDialogs.h; sourceTree = "<group>"; };
 		54DBCDE91F0F771B008DB8E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54E003E7203E9AEA00D054A3 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/Mac/BrightFutures.framework; sourceTree = "<group>"; };
-		54E003E8203E9AEA00D054A3 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		54E003EB203E9FF700D054A3 /* InputFuture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFuture.swift; sourceTree = "<group>"; };
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
+		A956F70022D489B000FB666A /* ValueInputWithToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueInputWithToggle.swift; sourceTree = "<group>"; };
 		A977243920C29508008A4D58 /* custom-input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-input.png"; sourceTree = "<group>"; };
+		A98D5B712335533100815240 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditorInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,8 +160,8 @@
 			files = (
 				541C6F031F17BE6300C29CC4 /* EasyDialogs.framework in Frameworks */,
 				541C6F101F17C7C500C29CC4 /* Cartography.framework in Frameworks */,
+				A98D5B742335536600815240 /* Result.framework in Frameworks */,
 				54E003ED203EAAC000D054A3 /* BrightFutures.framework in Frameworks */,
-				54E003EE203EAAC300D054A3 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +171,7 @@
 			files = (
 				545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */,
 				54E003E9203E9AEA00D054A3 /* BrightFutures.framework in Frameworks */,
-				54E003EA203E9AEA00D054A3 /* Result.framework in Frameworks */,
+				A98D5B722335533100815240 /* Result.framework in Frameworks */,
 				545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */,
 				541C6F0E1F17C78A00C29CC4 /* Cartography.framework in Frameworks */,
 			);
@@ -193,8 +195,8 @@
 		541C6F0F1F17C78E00C29CC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A98D5B712335533100815240 /* Result.framework */,
 				54E003E7203E9AEA00D054A3 /* BrightFutures.framework */,
-				54E003E8203E9AEA00D054A3 /* Result.framework */,
 				545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */,
 				545C8F121F3F52BD00ED1F1B /* EasyTables.framework */,
 				541C6F0D1F17C78A00C29CC4 /* Cartography.framework */,
@@ -215,6 +217,7 @@
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
 				540FB7941F9094600020E7AE /* ObjectListInput.swift */,
 				54BF82991F5F481B00B12618 /* Validation.swift */,
+				A956F70022D489B000FB666A /* ValueInputWithToggle.swift */,
 			);
 			path = "input controls";
 			sourceTree = "<group>";
@@ -406,24 +409,24 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = com.marco83;
 				TargetAttributes = {
 					541C6EF31F17BE4700C29CC4 = {
 						CreatedOnToolsVersion = 8.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					54DBCDE41F0F771B008DB8E3 = {
 						CreatedOnToolsVersion = 8.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 54DBCDDF1F0F771B008DB8E3 /* Build configuration list for PBXProject "EasyDialogs" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -496,6 +499,7 @@
 				5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */,
+				A956F70122D489B000FB666A /* ValueInputWithToggle.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
 				5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */,
@@ -543,7 +547,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marco83.EasyDialogsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -562,7 +566,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marco83.EasyDialogsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -570,6 +574,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -631,6 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -702,7 +708,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -727,7 +733,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marco83.EasyDialogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

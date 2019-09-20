@@ -26,6 +26,6 @@ class Images {
     
     /// Gets an image with the given name from the bundle. Asserts if the image does not exists
     static func get(name: String) -> NSImage {
-        return Bundle(for: Images.self).image(forResource: NSImage.Name(name))!
+        return Bundle(for: Images.self).image(forResource: name)!
     }
 }

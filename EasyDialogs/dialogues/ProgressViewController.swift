@@ -213,7 +213,7 @@ public enum LogStyle {
             return string
         }
         let attributed = NSMutableAttributedString(attributedString: string)
-        attributed.addAttribute(NSAttributedStringKey.foregroundColor, value: NSColor.lightGray, range: NSRange(location: 0, length: attributed.length))
+        attributed.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor.lightGray, range: NSRange(location: 0, length: attributed.length))
         return attributed
     }
 }

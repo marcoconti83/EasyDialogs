@@ -70,7 +70,7 @@ open class SingleSelectionInput<VALUE: Equatable>: ValueInput<VALUE, NSComboBox>
                 return possibleValues[index]
             },
             setValue: { _, control, value in
-                if let value = value, let index = values.index(of: value) {
+                if let value = value, let index = values.firstIndex(of: value) {
                     control.selectItem(at: index + (allowEmpty ? 1 : 0))
                 } else {
                     control.selectItem(at: 0)

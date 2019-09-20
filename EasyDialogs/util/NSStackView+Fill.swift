@@ -47,6 +47,8 @@ extension NSStackView {
             case .horizontal:
                 view.top == stack.top - padding
                 view.bottom == stack.bottom + padding
+            @unknown default:
+                fatalError()
             }
         }
     }

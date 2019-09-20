@@ -152,6 +152,6 @@ extension Array where Element: Equatable {
     
     /// Finds position of element in the array. This is a linear complexity operation.
     fileprivate func indexOf(_ value: Element) -> Int? {
-        return self.index(where: { $0 == value })
+        return self.firstIndex(where: { $0 == value })
     }
 }

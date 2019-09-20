@@ -41,7 +41,7 @@ public class FormWindow<ResultValue>: ModalWindow {
     private var validateValue: ()->(ResultValue?)
     
     /// Closure to invoke when the user press the confirm button
-    internal(set) var onConfirm: (ResultValue)->()
+    var onConfirm: (ResultValue)->()
     
     /// Closure invoked when the user cancels the form
     private let onCancel: (()->())?
