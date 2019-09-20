@@ -53,7 +53,6 @@
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
-		A956F70122D489B000FB666A /* ValueInputWithToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A956F70022D489B000FB666A /* ValueInputWithToggle.swift */; };
 		A98D5B722335533100815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
 		A98D5B742335536600815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
 		A98D5B752335536600815240 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -147,7 +146,6 @@
 		54F1BEE61F5DCEED0093F96C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
-		A956F70022D489B000FB666A /* ValueInputWithToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueInputWithToggle.swift; sourceTree = "<group>"; };
 		A977243920C29508008A4D58 /* custom-input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-input.png"; sourceTree = "<group>"; };
 		A98D5B712335533100815240 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditorInput.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 				54D4907D1F1EB61700FA3A1C /* MultipleSelectionInput.swift */,
 				540FB7941F9094600020E7AE /* ObjectListInput.swift */,
 				54BF82991F5F481B00B12618 /* Validation.swift */,
-				A956F70022D489B000FB666A /* ValueInputWithToggle.swift */,
 			);
 			path = "input controls";
 			sourceTree = "<group>";
@@ -499,7 +496,6 @@
 				5444EF811F65BDBF00385A57 /* ModalWindow.swift in Sources */,
 				542985131F1E7FCC003EFDFB /* TextViewInput.swift in Sources */,
 				54E003EC203E9FF700D054A3 /* InputFuture.swift in Sources */,
-				A956F70122D489B000FB666A /* ValueInputWithToggle.swift in Sources */,
 				54D4907E1F1EB61700FA3A1C /* MultipleSelectionInput.swift in Sources */,
 				545ACDC81F65458E007EB769 /* Collection+Ask.swift in Sources */,
 				5451A564202D7D3A0093173D /* ProgressViewController.swift in Sources */,
