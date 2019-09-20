@@ -53,9 +53,6 @@
 		54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 545C8F121F3F52BD00ED1F1B /* EasyTables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54F1BEEE1F5DF17D0093F96C /* FormWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F1BEED1F5DF17D0093F96C /* FormWindow.swift */; };
-		A98D5B722335533100815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
-		A98D5B742335536600815240 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; };
-		A98D5B752335536600815240 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A98D5B712335533100815240 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9CD09F620C2705D00D59D1F /* CustomEditorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +76,6 @@
 				541C6F051F17BE6A00C29CC4 /* EasyDialogs.framework in Embed Frameworks */,
 				541C6F111F17C7C500C29CC4 /* Cartography.framework in Embed Frameworks */,
 				54F1BEEA1F5DDAB70093F96C /* ClosureControls.framework in Embed Frameworks */,
-				A98D5B752335536600815240 /* Result.framework in Embed Frameworks */,
 				54F1BEEB1F5DDAC80093F96C /* EasyTables.framework in Embed Frameworks */,
 				54E003EF203EAACB00D054A3 /* BrightFutures.framework in Embed Frameworks */,
 			);
@@ -147,7 +143,6 @@
 		54F1BEE71F5DCEED0093F96C /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		54F1BEED1F5DF17D0093F96C /* FormWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWindow.swift; sourceTree = "<group>"; };
 		A977243920C29508008A4D58 /* custom-input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-input.png"; sourceTree = "<group>"; };
-		A98D5B712335533100815240 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		A9CD09F520C2705D00D59D1F /* CustomEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditorInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,7 +153,6 @@
 			files = (
 				541C6F031F17BE6300C29CC4 /* EasyDialogs.framework in Frameworks */,
 				541C6F101F17C7C500C29CC4 /* Cartography.framework in Frameworks */,
-				A98D5B742335536600815240 /* Result.framework in Frameworks */,
 				54E003ED203EAAC000D054A3 /* BrightFutures.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +163,6 @@
 			files = (
 				545C8F131F3F52BD00ED1F1B /* ClosureControls.framework in Frameworks */,
 				54E003E9203E9AEA00D054A3 /* BrightFutures.framework in Frameworks */,
-				A98D5B722335533100815240 /* Result.framework in Frameworks */,
 				545C8F141F3F52BD00ED1F1B /* EasyTables.framework in Frameworks */,
 				541C6F0E1F17C78A00C29CC4 /* Cartography.framework in Frameworks */,
 			);
@@ -193,7 +186,6 @@
 		541C6F0F1F17C78E00C29CC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A98D5B712335533100815240 /* Result.framework */,
 				54E003E7203E9AEA00D054A3 /* BrightFutures.framework */,
 				545C8F111F3F52BD00ED1F1B /* ClosureControls.framework */,
 				545C8F121F3F52BD00ED1F1B /* EasyTables.framework */,

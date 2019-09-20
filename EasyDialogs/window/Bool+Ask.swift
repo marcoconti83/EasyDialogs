@@ -24,7 +24,6 @@ import Foundation
 import ClosureControls
 import Cartography
 import BrightFutures
-import Result
 
 private let contentViewInternalPadding: CGFloat = 15
 
@@ -74,7 +73,7 @@ extension Bool {
     }
     
     /// Asks a yes/no question
-    public static func ask(_ message: String) -> Future<Bool, NoError>
+    public static func ask(_ message: String) -> Future<Bool, Error>
     {
         return Future { completion in
             self.ask(message) {

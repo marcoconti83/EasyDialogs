@@ -8,7 +8,6 @@
 
 import Foundation
 import BrightFutures
-import Result
 
 public struct AbortedError: Error {
     public init() {}
