@@ -63,7 +63,7 @@ open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     public let labelView: NSTextField
     
     /// Extracts the value from the control
-    fileprivate let valueExtraction: (ValueInput<VALUE, CONTROL>, CONTROL)->VALUE?
+    let valueExtraction: (ValueInput<VALUE, CONTROL>, CONTROL)->VALUE?
     
     /// Validation rules for the parsed input
     var validationRules: [AnyInputValidation<VALUE>]
@@ -72,7 +72,7 @@ open class ValueInput<VALUE, CONTROL: NSView>: InputView, InputViewForValue {
     public let controlView: CONTROL!
     
     /// Sets the value on the control
-    fileprivate let setValue: (ValueInput<VALUE, CONTROL>, CONTROL, VALUE?)->()
+    let setValue: (ValueInput<VALUE, CONTROL>, CONTROL, VALUE?)->()
     
     public init(
         label: String? = nil,
